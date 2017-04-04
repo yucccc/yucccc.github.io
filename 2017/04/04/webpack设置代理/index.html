@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="webpack,vue," />
 
 
 
@@ -87,12 +87,16 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="宇cccc">
-<meta property="og:url" content="http://yucccc.com/index.html">
+<meta name="description" content="这一个问题困扰了我许久，怎么用vue搭建开发环境并且可以请求本地数据，因为webpack-dev-server在编译vue的时候会默认开启一个端口，本地的服务器肯定也会拥有一个端口，那么不同端口的请求又为跨域请求，此时又不能把端口改为相同，因为这样会造成端口冲突，当然不考虑跨域jsonp之类，虽然jsonp可以做，但是在开发中无疑增加了繁杂度，并且这样做的话上线又要改请求方式，十分麻烦，那么应">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue搭建开发环境并且可以请求本地数据设置">
+<meta property="og:url" content="http://yucccc.com/2017/04/04/webpack设置代理/index.html">
 <meta property="og:site_name" content="宇cccc">
+<meta property="og:description" content="这一个问题困扰了我许久，怎么用vue搭建开发环境并且可以请求本地数据，因为webpack-dev-server在编译vue的时候会默认开启一个端口，本地的服务器肯定也会拥有一个端口，那么不同端口的请求又为跨域请求，此时又不能把端口改为相同，因为这样会造成端口冲突，当然不考虑跨域jsonp之类，虽然jsonp可以做，但是在开发中无疑增加了繁杂度，并且这样做的话上线又要改请求方式，十分麻烦，那么应">
+<meta property="og:updated_time" content="2017-04-04T02:22:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="宇cccc">
+<meta name="twitter:title" content="vue搭建开发环境并且可以请求本地数据设置">
+<meta name="twitter:description" content="这一个问题困扰了我许久，怎么用vue搭建开发环境并且可以请求本地数据，因为webpack-dev-server在编译vue的时候会默认开启一个端口，本地的服务器肯定也会拥有一个端口，那么不同端口的请求又为跨域请求，此时又不能把端口改为相同，因为这样会造成端口冲突，当然不考虑跨域jsonp之类，虽然jsonp可以做，但是在开发中无疑增加了繁杂度，并且这样做的话上线又要改请求方式，十分麻烦，那么应">
 
 
 
@@ -120,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yucccc.com/"/>
+  <link rel="canonical" href="http://yucccc.com/2017/04/04/webpack设置代理/"/>
 
 
 
 
 
-  <title> 宇cccc </title>
+  <title> vue搭建开发环境并且可以请求本地数据设置 | 宇cccc </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -151,9 +155,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -246,9 +248,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -278,10 +280,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2017/04/04/webpack设置代理/" itemprop="url">
-                  vue搭建开发环境并且可以请求本地数据设置
-                </a>
+                vue搭建开发环境并且可以请求本地数据设置
               
             
           </h1>
@@ -365,48 +364,62 @@
       
 
       
-        
-          
-            <p>  这一个问题困扰了我许久，怎么用vue搭建开发环境并且可以请求本地数据，因为webpack-dev-server在编译vue的时候会默认开启一个端口，本地的服务器肯定也会拥有一个端口，那么不同端口的请求又为跨域请求，此时又不能把端口改为相同，因为这样会造成端口冲突，当然不考虑跨域jsonp之类，虽然jsonp可以做，但是在开发中无疑增加了繁杂度，并且这样做的话上线又要改请求方式，十分麻烦，那么应该怎么做呢？<br>这时候就要用到webpack里面的开启代理的配置,即把请求的地址转发到指定的地址，并且允许跨域请求 如下：</p>
+        <p>  这一个问题困扰了我许久，怎么用vue搭建开发环境并且可以请求本地数据，因为webpack-dev-server在编译vue的时候会默认开启一个端口，本地的服务器肯定也会拥有一个端口，那么不同端口的请求又为跨域请求，此时又不能把端口改为相同，因为这样会造成端口冲突，当然不考虑跨域jsonp之类，虽然jsonp可以做，但是在开发中无疑增加了繁杂度，并且这样做的话上线又要改请求方式，十分麻烦，那么应该怎么做呢？<br>这时候就要用到webpack里面的开启代理的配置,即把请求的地址转发到指定的地址，并且允许跨域请求 如下：</p>
 <h2 id="开启webpack代理"><a href="#开启webpack代理" class="headerlink" title="开启webpack代理"></a>开启webpack代理</h2><p>此时找到config文件中的index.js,拉到底部找到<br>dev：{  里面是一些端口的配置} 在里面添加上如下配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"> dev: &#123;</div><div class="line">    env: require(&apos;./dev.env&apos;),</div><div class="line">    port: 9999,</div><div class="line">    autoOpenBrowser: true,</div><div class="line">    assetsSubDirectory: &apos;static&apos;,</div><div class="line">    assetsPublicPath: &apos;/&apos;,</div><div class="line">    proxyTable: &#123;// 这里用的是vue-cli脚手架,默认proxyTable:&#123;&#125; ,内容为空 只需要配置这个参数即可</div><div class="line">      &apos;/webapi&apos;: &#123;//代表你以什么为开始请求数据 表示以webapi开头的请求就开启代理</div><div class="line">        target: &apos;http://im.ivymei.com&apos;, //代表代理地址 即：如果 this.$http.get(&apos;/webapi&apos;).then() 此时会变成http://www.baidu.com/webapi</div><div class="line">        changeOrigin: true,// 表示允许跨域   </div><div class="line">        pathRewrite: &#123;</div><div class="line">          &apos;^/webapi&apos;: &apos;/webapi&apos; //可要可不要</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line">    cssSourceMap: false,</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>至此就可以愉快的请求本地数据了  8080端口也能请求80端口的数据了 最终打包上线也不需要改任何代码,更多的webpack代理设置请查阅webpack官方文档</p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <div>
+      
+        
+
       
     </div>
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/webpack/" rel="tag"># webpack</a>
+          
+            <a href="/tags/vue/" rel="tag"># vue</a>
+          
+        </div>
+      
+
+      
+        
+      
 
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -414,6 +427,17 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -433,8 +457,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -496,6 +529,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开启webpack代理"><span class="nav-number">1.</span> <span class="nav-text">开启webpack代理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -610,6 +659,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
@@ -627,6 +680,18 @@
       <script id="dsq-count-scr" src="https://yucccc.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yucccc.com/2017/04/04/webpack设置代理/';
+          this.page.identifier = '2017/04/04/webpack设置代理/';
+          this.page.title = 'vue搭建开发环境并且可以请求本地数据设置';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://yucccc.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   
