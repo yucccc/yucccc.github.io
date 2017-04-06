@@ -93,7 +93,7 @@
 <meta property="og:url" content="http://yucccc.com/2017/04/04/webpack设置代理/index.html">
 <meta property="og:site_name" content="宇cccc">
 <meta property="og:description" content="这一个问题困扰了我许久，怎么用vue搭建开发环境并且可以请求本地数据，因为webpack-dev-server在编译vue的时候会默认开启一个端口，本地的服务器肯定也会拥有一个端口，那么不同端口的请求又为跨域请求，此时又不能把端口改为相同，因为这样会造成端口冲突，当然不考虑跨域jsonp之类，虽然jsonp可以做，但是在开发中无疑增加了繁杂度，并且这样做的话上线又要改请求方式，十分麻烦，那么应">
-<meta property="og:updated_time" content="2017-04-04T02:22:34.000Z">
+<meta property="og:updated_time" content="2017-04-05T14:20:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue搭建开发环境并且可以请求本地数据设置">
 <meta name="twitter:description" content="这一个问题困扰了我许久，怎么用vue搭建开发环境并且可以请求本地数据，因为webpack-dev-server在编译vue的时候会默认开启一个端口，本地的服务器肯定也会拥有一个端口，那么不同端口的请求又为跨域请求，此时又不能把端口改为相同，因为这样会造成端口冲突，当然不考虑跨域jsonp之类，虽然jsonp可以做，但是在开发中无疑增加了繁杂度，并且这样做的话上线又要改请求方式，十分麻烦，那么应">
@@ -264,7 +264,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="宇cccc">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -365,7 +365,7 @@
 
       
         <p>  这一个问题困扰了我许久，怎么用vue搭建开发环境并且可以请求本地数据，因为webpack-dev-server在编译vue的时候会默认开启一个端口，本地的服务器肯定也会拥有一个端口，那么不同端口的请求又为跨域请求，此时又不能把端口改为相同，因为这样会造成端口冲突，当然不考虑跨域jsonp之类，虽然jsonp可以做，但是在开发中无疑增加了繁杂度，并且这样做的话上线又要改请求方式，十分麻烦，那么应该怎么做呢？<br>这时候就要用到webpack里面的开启代理的配置,即把请求的地址转发到指定的地址，并且允许跨域请求 如下：</p>
-<h2 id="开启webpack代理"><a href="#开启webpack代理" class="headerlink" title="开启webpack代理"></a>开启webpack代理</h2><p>此时找到config文件中的index.js,拉到底部找到<br>dev：{  里面是一些端口的配置} 在里面添加上如下配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"> dev: &#123;</div><div class="line">    env: require(&apos;./dev.env&apos;),</div><div class="line">    port: 9999,</div><div class="line">    autoOpenBrowser: true,</div><div class="line">    assetsSubDirectory: &apos;static&apos;,</div><div class="line">    assetsPublicPath: &apos;/&apos;,</div><div class="line">    proxyTable: &#123;// 这里用的是vue-cli脚手架,默认proxyTable:&#123;&#125; ,内容为空 只需要配置这个参数即可</div><div class="line">      &apos;/webapi&apos;: &#123;//代表你以什么为开始请求数据 表示以webapi开头的请求就开启代理</div><div class="line">        target: &apos;http://im.ivymei.com&apos;, //代表代理地址 即：如果 this.$http.get(&apos;/webapi&apos;).then() 此时会变成http://www.baidu.com/webapi</div><div class="line">        changeOrigin: true,// 表示允许跨域   </div><div class="line">        pathRewrite: &#123;</div><div class="line">          &apos;^/webapi&apos;: &apos;/webapi&apos; //可要可不要</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line">    cssSourceMap: false,</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="开启webpack代理"><a href="#开启webpack代理" class="headerlink" title="开启webpack代理"></a>开启webpack代理</h2><p>此时找到config文件中的index.js,拉到底部找到<br>dev：{  里面是一些端口的配置} 在里面添加上如下配置<br> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"> dev: &#123;</div><div class="line">    <span class="attr">env</span>: <span class="built_in">require</span>(<span class="string">'./dev.env'</span>),</div><div class="line">    <span class="attr">port</span>: <span class="number">9999</span>,</div><div class="line">    <span class="attr">autoOpenBrowser</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">assetsSubDirectory</span>: <span class="string">'static'</span>,</div><div class="line">    <span class="attr">assetsPublicPath</span>: <span class="string">'/'</span>,</div><div class="line">    <span class="attr">proxyTable</span>: &#123;<span class="comment">// 这里用的是vue-cli脚手架,默认proxyTable:&#123;&#125; ,内容为空 只需要配置这个参数即可</span></div><div class="line">      <span class="string">'/webapi'</span>: &#123;<span class="comment">//代表你以什么为开始请求数据 表示以webapi开头的请求就开启代理</span></div><div class="line">        target: <span class="string">'http://im.ivymei.com'</span>, <span class="comment">//代表代理地址 即：如果 this.$http.get('/webapi').then() 此时会变成http://www.baidu.com/webapi</span></div><div class="line">        changeOrigin: <span class="literal">true</span>,<span class="comment">// 表示允许跨域   </span></div><div class="line">        pathRewrite: &#123;</div><div class="line">          <span class="string">'^/webapi'</span>: <span class="string">'/webapi'</span> <span class="comment">//可要可不要</span></div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">cssSourceMap</span>: <span class="literal">false</span>,</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>至此就可以愉快的请求本地数据了  8080端口也能请求80端口的数据了 最终打包上线也不需要改任何代码,更多的webpack代理设置请查阅webpack官方文档</p>
 
       
@@ -407,6 +407,22 @@
         
       
 
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/06/Vue2中注册在router-link上事件无效解决方法/" rel="prev" title="Vue2中注册在router-link上事件无效解决方法">
+                Vue2中注册在router-link上事件无效解决方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
 
       
@@ -470,7 +486,7 @@
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/avatar.png"
+               src="/images/avatar.jpg"
                alt="宇cccc" />
           <p class="site-author-name" itemprop="name">宇cccc</p>
            
@@ -482,7 +498,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -493,7 +509,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -504,7 +520,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
