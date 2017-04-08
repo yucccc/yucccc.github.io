@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="vue2," />
+  <meta name="keywords" content="webpack,vuex," />
 
 
 
@@ -87,21 +87,27 @@
 
 
 
-<meta name="description" content="今天用vue在做一个tab栏切换的时候，偶然发现我绑定在router-link上的click并不会触发，后来测试发现，所有绑定在router-link中的事件都不会促发此后查看了官方的文档，也并没有给出明确的说明：代码如下：
-1&amp;lt;router-link @click=&quot;change&quot;&amp;gt;&amp;lt;span&amp;gt;&amp;#123;&amp;#123;item.text&amp;#125;&amp;#125;&amp;lt;/s">
+<meta name="description" content="今天在做一个vue2项目时,引入了vuex做一些状态管理，结果调试发现在ie11以下页面显示不出来，打开控制台发现出现如下错误：
+
+1[vuex] vuex requires a Promise polyfill in this browser.
+意思为vuex需要在这个浏览器上解析不了  因为vuex基于promise, IE浏览器没有内置Promise对象那么此时我们需要一个解析promise">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vue2中注册在router-link上事件无效解决方法">
-<meta property="og:url" content="http://yucccc.com/2017/04/06/Vue2中注册在router-link上事件无效解决方法/index.html">
+<meta property="og:title" content="VueX在ie,safari浏览器无法解析的解决方法">
+<meta property="og:url" content="http://yucccc.com/2017/04/08/VueX在ie-safari浏览器无法解析的解决方法/index.html">
 <meta property="og:site_name" content="宇cccc">
-<meta property="og:description" content="今天用vue在做一个tab栏切换的时候，偶然发现我绑定在router-link上的click并不会触发，后来测试发现，所有绑定在router-link中的事件都不会促发此后查看了官方的文档，也并没有给出明确的说明：代码如下：
-1&amp;lt;router-link @click=&quot;change&quot;&amp;gt;&amp;lt;span&amp;gt;&amp;#123;&amp;#123;item.text&amp;#125;&amp;#125;&amp;lt;/s">
-<meta property="og:image" content="http://onzmxf7ol.bkt.clouddn.com/20170406routetlink.jpg">
-<meta property="og:updated_time" content="2017-04-06T12:41:59.000Z">
+<meta property="og:description" content="今天在做一个vue2项目时,引入了vuex做一些状态管理，结果调试发现在ie11以下页面显示不出来，打开控制台发现出现如下错误：
+
+1[vuex] vuex requires a Promise polyfill in this browser.
+意思为vuex需要在这个浏览器上解析不了  因为vuex基于promise, IE浏览器没有内置Promise对象那么此时我们需要一个解析promise">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4378038-dbbb398beeab58dc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-04-08T11:31:01.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vue2中注册在router-link上事件无效解决方法">
-<meta name="twitter:description" content="今天用vue在做一个tab栏切换的时候，偶然发现我绑定在router-link上的click并不会触发，后来测试发现，所有绑定在router-link中的事件都不会促发此后查看了官方的文档，也并没有给出明确的说明：代码如下：
-1&amp;lt;router-link @click=&quot;change&quot;&amp;gt;&amp;lt;span&amp;gt;&amp;#123;&amp;#123;item.text&amp;#125;&amp;#125;&amp;lt;/s">
-<meta name="twitter:image" content="http://onzmxf7ol.bkt.clouddn.com/20170406routetlink.jpg">
+<meta name="twitter:title" content="VueX在ie,safari浏览器无法解析的解决方法">
+<meta name="twitter:description" content="今天在做一个vue2项目时,引入了vuex做一些状态管理，结果调试发现在ie11以下页面显示不出来，打开控制台发现出现如下错误：
+
+1[vuex] vuex requires a Promise polyfill in this browser.
+意思为vuex需要在这个浏览器上解析不了  因为vuex基于promise, IE浏览器没有内置Promise对象那么此时我们需要一个解析promise">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/4378038-dbbb398beeab58dc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -129,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://yucccc.com/2017/04/06/Vue2中注册在router-link上事件无效解决方法/"/>
+  <link rel="canonical" href="http://yucccc.com/2017/04/08/VueX在ie-safari浏览器无法解析的解决方法/"/>
 
 
 
 
 
-  <title> Vue2中注册在router-link上事件无效解决方法 | 宇cccc </title>
+  <title> VueX在ie,safari浏览器无法解析的解决方法 | 宇cccc </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -264,7 +270,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yucccc.com/2017/04/06/Vue2中注册在router-link上事件无效解决方法/">
+    <link itemprop="mainEntityOfPage" href="http://yucccc.com/2017/04/08/VueX在ie-safari浏览器无法解析的解决方法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="宇cccc">
@@ -285,7 +291,7 @@
             
             
               
-                Vue2中注册在router-link上事件无效解决方法
+                VueX在ie,safari浏览器无法解析的解决方法
               
             
           </h1>
@@ -300,8 +306,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-06T20:16:42+08:00">
-                2017-04-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-08T19:27:19+08:00">
+                2017-04-08
               </time>
             
 
@@ -341,9 +347,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/04/06/Vue2中注册在router-link上事件无效解决方法/#comments" itemprop="discussionUrl">
+                <a href="/2017/04/08/VueX在ie-safari浏览器无法解析的解决方法/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/04/06/Vue2中注册在router-link上事件无效解决方法/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/04/08/VueX在ie-safari浏览器无法解析的解决方法/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -369,14 +375,15 @@
       
 
       
-        <p>今天用vue在做一个tab栏切换的时候，偶然发现我绑定在router-link上的click并不会触发，<br>后来测试发现，所有绑定在router-link中的事件都不会促发<br>此后查看了官方的文档，也并没有给出明确的说明：<br>代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;router-link @click=<span class="string">"change"</span>&gt;&lt;span&gt;&#123;&#123;item.text&#125;&#125;&lt;/span&gt;&lt;/router-link&gt;</div></pre></td></tr></table></figure>
-<p>此刻我发现，无论如何定义在methods 中的 change函数并不会触发，这是为什么呢？<br>在github查看了vue-router的代码后发现：<br><img src="http://onzmxf7ol.bkt.clouddn.com/20170406routetlink.jpg" alt="vue-router源码"></p>
-<h3 id="事件被阻止"><a href="#事件被阻止" class="headerlink" title="事件被阻止"></a>事件被阻止</h3><p>如果当前router-link的tag不是a的话（官方文档中说明：默认为a，可以通过tag改变渲染后的标签），那么就会往自己的子元素（组件）找，找到的第一个就会把一些属性及时间覆盖过去。<br>所以此时事件是被阻止了。个人看法：因为router-link的作用是单纯的路由跳转，如果不阻止事件的话，也许会有很多坑，所以作者干脆阻止了其他事件的触发</p>
-<h3 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;router-link  @click.native=<span class="string">"change"</span>&gt;&lt;span&gt;&#123;&#123;item.text&#125;&#125;&lt;/span&gt;&lt;/router-link&gt;</div></pre></td></tr></table></figure>
-<p>只需要在@click后面加上native就可以了</p>
-<h3 id="原生事件"><a href="#原生事件" class="headerlink" title="原生事件"></a>原生事件</h3><p>添加native事件修饰符之后变为原生事件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$element.addEventListener(click, callback);</div></pre></td></tr></table></figure></p>
-<p>此时a标签并不会阻止，至此便可以解决绑定在router-link身上的事件不会触发的问题。<br>其次，想要实现tab切换添加class可以在router中添加如下配置：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</div><div class="line">  <span class="attr">routes</span>: [],<span class="comment">// 路由跳转配置</span></div><div class="line">  linkActiveClass:<span class="string">'active'</span> <span class="comment">// 在路由中添加配置  active 为跳转到该路由时添加的激活类名</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+        <p>今天在做一个vue2项目时,引入了vuex做一些状态管理，结果调试发现在ie11以下页面显示不出来，打开控制台发现出现如下错误：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4378038-dbbb398beeab58dc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ie不支持vuex.png"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[vuex] vuex requires a <span class="built_in">Promise</span> polyfill <span class="keyword">in</span> <span class="keyword">this</span> browser.</div></pre></td></tr></table></figure>
+<p>意思为vuex需要在这个浏览器上解析不了  因为vuex基于promise, IE浏览器没有内置Promise对象那么此时我们需要一个解析promise ES6语法的东西。不仅如此，几乎所有的ES6新增的方法在IE都不能用，比如Array.from。因为babel<br>只会转译语法，并不会新增方法。此时你需要<a href="https://babeljs.io/docs/usage/polyfill/" target="_blank" rel="external">babel Polyfill</a> </p>
+<h2 id="polyfill"><a href="#polyfill" class="headerlink" title="polyfill"></a>polyfill</h2><p>polyfill是一种js库，为低版本的js环境补足高版本js里定义的一些原生功能</p>
+<p>用法十分简单如下：<br>1：下载<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save babel-polyfill</div></pre></td></tr></table></figure></p>
+<p>2 :<br>方法一 ：在main.js最顶部加入<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span>  <span class="string">'babel-polyfill'</span>;<span class="comment">//解决ie浏览器不支持promise</span></div></pre></td></tr></table></figure></p>
+<p>方法二：或者在webpack中加入<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="comment">// entry: &#123; // 这是原本脚手架配置的 </span></div><div class="line">  <span class="comment">//   app: './src/main.js'</span></div><div class="line">  <span class="comment">// &#125;,</span></div><div class="line">  entry: &#123; <span class="comment">// 替换成 </span></div><div class="line">    app: [<span class="string">'babel-polyfill'</span>,<span class="string">'./src/main.js'</span>]</div><div class="line">  &#125;,</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这种需要重新npm run dev 因为更改了webpack的配置<br>两种加入方法都可以解决，个人建议第一种方便快捷，此时重新打开浏览器项目就能正常解析了。</p>
 
       
     </div>
@@ -406,7 +413,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/vue2/" rel="tag"># vue2</a>
+            <a href="/tags/webpack/" rel="tag"># webpack</a>
+          
+            <a href="/tags/vuex/" rel="tag"># vuex</a>
           
         </div>
       
@@ -419,8 +428,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/04/webpack设置代理/" rel="next" title="vue2搭建开发环境并且可以请求本地数据设置">
-                <i class="fa fa-chevron-left"></i> vue2搭建开发环境并且可以请求本地数据设置
+              <a href="/2017/04/06/Vue2中注册在router-link上事件无效解决方法/" rel="next" title="Vue2中注册在router-link上事件无效解决方法">
+                <i class="fa fa-chevron-left"></i> Vue2中注册在router-link上事件无效解决方法
               </a>
             
           </div>
@@ -428,10 +437,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/08/VueX在ie-safari浏览器无法解析的解决方法/" rel="prev" title="VueX在ie,safari浏览器无法解析的解决方法">
-                VueX在ie,safari浏览器无法解析的解决方法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -567,7 +572,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#事件被阻止"><span class="nav-number">1.</span> <span class="nav-text">事件被阻止</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何解决"><span class="nav-number">2.</span> <span class="nav-text">如何解决</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原生事件"><span class="nav-number">3.</span> <span class="nav-text">原生事件</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#polyfill"><span class="nav-number">1.</span> <span class="nav-text">polyfill</span></a></li></ol></div>
             
 
           </div>
@@ -711,9 +716,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yucccc.com/2017/04/06/Vue2中注册在router-link上事件无效解决方法/';
-          this.page.identifier = '2017/04/06/Vue2中注册在router-link上事件无效解决方法/';
-          this.page.title = 'Vue2中注册在router-link上事件无效解决方法';
+          this.page.url = 'http://yucccc.com/2017/04/08/VueX在ie-safari浏览器无法解析的解决方法/';
+          this.page.identifier = '2017/04/08/VueX在ie-safari浏览器无法解析的解决方法/';
+          this.page.title = 'VueX在ie,safari浏览器无法解析的解决方法';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://yucccc.disqus.com/embed.js';
