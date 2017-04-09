@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+
+    
+  <url>
+    <loc>http://yucccc.com/2017/04/04/vue2%E6%90%AD%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%B9%B6%E4%B8%94%E5%8F%AF%E4%BB%A5%E8%AF%B7%E6%B1%82%E6%9C%AC%E5%9C%B0%E6%95%B0%E6%8D%AE%E8%AE%BE%E7%BD%AE/</loc>
+    <lastmod>2017-04-08T11:34:25.000Z</lastmod>
+    <data>
+        <display>
+        <title>vue2搭建开发环境并且可以请求本地数据设置</title>
+        <pubTime>2017-04-04T01:58:34.000Z</pubTime>
+        
+        <tag>vue2</tag>
+         
+        <tag>webpack</tag>
+         
+         
+           
+             
+              <breadCrumb title="webpack" url="http://yucccc.com/categories/webpack/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yucccc.com/2017/04/08/VueX%E5%9C%A8ie-safari%E6%B5%8F%E8%A7%88%E5%99%A8%E6%97%A0%E6%B3%95%E8%A7%A3%E6%9E%90%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</loc>
+    <lastmod>2017-04-08T11:31:01.000Z</lastmod>
+    <data>
+        <display>
+        <title>VueX在ie,safari浏览器无法解析的解决方法</title>
+        <pubTime>2017-04-08T11:27:19.000Z</pubTime>
+        
+        <tag>webpack</tag>
+         
+        <tag>vuex</tag>
+         
+         
+           
+             
+              <breadCrumb title="vue2" url="http://yucccc.com/categories/vue2/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yucccc.com/2017/04/06/Vue2%E4%B8%AD%E6%B3%A8%E5%86%8C%E5%9C%A8router-link%E4%B8%8A%E4%BA%8B%E4%BB%B6%E6%97%A0%E6%95%88%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</loc>
+    <lastmod>2017-04-06T12:41:59.000Z</lastmod>
+    <data>
+        <display>
+        <title>Vue2中注册在router-link上事件无效解决方法</title>
+        <pubTime>2017-04-06T12:16:42.000Z</pubTime>
+        
+        <tag>vue2</tag>
+         
+         
+           
+             
+              <breadCrumb title="vue2" url="http://yucccc.com/categories/vue2/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+</urlset>

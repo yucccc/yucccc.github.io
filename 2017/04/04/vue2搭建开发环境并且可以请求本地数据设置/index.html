@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="vue2," />
+  <meta name="keywords" content="vue2,webpack," />
 
 
 
@@ -89,21 +89,16 @@
 
 
 
-<meta name="description" content="今天用vue在做一个tab栏切换的时候，偶然发现我绑定在router-link上的click并不会触发，后来测试发现，所有绑定在router-link中的事件都不会促发此后查看了官方的文档，也并没有给出明确的说明：代码如下：
-1&amp;lt;router-link @click=&quot;change&quot;&amp;gt;&amp;lt;span&amp;gt;&amp;#123;&amp;#123;item.text&amp;#125;&amp;#125;&amp;lt;/s">
+<meta name="description" content="这一个问题困扰了我许久，怎么用vue搭建开发环境并且可以请求本地数据，因为webpack-dev-server在编译vue的时候会默认开启一个端口，本地的服务器肯定也会拥有一个端口，那么不同端口的请求又为跨域请求，此时又不能把端口改为相同，因为这样会造成端口冲突，当然不考虑跨域jsonp之类，虽然jsonp可以做，但是在开发中无疑增加了繁杂度，并且这样做的话上线又要改请求方式，十分麻烦，那么应">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vue2中注册在router-link上事件无效解决方法">
-<meta property="og:url" content="http://yucccc.com/2017/04/06/Vue2中注册在router-link上事件无效解决方法/index.html">
+<meta property="og:title" content="vue2搭建开发环境并且可以请求本地数据设置">
+<meta property="og:url" content="http://yucccc.com/2017/04/04/vue2搭建开发环境并且可以请求本地数据设置/index.html">
 <meta property="og:site_name" content="宇cccc">
-<meta property="og:description" content="今天用vue在做一个tab栏切换的时候，偶然发现我绑定在router-link上的click并不会触发，后来测试发现，所有绑定在router-link中的事件都不会促发此后查看了官方的文档，也并没有给出明确的说明：代码如下：
-1&amp;lt;router-link @click=&quot;change&quot;&amp;gt;&amp;lt;span&amp;gt;&amp;#123;&amp;#123;item.text&amp;#125;&amp;#125;&amp;lt;/s">
-<meta property="og:image" content="http://onzmxf7ol.bkt.clouddn.com/20170406routetlink.jpg">
-<meta property="og:updated_time" content="2017-04-06T12:41:59.000Z">
+<meta property="og:description" content="这一个问题困扰了我许久，怎么用vue搭建开发环境并且可以请求本地数据，因为webpack-dev-server在编译vue的时候会默认开启一个端口，本地的服务器肯定也会拥有一个端口，那么不同端口的请求又为跨域请求，此时又不能把端口改为相同，因为这样会造成端口冲突，当然不考虑跨域jsonp之类，虽然jsonp可以做，但是在开发中无疑增加了繁杂度，并且这样做的话上线又要改请求方式，十分麻烦，那么应">
+<meta property="og:updated_time" content="2017-04-08T11:34:25.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vue2中注册在router-link上事件无效解决方法">
-<meta name="twitter:description" content="今天用vue在做一个tab栏切换的时候，偶然发现我绑定在router-link上的click并不会触发，后来测试发现，所有绑定在router-link中的事件都不会促发此后查看了官方的文档，也并没有给出明确的说明：代码如下：
-1&amp;lt;router-link @click=&quot;change&quot;&amp;gt;&amp;lt;span&amp;gt;&amp;#123;&amp;#123;item.text&amp;#125;&amp;#125;&amp;lt;/s">
-<meta name="twitter:image" content="http://onzmxf7ol.bkt.clouddn.com/20170406routetlink.jpg">
+<meta name="twitter:title" content="vue2搭建开发环境并且可以请求本地数据设置">
+<meta name="twitter:description" content="这一个问题困扰了我许久，怎么用vue搭建开发环境并且可以请求本地数据，因为webpack-dev-server在编译vue的时候会默认开启一个端口，本地的服务器肯定也会拥有一个端口，那么不同端口的请求又为跨域请求，此时又不能把端口改为相同，因为这样会造成端口冲突，当然不考虑跨域jsonp之类，虽然jsonp可以做，但是在开发中无疑增加了繁杂度，并且这样做的话上线又要改请求方式，十分麻烦，那么应">
 
 
 
@@ -131,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://yucccc.com/2017/04/06/Vue2中注册在router-link上事件无效解决方法/"/>
+  <link rel="canonical" href="http://yucccc.com/2017/04/04/vue2搭建开发环境并且可以请求本地数据设置/"/>
 
 
 
 
 
-  <title> Vue2中注册在router-link上事件无效解决方法 | 宇cccc </title>
+  <title> vue2搭建开发环境并且可以请求本地数据设置 | 宇cccc </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -266,7 +261,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yucccc.com/2017/04/06/Vue2中注册在router-link上事件无效解决方法/">
+    <link itemprop="mainEntityOfPage" href="http://yucccc.com/2017/04/04/vue2搭建开发环境并且可以请求本地数据设置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="宇cccc">
@@ -287,7 +282,7 @@
             
             
               
-                Vue2中注册在router-link上事件无效解决方法
+                vue2搭建开发环境并且可以请求本地数据设置
               
             
           </h1>
@@ -302,8 +297,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-06T20:16:42+08:00">
-                2017-04-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-04T09:58:34+08:00">
+                2017-04-04
               </time>
             
 
@@ -325,8 +320,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue2/" itemprop="url" rel="index">
-                    <span itemprop="name">vue2</span>
+                  <a href="/categories/webpack/" itemprop="url" rel="index">
+                    <span itemprop="name">webpack</span>
                   </a>
                 </span>
 
@@ -343,9 +338,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/04/06/Vue2中注册在router-link上事件无效解决方法/#comments" itemprop="discussionUrl">
+                <a href="/2017/04/04/vue2搭建开发环境并且可以请求本地数据设置/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/04/06/Vue2中注册在router-link上事件无效解决方法/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/04/04/vue2搭建开发环境并且可以请求本地数据设置/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -375,14 +370,9 @@
       
 
       
-        <p>今天用vue在做一个tab栏切换的时候，偶然发现我绑定在router-link上的click并不会触发，<br>后来测试发现，所有绑定在router-link中的事件都不会促发<br>此后查看了官方的文档，也并没有给出明确的说明：<br>代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;router-link @click=<span class="string">"change"</span>&gt;&lt;span&gt;&#123;&#123;item.text&#125;&#125;&lt;/span&gt;&lt;/router-link&gt;</div></pre></td></tr></table></figure>
-<p>此刻我发现，无论如何定义在methods 中的 change函数并不会触发，这是为什么呢？<br>在github查看了vue-router的代码后发现：<br><img src="http://onzmxf7ol.bkt.clouddn.com/20170406routetlink.jpg" alt="vue-router源码"></p>
-<h3 id="事件被阻止"><a href="#事件被阻止" class="headerlink" title="事件被阻止"></a>事件被阻止</h3><p>如果当前router-link的tag不是a的话（官方文档中说明：默认为a，可以通过tag改变渲染后的标签），那么就会往自己的子元素（组件）找，找到的第一个就会把一些属性及时间覆盖过去。<br>所以此时事件是被阻止了。个人看法：因为router-link的作用是单纯的路由跳转，如果不阻止事件的话，也许会有很多坑，所以作者干脆阻止了其他事件的触发</p>
-<h3 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;router-link  @click.native=<span class="string">"change"</span>&gt;&lt;span&gt;&#123;&#123;item.text&#125;&#125;&lt;/span&gt;&lt;/router-link&gt;</div></pre></td></tr></table></figure>
-<p>只需要在@click后面加上native就可以了</p>
-<h3 id="原生事件"><a href="#原生事件" class="headerlink" title="原生事件"></a>原生事件</h3><p>添加native事件修饰符之后变为原生事件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$element.addEventListener(click, callback);</div></pre></td></tr></table></figure></p>
-<p>此时a标签并不会阻止，至此便可以解决绑定在router-link身上的事件不会触发的问题。<br>其次，想要实现tab切换添加class可以在router中添加如下配置：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</div><div class="line">  <span class="attr">routes</span>: [],<span class="comment">// 路由跳转配置</span></div><div class="line">  linkActiveClass:<span class="string">'active'</span> <span class="comment">// 在路由中添加配置  active 为跳转到该路由时添加的激活类名</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+        <p>  这一个问题困扰了我许久，怎么用vue搭建开发环境并且可以请求本地数据，因为webpack-dev-server在编译vue的时候会默认开启一个端口，本地的服务器肯定也会拥有一个端口，那么不同端口的请求又为跨域请求，此时又不能把端口改为相同，因为这样会造成端口冲突，当然不考虑跨域jsonp之类，虽然jsonp可以做，但是在开发中无疑增加了繁杂度，并且这样做的话上线又要改请求方式，十分麻烦，那么应该怎么做呢？<br>这时候就要用到webpack里面的开启代理的配置,即把请求的地址转发到指定的地址，并且允许跨域请求 如下：</p>
+<h2 id="开启webpack代理"><a href="#开启webpack代理" class="headerlink" title="开启webpack代理"></a>开启webpack代理</h2><p>此时找到config文件中的index.js,拉到底部找到<br>dev：{  里面是一些端口的配置} 在里面添加上如下配置<br> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"> dev: &#123;</div><div class="line">    <span class="attr">env</span>: <span class="built_in">require</span>(<span class="string">'./dev.env'</span>),</div><div class="line">    <span class="attr">port</span>: <span class="number">9999</span>,</div><div class="line">    <span class="attr">autoOpenBrowser</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">assetsSubDirectory</span>: <span class="string">'static'</span>,</div><div class="line">    <span class="attr">assetsPublicPath</span>: <span class="string">'/'</span>,</div><div class="line">    <span class="attr">proxyTable</span>: &#123;<span class="comment">// 这里用的是vue-cli脚手架,默认proxyTable:&#123;&#125; ,内容为空 只需要配置这个参数即可</span></div><div class="line">      <span class="string">'/webapi'</span>: &#123;<span class="comment">//代表你以什么为开始请求数据 表示以webapi开头的请求就开启代理</span></div><div class="line">        target: <span class="string">'http://im.ivymei.com'</span>, <span class="comment">//代表代理地址 即：如果 this.$http.get('/webapi').then() 此时会变成http://www.baidu.com/webapi</span></div><div class="line">        changeOrigin: <span class="literal">true</span>,<span class="comment">// 表示允许跨域   </span></div><div class="line">        pathRewrite: &#123;</div><div class="line">          <span class="string">'^/webapi'</span>: <span class="string">'/webapi'</span> <span class="comment">//可要可不要</span></div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">cssSourceMap</span>: <span class="literal">false</span>,</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>至此就可以愉快的请求本地数据了  8080端口也能请求80端口的数据了 最终打包上线也不需要改任何代码,更多的webpack代理设置请查阅webpack官方文档</p>
 
       
     </div>
@@ -414,6 +404,8 @@
           
             <a href="/tags/vue2/" rel="tag"># vue2</a>
           
+            <a href="/tags/webpack/" rel="tag"># webpack</a>
+          
         </div>
       
 
@@ -425,18 +417,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/04/vue2搭建开发环境并且可以请求本地数据设置/" rel="next" title="vue2搭建开发环境并且可以请求本地数据设置">
-                <i class="fa fa-chevron-left"></i> vue2搭建开发环境并且可以请求本地数据设置
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/04/08/VueX在ie-safari浏览器无法解析的解决方法/" rel="prev" title="VueX在ie,safari浏览器无法解析的解决方法">
-                VueX在ie,safari浏览器无法解析的解决方法 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/04/06/Vue2中注册在router-link上事件无效解决方法/" rel="prev" title="Vue2中注册在router-link上事件无效解决方法">
+                Vue2中注册在router-link上事件无效解决方法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -580,7 +568,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#事件被阻止"><span class="nav-number">1.</span> <span class="nav-text">事件被阻止</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何解决"><span class="nav-number">2.</span> <span class="nav-text">如何解决</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原生事件"><span class="nav-number">3.</span> <span class="nav-text">原生事件</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开启webpack代理"><span class="nav-number">1.</span> <span class="nav-text">开启webpack代理</span></a></li></ol></div>
             
 
           </div>
@@ -729,9 +717,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yucccc.com/2017/04/06/Vue2中注册在router-link上事件无效解决方法/';
-          this.page.identifier = '2017/04/06/Vue2中注册在router-link上事件无效解决方法/';
-          this.page.title = 'Vue2中注册在router-link上事件无效解决方法';
+          this.page.url = 'http://yucccc.com/2017/04/04/vue2搭建开发环境并且可以请求本地数据设置/';
+          this.page.identifier = '2017/04/04/vue2搭建开发环境并且可以请求本地数据设置/';
+          this.page.title = 'vue2搭建开发环境并且可以请求本地数据设置';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://yucccc.disqus.com/embed.js';
