@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="vue2," />
+  <meta name="keywords" content="javascript," />
 
 
 
@@ -87,21 +87,19 @@
 
 
 
-<meta name="description" content="今天用vue在做一个tab栏切换的时候，偶然发现我绑定在router-link上的click并不会触发，后来测试发现，所有绑定在router-link中的事件都不会促发此后查看了官方的文档，也并没有给出明确的说明：代码如下：
-1&amp;lt;router-link @click=&quot;change&quot;&amp;gt;&amp;lt;span&amp;gt;&amp;#123;&amp;#123;item.text&amp;#125;&amp;#125;&amp;lt;/s">
+<meta name="description" content="近期一直在研读高级程序设计一书，其中第二十四章《最佳实践》中提到代码的可维护性，其中本人深有感触。
+可维护性在从事IT编程工作一段时间后发现，每进一家新公司，都要花大量的时间去研读别人的代码，其余剩下的大量时间都是维护别人的代码，由于编程人员水平的参差不齐，所有经常在看上一个同事代码的时候也很难抑制内心的冲动，这写的什么鬼，一句注释没有，重复的代码这么多也不封装，所以编写可维护性的代码尤为重要，并">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vue2中注册在router-link上事件无效解决方法">
-<meta property="og:url" content="http://yucccc.com/2017/04/06/Vue2中注册在router-link上事件无效解决方法/index.html">
+<meta property="og:title" content="读高程有感之JavaScript代码可维护性">
+<meta property="og:url" content="http://yucccc.com/2016/03/18/读高程有感之JavaScript代码可维护性/index.html">
 <meta property="og:site_name" content="宇cccc">
-<meta property="og:description" content="今天用vue在做一个tab栏切换的时候，偶然发现我绑定在router-link上的click并不会触发，后来测试发现，所有绑定在router-link中的事件都不会促发此后查看了官方的文档，也并没有给出明确的说明：代码如下：
-1&amp;lt;router-link @click=&quot;change&quot;&amp;gt;&amp;lt;span&amp;gt;&amp;#123;&amp;#123;item.text&amp;#125;&amp;#125;&amp;lt;/s">
-<meta property="og:image" content="http://onzmxf7ol.bkt.clouddn.com/20170406routetlink.jpg">
-<meta property="og:updated_time" content="2017-04-06T12:41:59.000Z">
+<meta property="og:description" content="近期一直在研读高级程序设计一书，其中第二十四章《最佳实践》中提到代码的可维护性，其中本人深有感触。
+可维护性在从事IT编程工作一段时间后发现，每进一家新公司，都要花大量的时间去研读别人的代码，其余剩下的大量时间都是维护别人的代码，由于编程人员水平的参差不齐，所有经常在看上一个同事代码的时候也很难抑制内心的冲动，这写的什么鬼，一句注释没有，重复的代码这么多也不封装，所以编写可维护性的代码尤为重要，并">
+<meta property="og:updated_time" content="2017-04-10T14:22:47.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vue2中注册在router-link上事件无效解决方法">
-<meta name="twitter:description" content="今天用vue在做一个tab栏切换的时候，偶然发现我绑定在router-link上的click并不会触发，后来测试发现，所有绑定在router-link中的事件都不会促发此后查看了官方的文档，也并没有给出明确的说明：代码如下：
-1&amp;lt;router-link @click=&quot;change&quot;&amp;gt;&amp;lt;span&amp;gt;&amp;#123;&amp;#123;item.text&amp;#125;&amp;#125;&amp;lt;/s">
-<meta name="twitter:image" content="http://onzmxf7ol.bkt.clouddn.com/20170406routetlink.jpg">
+<meta name="twitter:title" content="读高程有感之JavaScript代码可维护性">
+<meta name="twitter:description" content="近期一直在研读高级程序设计一书，其中第二十四章《最佳实践》中提到代码的可维护性，其中本人深有感触。
+可维护性在从事IT编程工作一段时间后发现，每进一家新公司，都要花大量的时间去研读别人的代码，其余剩下的大量时间都是维护别人的代码，由于编程人员水平的参差不齐，所有经常在看上一个同事代码的时候也很难抑制内心的冲动，这写的什么鬼，一句注释没有，重复的代码这么多也不封装，所以编写可维护性的代码尤为重要，并">
 
 
 
@@ -129,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://yucccc.com/2017/04/06/Vue2中注册在router-link上事件无效解决方法/"/>
+  <link rel="canonical" href="http://yucccc.com/2016/03/18/读高程有感之JavaScript代码可维护性/"/>
 
 
 
 
 
-  <title> Vue2中注册在router-link上事件无效解决方法 | 宇cccc </title>
+  <title> 读高程有感之JavaScript代码可维护性 | 宇cccc </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -298,7 +296,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yucccc.com/2017/04/06/Vue2中注册在router-link上事件无效解决方法/">
+    <link itemprop="mainEntityOfPage" href="http://yucccc.com/2016/03/18/读高程有感之JavaScript代码可维护性/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="宇cccc">
@@ -319,7 +317,7 @@
             
             
               
-                Vue2中注册在router-link上事件无效解决方法
+                读高程有感之JavaScript代码可维护性
               
             
           </h1>
@@ -334,8 +332,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-06T20:16:42+08:00">
-                2017-04-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-18T15:35:28+08:00">
+                2016-03-18
               </time>
             
 
@@ -357,8 +355,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue2/" itemprop="url" rel="index">
-                    <span itemprop="name">vue2</span>
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
                   </a>
                 </span>
 
@@ -375,9 +373,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/04/06/Vue2中注册在router-link上事件无效解决方法/#comments" itemprop="discussionUrl">
+                <a href="/2016/03/18/读高程有感之JavaScript代码可维护性/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/04/06/Vue2中注册在router-link上事件无效解决方法/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2016/03/18/读高程有感之JavaScript代码可维护性/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -407,14 +405,17 @@
       
 
       
-        <p>今天用vue在做一个tab栏切换的时候，偶然发现我绑定在router-link上的click并不会触发，<br>后来测试发现，所有绑定在router-link中的事件都不会促发<br>此后查看了官方的文档，也并没有给出明确的说明：<br>代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;router-link @click=<span class="string">"change"</span>&gt;&lt;span&gt;&#123;&#123;item.text&#125;&#125;&lt;/span&gt;&lt;/router-link&gt;</div></pre></td></tr></table></figure>
-<p>此刻我发现，无论如何定义在methods 中的 change函数并不会触发，这是为什么呢？<br>在github查看了vue-router的代码后发现：<br><img src="http://onzmxf7ol.bkt.clouddn.com/20170406routetlink.jpg" alt="vue-router源码"></p>
-<h3 id="事件被阻止"><a href="#事件被阻止" class="headerlink" title="事件被阻止"></a>事件被阻止</h3><p>如果当前router-link的tag不是a的话（官方文档中说明：默认为a，可以通过tag改变渲染后的标签），那么就会往自己的子元素（组件）找，找到的第一个就会把一些属性及时间覆盖过去。<br>所以此时事件是被阻止了。个人看法：因为router-link的作用是单纯的路由跳转，如果不阻止事件的话，也许会有很多坑，所以作者干脆阻止了其他事件的触发</p>
-<h3 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;router-link  @click.native=<span class="string">"change"</span>&gt;&lt;span&gt;&#123;&#123;item.text&#125;&#125;&lt;/span&gt;&lt;/router-link&gt;</div></pre></td></tr></table></figure>
-<p>只需要在@click后面加上native就可以了</p>
-<h3 id="原生事件"><a href="#原生事件" class="headerlink" title="原生事件"></a>原生事件</h3><p>添加native事件修饰符之后变为原生事件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$element.addEventListener(click, callback);</div></pre></td></tr></table></figure></p>
-<p>此时a标签并不会阻止，至此便可以解决绑定在router-link身上的事件不会触发的问题。<br>其次，想要实现tab切换添加class可以在router中添加如下配置：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</div><div class="line">  <span class="attr">routes</span>: [],<span class="comment">// 路由跳转配置</span></div><div class="line">  linkActiveClass:<span class="string">'active'</span> <span class="comment">// 在路由中添加配置  active 为跳转到该路由时添加的激活类名</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+        <p>近期一直在研读高级程序设计一书，其中第二十四章《最佳实践》中提到代码的可维护性，其中本人深有感触。</p>
+<h2 id="可维护性"><a href="#可维护性" class="headerlink" title="可维护性"></a>可维护性</h2><p>在从事IT编程工作一段时间后发现，每进一家新公司，都要花大量的时间去研读别人的代码，其余剩下的大量时间都是维护别人的代码，由于编程人员水平的参差不齐，所有经常在看上一个同事代码的时候也很难抑制内心的冲动，这写的什么鬼，一句注释没有，重复的代码这么多也不封装，所以编写可维护性的代码尤为重要，并且我觉得一个程序员一开始就应该先养成良好的代码习惯，做到像写诗一样写代码，从而能力才能更进一步，在我认为，代码风格都不好，其他一切都是空谈。</p>
+<h2 id="什么是可维护的代码"><a href="#什么是可维护的代码" class="headerlink" title="什么是可维护的代码"></a>什么是可维护的代码</h2><p>可维护的代码有一些特征。一般来说，如果说代码是可维护的，它需要遵循以下特点。<br>1、可理解性——其他人可以接手代码并理解它的意图和一般途径，而无需原开发人员的完整解释。<br>2、直观性——代码中的东西一看就能明白，不管其操作过程多么复杂。<br>3、可适应性——代码以一种数据上的变化不要求完全重写的方法撰写。<br>4、可扩展性——在代码架构上已考虑到在未来允许对核心功能进行扩展。<br>5、可调试性——当有地方出错时，代码可以给予你足够的信息来尽可能直接地确定问题所在。<br>对于专业人士而言，能写出可维护的 JavaScript 代码是非常重要的技能。</p>
+<h2 id="代码的约定"><a href="#代码的约定" class="headerlink" title="代码的约定"></a>代码的约定</h2><p>绝大多数语言都有各自的代码约定，只要在网上一搜就能找到大量相关文档。由于 JavaScript 的可适应性，代码约定对它也很重要。这里建议大家有空经常到github上看一下别人的开源代码，会有意想不到的收获及思路。</p>
+<h3 id="1-可读性"><a href="#1-可读性" class="headerlink" title="1. 可读性"></a>1. 可读性</h3><p>可读性与代码作为文本文件的格式化方式有关。当所有人都使用一样的缩进方式时，整个项目中的代码都会更加易于阅读。目前许多框架都提供了这么一个检测代码的插件，eslint也是一个不错的练习，如vue-cli在构建项目时也会问你是否开启eslint，个人觉得是个不错的养成代码良好风格的练习方式</p>
+<h3 id="2-多写注释"><a href="#2-多写注释" class="headerlink" title="2. 多写注释"></a>2. 多写注释</h3><p>很多时候我上个星期写的代码，这个星期就不记得了，所有多写注释十分重要</p>
+<h3 id="3-变量名和函数名"><a href="#3-变量名和函数名" class="headerlink" title="3. 变量名和函数名"></a>3. 变量名和函数名</h3><p> 变量名应为名词 如 car 或 person<br> 函数名应该以动词开始，如 getName()<br> 返回布尔类型值的函数一般以 is 开头，如 isEnable() 。<br> 变量和函数都应使用合乎逻辑的名字，不用担心长度。因为最终在生产环境下代码可以被压缩打包，例如webpack和gulp都提供了这些功能。</p>
+<h3 id="4-变量类型透明"><a href="#4-变量类型透明" class="headerlink" title="4. 变量类型透明"></a>4. 变量类型透明</h3><p>由于在 JavaScript 中变量是松散类型的，很容易就忘记变量所应包含的数据类型。合适的命名方式<br>可以一定程度上缓解这个问题，但放到所有的情况下看，还不够。有三种表示变量数据类型的方式。<br>//第一种方式：通过初始化指定变量类型<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> found = <span class="literal">false</span>; <span class="comment">//布尔型</span></div><div class="line"><span class="keyword">var</span> count = <span class="number">-1</span>; <span class="comment">//数字</span></div><div class="line"><span class="keyword">var</span> name = <span class="string">""</span>; <span class="comment">//字符串</span></div><div class="line"><span class="keyword">var</span> person = <span class="literal">null</span>; <span class="comment">//对象</span></div></pre></td></tr></table></figure></p>
+<p>初始化为一个特定的数据类型可以很好的指明变量的类型。但缺点是它无法用于函数声明中的函数参数。<br>//第二种方法：用指定数据类型的匈牙利标记法，这个标记法在脚本语言中很流行，曾经很长时间也是 JavaScript 所推崇的方式，”o” 代表对象， “s” 代表字符串， “i”<br>代表整数， “f” 代表浮点数， “b” 代表布尔型<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> bFound; <span class="comment">//布尔型</span></div><div class="line"><span class="keyword">var</span> iCount; <span class="comment">//整数</span></div><div class="line"><span class="keyword">var</span> sName; <span class="comment">//字符串</span></div><div class="line"><span class="keyword">var</span> oPerson; <span class="comment">//对象</span></div></pre></td></tr></table></figure></p>
+<p>JavaScript 中用匈牙利标记法的好处是函数参数一样可以使用。但它的缺点是让代码某种程度上难以阅读，阻碍了没有用它时代码的直观性和句子式的特质。因此，匈牙利标记法失去了一些开发者的宠爱。<br>//第三种方法：用于指定类型的类型注释 类型注释放在变量名右边，但是在初始化前面。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> found <span class="comment">/*:Boolean*/</span> = <span class="literal">false</span>;</div><div class="line"><span class="keyword">var</span> count <span class="comment">/*:int*/</span> = <span class="number">10</span>;</div><div class="line"><span class="keyword">var</span> name <span class="comment">/*:String*/</span> = <span class="string">"Nicholas"</span>;</div><div class="line"><span class="keyword">var</span> person <span class="comment">/*:Object*/</span> = <span class="literal">null</span>;</div></pre></td></tr></table></figure></p>
+<p>类型注释维持了代码的整体可读性，同时注入了类型信息。类型注释的缺点是你不能用多行注释一次注释大块的代码，因为类型注释也是多行注释，两者会冲突 。<br>这三种常见指定变量数据类型的方法。每种都有各自的优势和劣势，要自己在使用之前进<br>行评估。最重要的是要确定哪种最适合你的项目并一致使用。</p>
 
       
     </div>
@@ -444,7 +445,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/vue2/" rel="tag"># vue2</a>
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
           
         </div>
       
@@ -457,18 +458,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/04/vue2搭建开发环境并且可以请求本地数据设置/" rel="next" title="vue2搭建开发环境并且可以请求本地数据设置">
-                <i class="fa fa-chevron-left"></i> vue2搭建开发环境并且可以请求本地数据设置
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/04/08/VueX在ie-safari浏览器无法解析的解决方法/" rel="prev" title="VueX在ie,safari浏览器无法解析的解决方法">
-                VueX在ie,safari浏览器无法解析的解决方法 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/04/04/vue2搭建开发环境并且可以请求本地数据设置/" rel="prev" title="vue2搭建开发环境并且可以请求本地数据设置">
+                vue2搭建开发环境并且可以请求本地数据设置 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -639,7 +636,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#事件被阻止"><span class="nav-number">1.</span> <span class="nav-text">事件被阻止</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何解决"><span class="nav-number">2.</span> <span class="nav-text">如何解决</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原生事件"><span class="nav-number">3.</span> <span class="nav-text">原生事件</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#可维护性"><span class="nav-number">1.</span> <span class="nav-text">可维护性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是可维护的代码"><span class="nav-number">2.</span> <span class="nav-text">什么是可维护的代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码的约定"><span class="nav-number">3.</span> <span class="nav-text">代码的约定</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-可读性"><span class="nav-number">3.1.</span> <span class="nav-text">1. 可读性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-多写注释"><span class="nav-number">3.2.</span> <span class="nav-text">2. 多写注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-变量名和函数名"><span class="nav-number">3.3.</span> <span class="nav-text">3. 变量名和函数名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-变量类型透明"><span class="nav-number">3.4.</span> <span class="nav-text">4. 变量类型透明</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -788,9 +785,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yucccc.com/2017/04/06/Vue2中注册在router-link上事件无效解决方法/';
-          this.page.identifier = '2017/04/06/Vue2中注册在router-link上事件无效解决方法/';
-          this.page.title = 'Vue2中注册在router-link上事件无效解决方法';
+          this.page.url = 'http://yucccc.com/2016/03/18/读高程有感之JavaScript代码可维护性/';
+          this.page.identifier = '2016/03/18/读高程有感之JavaScript代码可维护性/';
+          this.page.title = '读高程有感之JavaScript代码可维护性';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://yucccc.disqus.com/embed.js';
