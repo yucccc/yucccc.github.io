@@ -1109,6 +1109,166 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yucccc.com/2016/03/20/JavaScript实现jQuery中的type检测数据类型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="宇cccc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="宇cccc">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/20/JavaScript实现jQuery中的type检测数据类型/" itemprop="url">
+                  JavaScript实现jQuery中的type检测数据类型
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-20T22:30:10+08:00">
+                2016-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/03/20/JavaScript实现jQuery中的type检测数据类型/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/03/20/JavaScript实现jQuery中的type检测数据类型/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+
+            
+
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>众所周知，JavaScript中的typeof虽然可以检测数据类型，但是在检测数据类型的时候,返回的数据类型不一定准确:比如 null 也会返回null ，返回的数据类型只有下面几种，远远不能准确的判断属于何种数据类型。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="string">"undefined"</span> ——如果这个值未定义；</div><div class="line"><span class="string">"boolean"</span> ——如果这个值是布尔值；</div><div class="line"><span class="string">"string"</span> ——如果这个值是字符串；</div><div class="line"> <span class="string">"number"</span> ——如果这个值是数值；</div><div class="line"><span class="string">"object"</span> ——如果这个值是对象或 <span class="literal">null</span> ；</div><div class="line"><span class="string">"function"</span> ——如果这个值是函数。</div></pre></td></tr></table></figure></p>
+<p>在网上也看了一些所谓的全面的检测方法，也没有很好的实现封装。无聊之余看了下jQuery的type实现方法，现在我用JavaScript实现一下。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//定义一个对象保存所有的数据类型</span></div><div class="line">    <span class="keyword">var</span> class2type = &#123;&#125;;</div><div class="line">    <span class="keyword">var</span> dataType = <span class="string">"Boolean Number String Function Array Date RegExp Object Error Symbol"</span>.split(<span class="string">" "</span>);</div><div class="line">    <span class="comment">//把所有的数据类型遍历进class2type里面 jQuery中用的是自己封装的each  forEach() 是es5新增的方法</span></div><div class="line">    dataType.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">name, i</span>) </span>&#123;</div><div class="line">        class2type[<span class="string">"[object "</span> + name + <span class="string">"]"</span>] = name.toLowerCase();</div><div class="line">    &#125;)</div><div class="line"></div><div class="line">    <span class="keyword">var</span> type = <span class="function"><span class="keyword">function</span> (<span class="params">obj</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (obj == <span class="literal">null</span>) &#123; <span class="comment">// 当等于undefined 或者 null 直接返回 </span></div><div class="line">            <span class="keyword">return</span> obj + <span class="string">""</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> <span class="keyword">typeof</span> obj === <span class="string">"object"</span> || <span class="keyword">typeof</span> obj === <span class="string">"function"</span> ?</div><div class="line">            class2type[toString.call(obj)] || <span class="string">"object"</span> :</div><div class="line">            <span class="keyword">typeof</span> obj;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>至此便可以检测JavaScript中的所有数据类型了。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yucccc.com/2016/03/18/读高程有感之JavaScript代码可维护性/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1313,7 +1473,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
