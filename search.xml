@@ -38,6 +38,13 @@
 
     
     <entry>
+      <title><![CDATA[javascript常见的表单输入限制方法代码]]></title>
+      <url>%2F2016%2F04%2F22%2Fjavascript%E5%B8%B8%E8%A7%81%E7%9A%84%E8%A1%A8%E5%8D%95%E8%BE%93%E5%85%A5%E9%99%90%E5%88%B6%E6%96%B9%E6%B3%95%E4%BB%A3%E7%A0%81%2F</url>
+      <content type="text"><![CDATA[近期公司在做一个后台管理系统,各种要限制输入,网上资料虽有，但是比较散乱，个人收集一些常用的表单限制代码 1.文本框只能输入数字代码(小数点也不能输入)1&lt;input onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"&gt; 2.只能输入数字,能输小数点12&lt;input onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')"&gt;&lt;input onchange="if(/\D/.test(this.value))&#123;alert('只能输入数字');this.value='';&#125;" name=txt1&gt; 3.只能输入字母和汉字1&lt;input onkeyup="value=value.replace(/[\d]/g,'') "onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[\d]/g,''))" maxlength=10 name="Numbers"&gt; 4.只能输入英文字母和数字,不能输入中文1&lt;input onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"&gt; 5.只能输入数字和英文1&lt;input onKeyUp="value=value.replace(/[^\d|chun]/g,'')"&gt; 6.小数点后只能有最多两位(数字,中文都可输入),不能输入字母和运算符号1&lt;input onKeyPress="if((event.keyCode&lt;48 || event.keyCode&gt;57) &amp;&amp; event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false"&gt; 7.小数点后只能有最多两位(数字,字母,中文都可输入),可以输入运算符号1&lt;input onkeyup="this.value=this.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3')"&gt; 8.只能输入中文：1&lt;input name="realname" type="text" maxlength="20" class="input_style" value="" onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\u4E00-\u9FA5]/g,''))" /&gt;]]></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[限制H5 date日期控件所选日期不能晚于当前日期]]></title>
       <url>%2F2016%2F04%2F10%2F%E9%99%90%E5%88%B6H5inputtype-date%E6%97%A5%E6%9C%9F%E6%8E%A7%E4%BB%B6%E6%89%80%E9%80%89%E6%97%A5%E6%9C%9F%E4%B8%8D%E8%83%BD%E6%99%9A%E4%BA%8E%E5%BD%93%E5%89%8D%E6%97%A5%E6%9C%9F%2F</url>
       <content type="text"><![CDATA[道理其实很简单 只需要限制 max = ‘当前日期即可’ 1&lt;input type="date" name="" value="" max="当前日期" class='limit-max-date'&gt; 那么只需要动态设置max值即可 一定要遵循 YYYY-MM-DD 123456789101112131415161718// 获取input var input1 = document.querySelector('.limit-max-date');// 获取当前日期var tDate = (function()&#123; var date = new Date(); var seperator1 = "-"; var month = date.getMonth() + 1;//月 var strDate = date.getDate();//日 if (month &gt;= 1 &amp;&amp; month &lt;= 9) &#123; month = "0" + month; &#125; if (strDate &gt;= 0 &amp;&amp; strDate &lt;= 9) &#123; strDate = "0" + strDate; &#125; return date.getFullYear() + seperator1 + month + seperator1 + strDate&#125;)()input1.setAttribute('max',tDate)// 设置max值为当前日期 至此就不能选择比今天更晚的日期,一般用于选择生日时间。]]></content>
