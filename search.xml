@@ -38,6 +38,13 @@
 
     
     <entry>
+      <title><![CDATA[限制H5 date日期控件所选日期不能晚于当前日期]]></title>
+      <url>%2F2016%2F04%2F10%2F%E9%99%90%E5%88%B6H5inputtype-date%E6%97%A5%E6%9C%9F%E6%8E%A7%E4%BB%B6%E6%89%80%E9%80%89%E6%97%A5%E6%9C%9F%E4%B8%8D%E8%83%BD%E6%99%9A%E4%BA%8E%E5%BD%93%E5%89%8D%E6%97%A5%E6%9C%9F%2F</url>
+      <content type="text"><![CDATA[道理其实很简单 只需要限制 max = ‘当前日期即可’ 1&lt;input type="date" name="" value="" max="当前日期" class='limit-max-date'&gt; 那么只需要动态设置max值即可 一定要遵循 YYYY-MM-DD 123456789101112131415161718// 获取input var input1 = document.querySelector('.limit-max-date');// 获取当前日期var tDate = (function()&#123; var date = new Date(); var seperator1 = "-"; var month = date.getMonth() + 1;//月 var strDate = date.getDate();//日 if (month &gt;= 1 &amp;&amp; month &lt;= 9) &#123; month = "0" + month; &#125; if (strDate &gt;= 0 &amp;&amp; strDate &lt;= 9) &#123; strDate = "0" + strDate; &#125; return date.getFullYear() + seperator1 + month + seperator1 + strDate&#125;)()input1.setAttribute('max',tDate)// 设置max值为当前日期 至此就不能选择比今天更晚的日期,一般用于选择生日时间。]]></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[JavaScript实现jQuery中的type检测数据类型]]></title>
       <url>%2F2016%2F03%2F20%2FJavaScript%E5%AE%9E%E7%8E%B0jQuery%E4%B8%AD%E7%9A%84type%E6%A3%80%E6%B5%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%2F</url>
       <content type="text"><![CDATA[众所周知，JavaScript中的typeof虽然可以检测数据类型，但是在检测数据类型的时候,返回的数据类型不一定准确:比如 null 也会返回null ，返回的数据类型只有下面几种，远远不能准确的判断属于何种数据类型。123456"undefined" ——如果这个值未定义；"boolean" ——如果这个值是布尔值；"string" ——如果这个值是字符串； "number" ——如果这个值是数值；"object" ——如果这个值是对象或 null ；"function" ——如果这个值是函数。 在网上也看了一些所谓的全面的检测方法，也没有很好的实现封装。无聊之余看了下jQuery的type实现方法，现在我用JavaScript实现一下。1234567891011121314151617//定义一个对象保存所有的数据类型 var class2type = &#123;&#125;; var dataType = "Boolean Number String Function Array Date RegExp Object Error Symbol".split(" "); //把所有的数据类型遍历进class2type里面 jQuery中用的是自己封装的each forEach() 是es5新增的方法 dataType.forEach(function (name, i) &#123; class2type["[object " + name + "]"] = name.toLowerCase(); &#125;) var type = function (obj) &#123; if (obj == null) &#123; // 当等于undefined 或者 null 直接返回 return obj + ""; &#125; return typeof obj === "object" || typeof obj === "function" ? class2type[toString.call(obj)] || "object" : typeof obj; &#125; 至此便可以检测JavaScript中的所有数据类型了。]]></content>
