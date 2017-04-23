@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://yucccc.com/2017/04/23/%E7%9C%9F%E6%9C%BA%E8%B0%83%E8%AF%95%E7%A7%BB%E5%8A%A8%E7%AB%AFvue%E9%A1%B9%E7%9B%AE/</loc>
+    <lastmod>2017-04-23T12:12:11.000Z</lastmod>
+    <data>
+        <display>
+        <title>真机调试移动端vue项目</title>
+        <pubTime>2017-04-23T12:03:41.000Z</pubTime>
+        
+        <tag>vue2</tag>
+         
+         
+           
+             
+              <breadCrumb title="vue2" url="http://yucccc.com/categories/vue2/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yucccc.com/2016/04/22/javascript%E5%B8%B8%E8%A7%81%E7%9A%84%E8%A1%A8%E5%8D%95%E8%BE%93%E5%85%A5%E9%99%90%E5%88%B6%E6%96%B9%E6%B3%95%E4%BB%A3%E7%A0%81/</loc>
     <lastmod>2017-04-20T14:45:47.000Z</lastmod>
     <data>
@@ -131,9 +151,9 @@
         <title>vue2搭建开发环境并且可以请求本地数据设置</title>
         <pubTime>2017-04-04T01:58:34.000Z</pubTime>
         
-        <tag>webpack</tag>
-         
         <tag>vue2</tag>
+         
+        <tag>webpack</tag>
          
          
            

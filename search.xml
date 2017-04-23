@@ -3,6 +3,13 @@
   
     
     <entry>
+      <title><![CDATA[真机调试移动端vue项目]]></title>
+      <url>%2F2017%2F04%2F23%2F%E7%9C%9F%E6%9C%BA%E8%B0%83%E8%AF%95%E7%A7%BB%E5%8A%A8%E7%AB%AFvue%E9%A1%B9%E7%9B%AE%2F</url>
+      <content type="text"><![CDATA[在做移动端项目的时候经常用到真机调试，总不能每次都把文件打包放到测试机上看，这样很影响效率，虽然现在的pc浏览器基本都自带了仿真器，但是往往在pc仿真上没问题，但是到了真机上就出现各种各样的问题，那么我们就需要一些方法来使用真机调试。 使用 spy-debugger 关于spy-debugger一站式页面调试、抓包工具。远程调试任何手机浏览器页面，任何手机移动端webview（如：微信，HybirdApp等）。支持HTTP/HTTPS，无需USB连接设备。 使用方法很简单： 安装Windows 下npm install spy-debugger -g Mac 下sudo npm install spy-debugger -g 使用第一步：手机和PC保持在同一网络下（比如同时连到一个Wi-Fi下） 第二步：命令行输入spy-debugger。 第三步：设置手机的HTTP代理，代理IP地址设置为PC的IP地址，端口为spy-debugger的启动端口(默认端口：9888)。Android设置代理步骤：设置 - WLAN - 长按选中网络 - 修改网络 - 高级 - 代理设置 - 手动iOS设置代理步骤：设置 - 无线局域网 - 选中网络 - HTTP代理手动 第四步：手机安装证书。注：手机必须先设置完代理后再通过(非微信)手机浏览器访问http://s.xxx(地址二维码) 安装证书（手机首次调试需要安装证书，已安装了证书的手机无需重复安装)。 第五步：用手机浏览器访问你要调试的页面即可。比如我运行在电脑的 vue程序是 localhost:8888 那么此时我在手机上输入代理的IP地址 即PC的IP地址+：8888假设我的ip地址为 123.123.12.123 那么我在手机上输入的地址应该是123.123.12.123 ：8888 如果是微信打开需要加上 http:// 就可以开启调试了 其他设置请查看作者的文档]]></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[vue2绑定内联样式background的一些坑]]></title>
       <url>%2F2017%2F04%2F11%2Fvue2%E7%BB%91%E5%AE%9A%E5%86%85%E8%81%94%E6%A0%B7%E5%BC%8Fbackground%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91%2F</url>
       <content type="text"><![CDATA[此时我有一个需求，给一个盒子添加一个背景图片，这个背景图片是动态请求回来的，那么应该怎么做？看似简单，其实很考研对JavaScript基础的功底以及对vue生命周期的理解。正常情况下的vue内联样式如下写法： 12345&lt;div :style="&#123; color: activeColor, fontSize: fontSize + 'px' &#125;"&gt;&lt;/div&gt;data: &#123; activeColor: 'red', fontSize: 30&#125; 此时的style绑定的是一个JavaScript对象，在JavaScript中不允许出现 “-“ ，那么绑定一个背景图片应该这么写：1234&lt;div :style="&#123;background: 'url('+ img +')'，backgroundSize:cover &#125;"&gt;&lt;/div&gt;data:&#123; img:'xxx.png'&#125; 好了背景图片已经成功通过字符串拼接的方式加上了，我们改为动态请求回来的。12345678910111213141516&lt;div :style="&#123;background: 'url('+ img +')'，backgroundSize:cover &#125;"&gt;&lt;/div&gt;data:&#123; img:'xxx.png'&#125;,methods:&#123;// 伪代码 请求数据 getImg()&#123; this.$http.get().then(function (e) &#123; this.img = e.data //将数据赋值给img &#125;.bind(this)) &#125;&#125;，created()&#123;// 调用函数 this.getImg()&#125; created vue2生命周期钩子函数在实例创建之后同步调用。此时实例已经结束解析选项，这意味着已建立：数据绑定data，计算属性computed，方法methods，watcher/事件回调。此时你会发现虽然渲染了出来，但是报错了12Error in render functionCannot read property &apos;img&apos; of undefined 因为在生命周期 mounted 之前都是虚拟dom 也就是说 当页面已经渲染完，但是vue还没执行，所有数据丢失，此时我们加上1&lt;div v-if='img ' :style="&#123;background: 'url('+ img +')'，backgroundSize:cover &#125;"&gt;&lt;/div&gt; 表示有img属性的时候我们选择这个元素,至此就成功绑定背景图片了。]]></content>

@@ -291,6 +291,176 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yucccc.com/2017/04/23/真机调试移动端vue项目/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="宇cccc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="宇cccc">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/23/真机调试移动端vue项目/" itemprop="url">
+                  真机调试移动端vue项目
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-23T20:03:41+08:00">
+                2017-04-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue2/" itemprop="url" rel="index">
+                    <span itemprop="name">vue2</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/23/真机调试移动端vue项目/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/04/23/真机调试移动端vue项目/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+
+            
+
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在做移动端项目的时候经常用到真机调试，总不能每次都把文件打包放到测试机上看，这样很影响效率，虽然现在的pc浏览器基本都自带了仿真器，但是往往在pc仿真上没问题，但是到了真机上就出现各种各样的问题，那么我们就需要一些方法来使用真机调试。</p>
+<p>使用 <strong><a href="https://github.com/wuchangming/spy-debugger" target="_blank" rel="external">spy-debugger</a></strong> </p>
+<h3 id="关于spy-debugger"><a href="#关于spy-debugger" class="headerlink" title="关于spy-debugger"></a>关于spy-debugger</h3><p>一站式页面调试、抓包工具。远程调试任何手机浏览器页面，任何手机移动端webview（如：微信，HybirdApp等）。支持HTTP/HTTPS，无需USB连接设备。</p>
+<p>使用方法很简单： </p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>Windows 下<br><code>npm install spy-debugger -g</code></p>
+<p>Mac 下<br><code>sudo npm install spy-debugger -g</code></p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>第一步：手机和PC保持在同一网络下（比如同时连到一个Wi-Fi下）</p>
+<p>第二步：命令行输入spy-debugger。</p>
+<p>第三步：设置手机的HTTP代理，代理IP地址设置为PC的IP地址，端口为spy-debugger<br>的启动端口(默认端口：9888)。<br>Android设置代理步骤：设置 - WLAN - 长按选中网络 - 修改网络 - 高级 - 代理设置 - 手动<br>iOS设置代理步骤：设置 - 无线局域网 - 选中网络 - HTTP代理手动</p>
+<p>第四步：手机安装证书。<strong>注：手机必须先设置完代理后再通过(非微信)手机浏览器访问<a href="http://s.xxx" target="_blank" rel="external">http://s.xxx</a><br><a href="https://github.com/wuchangming/spy-debugger/blob/master/demo/img/QRCodeForCert.png" target="_blank" rel="external">(地址二维码)
+</a>安装证书</strong>（手机首次调试需要安装证书，已安装了证书的手机无需重复安装)。</p>
+<p>第五步：用手机浏览器访问你要调试的页面即可。<br>比如我运行在电脑的 vue程序是 localhost:8888 那么此时我在手机上输入代理的IP地址  即PC的IP地址+：8888<br>假设我的ip地址为  123.123.12.123 那么我在手机上输入的地址应该是<br>123.123.12.123 ：8888  如果是微信打开需要加上 http://  就可以开启调试了</p>
+<p>其他设置请查看作者的文档</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yucccc.com/2017/04/11/vue2绑定内联样式background的一些坑/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1801,7 +1971,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
