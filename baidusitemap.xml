@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://yucccc.com/2016/06/08/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%EF%BC%88%E4%BA%8C%EF%BC%89/</loc>
+    <lastmod>2017-04-23T13:33:24.000Z</lastmod>
+    <data>
+        <display>
+        <title>移动端开发常见问题（二）</title>
+        <pubTime>2016-06-08T07:50:39.000Z</pubTime>
+        
+        <tag>移动开发</tag>
+         
+         
+           
+             
+              <breadCrumb title="移动开发" url="http://yucccc.com/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yucccc.com/2016/06/06/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%EF%BC%88%E4%B8%80%EF%BC%89/</loc>
     <lastmod>2017-04-23T13:09:35.000Z</lastmod>
     <data>
@@ -171,9 +191,9 @@
         <title>vue2搭建开发环境并且可以请求本地数据设置</title>
         <pubTime>2017-04-04T01:58:34.000Z</pubTime>
         
-        <tag>webpack</tag>
-         
         <tag>vue2</tag>
+         
+        <tag>webpack</tag>
          
          
            
