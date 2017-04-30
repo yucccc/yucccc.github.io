@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yucccc.com/"/>
-  <updated>2017-04-23T12:12:11.000Z</updated>
+  <updated>2017-04-30T08:15:39.000Z</updated>
   <id>http://yucccc.com/</id>
   
   <author>
@@ -16,31 +16,35 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>真机调试移动端vue项目</title>
-    <link href="http://yucccc.com/2017/04/23/%E7%9C%9F%E6%9C%BA%E8%B0%83%E8%AF%95%E7%A7%BB%E5%8A%A8%E7%AB%AFvue%E9%A1%B9%E7%9B%AE/"/>
-    <id>http://yucccc.com/2017/04/23/真机调试移动端vue项目/</id>
-    <published>2017-04-23T12:03:41.000Z</published>
-    <updated>2017-04-23T12:12:11.000Z</updated>
+    <title>vue2动态给微信单页应用更改标题</title>
+    <link href="http://yucccc.com/2017/04/30/vue2%E5%8A%A8%E6%80%81%E7%BB%99%E5%BE%AE%E4%BF%A1%E5%8D%95%E9%A1%B5%E5%BA%94%E7%94%A8%E6%9B%B4%E6%94%B9%E6%A0%87%E9%A2%98/"/>
+    <id>http://yucccc.com/2017/04/30/vue2动态给微信单页应用更改标题/</id>
+    <published>2017-04-30T07:40:28.000Z</published>
+    <updated>2017-04-30T08:15:39.000Z</updated>
     
-    <content type="html"><![CDATA[<p>在做移动端项目的时候经常用到真机调试，总不能每次都把文件打包放到测试机上看，这样很影响效率，虽然现在的pc浏览器基本都自带了仿真器，但是往往在pc仿真上没问题，但是到了真机上就出现各种各样的问题，那么我们就需要一些方法来使用真机调试。</p>
-<p>使用 <strong><a href="https://github.com/wuchangming/spy-debugger" target="_blank" rel="external">spy-debugger</a></strong> </p>
-<h3 id="关于spy-debugger"><a href="#关于spy-debugger" class="headerlink" title="关于spy-debugger"></a>关于spy-debugger</h3><p>一站式页面调试、抓包工具。远程调试任何手机浏览器页面，任何手机移动端webview（如：微信，HybirdApp等）。支持HTTP/HTTPS，无需USB连接设备。</p>
-<p>使用方法很简单： </p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>Windows 下<br><code>npm install spy-debugger -g</code></p>
-<p>Mac 下<br><code>sudo npm install spy-debugger -g</code></p>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>第一步：手机和PC保持在同一网络下（比如同时连到一个Wi-Fi下）</p>
-<p>第二步：命令行输入spy-debugger。</p>
-<p>第三步：设置手机的HTTP代理，代理IP地址设置为PC的IP地址，端口为spy-debugger<br>的启动端口(默认端口：9888)。<br>Android设置代理步骤：设置 - WLAN - 长按选中网络 - 修改网络 - 高级 - 代理设置 - 手动<br>iOS设置代理步骤：设置 - 无线局域网 - 选中网络 - HTTP代理手动</p>
-<p>第四步：手机安装证书。<strong>注：手机必须先设置完代理后再通过(非微信)手机浏览器访问<a href="http://s.xxx" target="_blank" rel="external">http://s.xxx</a><br><a href="https://github.com/wuchangming/spy-debugger/blob/master/demo/img/QRCodeForCert.png" target="_blank" rel="external">(地址二维码)
-</a>安装证书</strong>（手机首次调试需要安装证书，已安装了证书的手机无需重复安装)。</p>
-<p>第五步：用手机浏览器访问你要调试的页面即可。<br>比如我运行在电脑的 vue程序是 localhost:8888 那么此时我在手机上输入代理的IP地址  即PC的IP地址+：8888<br>假设我的ip地址为  123.123.12.123 那么我在手机上输入的地址应该是<br>123.123.12.123 ：8888  如果是微信打开需要加上 http://  就可以开启调试了</p>
-<p>其他设置请查看作者的文档</p>
+    <content type="html"><![CDATA[<p>现在公司项目的重构,用到的是vue2.0,做的是一个微信m站,但是由于是SPA单页应用,所以就没有所谓的页面 都是router的跳转<br>而网页的标题 随着路由的改变而改变 也就成了一个(伪)需求</p>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>在iOS的微信中 一个SPA应用 想要改变微信顶部导航栏的标题 使用document.title = xxx来改变网页标题是无效的<br>原因大致就是因为在微信中webview只加载网页标题一次 动态改变是无效的 除非都以新页面打开</p>
+<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>在网上查阅的资料都是说vue1的解决方法,并没有一个vue2的相关解决方法,因为2中的router与1发生变化,那么哪些解决方法也就不适用了,下面是本人使用的vue2的解决办法<br><strong>代码如下</strong></p>
+<ul>
+<li><p>先创建一个方法 这里我是放在utils文件夹中起名为setWechatTitle.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by yccc on 2017/4/30.</div><div class="line"> */</div><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params">title</span>) </span>&#123;</div><div class="line">  <span class="built_in">document</span>.title = title;</div><div class="line">  <span class="keyword">let</span> ua = navigator.userAgent;</div><div class="line">  <span class="keyword">if</span> (<span class="regexp">/\bMicroMessenger\/([\d\.]+)/</span>.test(ua) &amp;&amp; <span class="regexp">/ip(hone|od|ad)/i</span>.test(ua)) &#123;</div><div class="line">    <span class="keyword">var</span> i = <span class="built_in">document</span>.createElement(<span class="string">'iframe'</span>);</div><div class="line">    i.src = <span class="string">'/favicon.ico'</span>;</div><div class="line">    i.style.display = <span class="string">'none'</span>;</div><div class="line">    i.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        i.remove();</div><div class="line">      &#125;, <span class="number">9</span>);</div><div class="line">    &#125;;</div><div class="line">    <span class="built_in">document</span>.body.appendChild(i);</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>main.js</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">import</span> setWechatTitle <span class="keyword">from</span> <span class="string">'./utils/setWechatTitle.js'</span> <span class="comment">// 导入方法</span></div><div class="line"> <span class="comment">//.....some code </span></div><div class="line"> <span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">'./router'</span> <span class="comment">// 导入的路由</span></div><div class="line"></div><div class="line"> <span class="keyword">new</span> Vue(&#123; <span class="comment">// vue实例  </span></div><div class="line">     el: <span class="string">'#app'</span>,</div><div class="line">     router,</div><div class="line">     store,</div><div class="line">     <span class="attr">template</span>: <span class="string">'&lt;App/&gt;'</span>,</div><div class="line">     <span class="attr">components</span>: &#123;App&#125;</div><div class="line"> &#125;)</div><div class="line"><span class="comment">// </span></div><div class="line">router.beforeEach(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</div><div class="line">     <span class="keyword">typeof</span> to.meta.pageTitle !== <span class="literal">undefined</span> &amp;&amp; setWechatTitle(to.meta.pageTitle)</div><div class="line">     next() <span class="comment">//确保要调用 next 方法，否则钩子就不会被 resolved。</span></div><div class="line"> &#125;)</div></pre></td></tr></table></figure>
+<ul>
+<li>至此只需要在route中加入meta属性即可</li>
+<li>router/ index.js<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123; <span class="comment">// 我的</span></div><div class="line">  path: <span class="string">'/my'</span>,</div><div class="line">  <span class="attr">component</span>: <span class="function">(<span class="params">reslove</span>) =&gt;</span> <span class="built_in">require</span>([<span class="string">'../views/My/my.vue'</span>], reslove),</div><div class="line">  <span class="attr">meta</span>: &#123;</div><div class="line">    <span class="attr">pageTitle</span>: <span class="string">'我的页面'</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>可以在手机微信上检验效果</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;在做移动端项目的时候经常用到真机调试，总不能每次都把文件打包放到测试机上看，这样很影响效率，虽然现在的pc浏览器基本都自带了仿真器，但是往往在pc仿真上没问题，但是到了真机上就出现各种各样的问题，那么我们就需要一些方法来使用真机调试。&lt;/p&gt;
-&lt;p&gt;使用 &lt;strong&gt;&lt;
+      &lt;p&gt;现在公司项目的重构,用到的是vue2.0,做的是一个微信m站,但是由于是SPA单页应用,所以就没有所谓的页面 都是router的跳转&lt;br&gt;而网页的标题 随着路由的改变而改变 也就成了一个(伪)需求&lt;/p&gt;
+&lt;h3 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;
     
     </summary>
     
@@ -157,10 +161,10 @@
     <updated>2017-04-06T12:41:59.000Z</updated>
     
     <content type="html"><![CDATA[<p>今天用vue在做一个tab栏切换的时候，偶然发现我绑定在router-link上的click并不会触发，<br>后来测试发现，所有绑定在router-link中的事件都不会促发<br>此后查看了官方的文档，也并没有给出明确的说明：<br>代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;router-link @click=<span class="string">"change"</span>&gt;&lt;span&gt;&#123;&#123;item.text&#125;&#125;&lt;/span&gt;&lt;/router-link&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;router-link @click=<span class="string">"change"</span>&gt;<span class="xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123;item.text&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span></div></pre></td></tr></table></figure>
 <p>此刻我发现，无论如何定义在methods 中的 change函数并不会触发，这是为什么呢？<br>在github查看了vue-router的代码后发现：<br><img src="http://onzmxf7ol.bkt.clouddn.com/20170406routetlink.jpg" alt="vue-router源码"></p>
 <h3 id="事件被阻止"><a href="#事件被阻止" class="headerlink" title="事件被阻止"></a>事件被阻止</h3><p>如果当前router-link的tag不是a的话（官方文档中说明：默认为a，可以通过tag改变渲染后的标签），那么就会往自己的子元素（组件）找，找到的第一个就会把一些属性及时间覆盖过去。<br>所以此时事件是被阻止了。个人看法：因为router-link的作用是单纯的路由跳转，如果不阻止事件的话，也许会有很多坑，所以作者干脆阻止了其他事件的触发</p>
-<h3 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;router-link  @click.native=<span class="string">"change"</span>&gt;&lt;span&gt;&#123;&#123;item.text&#125;&#125;&lt;/span&gt;&lt;/router-link&gt;</div></pre></td></tr></table></figure>
+<h3 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;router-link  @click.native=<span class="string">"change"</span>&gt;<span class="xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123;item.text&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span></div></pre></td></tr></table></figure>
 <p>只需要在@click后面加上native就可以了</p>
 <h3 id="原生事件"><a href="#原生事件" class="headerlink" title="原生事件"></a>原生事件</h3><p>添加native事件修饰符之后变为原生事件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$element.addEventListener(click, callback);</div></pre></td></tr></table></figure></p>
 <p>此时a标签并不会阻止，至此便可以解决绑定在router-link身上的事件不会触发的问题。<br>其次，想要实现tab切换添加class可以在router中添加如下配置：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</div><div class="line">  <span class="attr">routes</span>: [],<span class="comment">// 路由跳转配置</span></div><div class="line">  linkActiveClass:<span class="string">'active'</span> <span class="comment">// 在路由中添加配置  active 为跳转到该路由时添加的激活类名</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
@@ -201,9 +205,9 @@
       <category term="webpack" scheme="http://yucccc.com/categories/webpack/"/>
     
     
-      <category term="vue2" scheme="http://yucccc.com/tags/vue2/"/>
-    
       <category term="webpack" scheme="http://yucccc.com/tags/webpack/"/>
+    
+      <category term="vue2" scheme="http://yucccc.com/tags/vue2/"/>
     
   </entry>
   
@@ -381,7 +385,7 @@
     <link href="http://yucccc.com/2016/06/06/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%EF%BC%88%E4%B8%80%EF%BC%89/"/>
     <id>http://yucccc.com/2016/06/06/移动端开发常见问题（一）/</id>
     <published>2016-06-06T12:36:12.000Z</published>
-    <updated>2017-04-23T13:55:23.000Z</updated>
+    <updated>2017-04-23T14:18:50.661Z</updated>
     
     <content type="html"><![CDATA[<p>Meta相关</p>
 <h3 id="添加到主屏后的标题（IOS）"><a href="#添加到主屏后的标题（IOS）" class="headerlink" title="添加到主屏后的标题（IOS）"></a>添加到主屏后的标题（IOS）</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"apple-mobile-web-app-title"</span> <span class="attr">content</span>=<span class="string">"标题"</span>&gt;</span></div></pre></td></tr></table></figure>
@@ -414,7 +418,12 @@
 <li>apple-touch-icon：在IOS6及以下的版本会自动为图标添加一层高光效果（IOS7开始已使用扁平化的设计风格）</li>
 <li>apple-touch-icon-precomposed：使用“设计原图图标”</li>
 </ul>
-<p>图标尺寸：<br>可通过指定size属性来为不同的设备提供不同的图标（但通常来说，我们只需提供一个114 x 114 pixels大小的图标即可 ）<br>官方说明如下：<br>Create different sizes of your app icon for different devices. If you’re creating a universal app, you need to supply app<br>icons in all four sizes.<br>For iPhone and iPod touch both of these sizes are required:<br>57 x 57 pixels<br>114 x 114 pixels (high resolution)<br>For iPad, both of these sizes are required:<br>72 x 72 pixels<br>144 x 144 (high resolution)</p>
+<blockquote>
+<ul>
+<li>图标尺寸：<br>可通过指定size属性来为不同的设备提供不同的图标（但通常来说，我们只需提供一个114 x 114 pixels大小的图标即可 ）</li>
+<li>官方说明如下：<br>Create different sizes of your app icon for different devices. If you’re creating a universal app, you need to supply app<br>icons in all four sizes.<br>For iPhone and iPod touch both of these sizes are required:<br>57 x 57 pixels<br>114 x 114 pixels (high resolution)<br>For iPad, both of these sizes are required:<br>72 x 72 pixels<br>144 x 144 (high resolution)</li>
+</ul>
+</blockquote>
 <h3 id="优先使用最新版本-IE-和-Chrome"><a href="#优先使用最新版本-IE-和-Chrome" class="headerlink" title="优先使用最新版本 IE 和 Chrome"></a>优先使用最新版本 IE 和 Chrome</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"IE=edge,chrome=1"</span> /&gt;</span></div></pre></td></tr></table></figure>
 <h3 id="viewport模板"><a href="#viewport模板" class="headerlink" title="viewport模板"></a>viewport模板</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"</span> <span class="attr">name</span>=<span class="string">"viewport"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"yes"</span> <span class="attr">name</span>=<span class="string">"apple-mobile-web-app-capable"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"black"</span> <span class="attr">name</span>=<span class="string">"apple-mobile-web-app-status-bar-style"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"telephone=no"</span> <span class="attr">name</span>=<span class="string">"format-detection"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"email=no"</span> <span class="attr">name</span>=<span class="string">"format-detection"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>标题<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"index.css"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">这里开始内容</div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>]]></content>
     

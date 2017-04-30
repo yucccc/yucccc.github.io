@@ -4,12 +4,32 @@
 
     
   <url>
-    <loc>http://yucccc.com/2016/06/10/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%EF%BC%88%E4%B8%89%EF%BC%89/</loc>
-    <lastmod>2017-04-23T14:11:49.000Z</lastmod>
+    <loc>http://yucccc.com/2017/04/30/vue2%E5%8A%A8%E6%80%81%E7%BB%99%E5%BE%AE%E4%BF%A1%E5%8D%95%E9%A1%B5%E5%BA%94%E7%94%A8%E6%9B%B4%E6%94%B9%E6%A0%87%E9%A2%98/</loc>
+    <lastmod>2017-04-30T08:15:39.000Z</lastmod>
     <data>
         <display>
-        <title>移动端开发常见问题（三）</title>
-        <pubTime>2016-06-10T06:45:37.000Z</pubTime>
+        <title>vue2动态给微信单页应用更改标题</title>
+        <pubTime>2017-04-30T07:40:28.000Z</pubTime>
+        
+        <tag>vue2</tag>
+         
+         
+           
+             
+              <breadCrumb title="vue2" url="http://yucccc.com/categories/vue2/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yucccc.com/2016/06/06/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%EF%BC%88%E4%B8%80%EF%BC%89/</loc>
+    <lastmod>2017-04-23T14:18:50.661Z</lastmod>
+    <data>
+        <display>
+        <title>移动端开发常见问题（一）</title>
+        <pubTime>2016-06-06T12:36:12.000Z</pubTime>
         
         <tag>移动开发</tag>
          
@@ -24,12 +44,12 @@
 
     
   <url>
-    <loc>http://yucccc.com/2016/06/06/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%EF%BC%88%E4%B8%80%EF%BC%89/</loc>
-    <lastmod>2017-04-23T13:55:23.000Z</lastmod>
+    <loc>http://yucccc.com/2016/06/10/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%EF%BC%88%E4%B8%89%EF%BC%89/</loc>
+    <lastmod>2017-04-23T14:11:49.000Z</lastmod>
     <data>
         <display>
-        <title>移动端开发常见问题（一）</title>
-        <pubTime>2016-06-06T12:36:12.000Z</pubTime>
+        <title>移动端开发常见问题（三）</title>
+        <pubTime>2016-06-10T06:45:37.000Z</pubTime>
         
         <tag>移动开发</tag>
          
@@ -57,26 +77,6 @@
            
              
               <breadCrumb title="移动开发" url="http://yucccc.com/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yucccc.com/2017/04/23/%E7%9C%9F%E6%9C%BA%E8%B0%83%E8%AF%95%E7%A7%BB%E5%8A%A8%E7%AB%AFvue%E9%A1%B9%E7%9B%AE/</loc>
-    <lastmod>2017-04-23T12:12:11.000Z</lastmod>
-    <data>
-        <display>
-        <title>真机调试移动端vue项目</title>
-        <pubTime>2017-04-23T12:03:41.000Z</pubTime>
-        
-        <tag>vue2</tag>
-         
-         
-           
-             
-              <breadCrumb title="vue2" url="http://yucccc.com/categories/vue2/"/>
           
         </display>
     </data>
@@ -211,9 +211,9 @@
         <title>vue2搭建开发环境并且可以请求本地数据设置</title>
         <pubTime>2017-04-04T01:58:34.000Z</pubTime>
         
-        <tag>vue2</tag>
-         
         <tag>webpack</tag>
+         
+        <tag>vue2</tag>
          
          
            
