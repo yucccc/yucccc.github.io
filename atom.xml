@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yucccc.com/"/>
-  <updated>2017-04-30T08:15:39.000Z</updated>
+  <updated>2017-06-06T13:16:38.000Z</updated>
   <id>http://yucccc.com/</id>
   
   <author>
@@ -16,11 +16,61 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>vue2微信分享坑点</title>
+    <link href="http://yucccc.com/2017/06/06/vue2%E5%AE%9E%E7%8E%B0%E5%BE%AE%E4%BF%A1%E5%88%86%E4%BA%AB%E5%9D%91%E7%82%B9/"/>
+    <id>http://yucccc.com/2017/06/06/vue2实现微信分享坑点/</id>
+    <published>2017-06-06T13:09:49.000Z</published>
+    <updated>2017-06-06T13:16:38.000Z</updated>
+    
+    <content type="html"><![CDATA[<ul>
+<li>现在我的需求是在首页或者详情页点击分享 成功之后会请求后端接口 如果符合条件 则会得到一张</li>
+<li>首先 肯定是先撸一波文档  <a href="https://mp.weixin.qq.com/wiki" target="_blank" rel="external">微信api接口文档</a><br>微信分享其实很简单 步骤如下</li>
+<li><h4 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h4>先登录微信公众平台进入“公众号设置”的“功能设置”里填写“JS接口安全域名”。这个不多说，见文档，只有绑定了才能进行下一步的动作</li>
+<li><h4 id="引入js文件"><a href="#引入js文件" class="headerlink" title="引入js文件"></a>引入js文件</h4><p>此处我用的是vux内置的插件 其他方式正常引入script即可</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; WechatPlugin&#125; <span class="keyword">from</span> <span class="string">'vux'</span></div><div class="line">Vue.use(WechatPlugin); <span class="comment">//  微信</span></div><div class="line"><span class="keyword">const</span> wx = Vue.wechat;</div></pre></td></tr></table></figure>
+</li>
+<li><h4 id="通过config接口注入权限验证配置"><a href="#通过config接口注入权限验证配置" class="headerlink" title="通过config接口注入权限验证配置"></a>通过config接口注入权限验证配置</h4><p>所有需要使用JS-SDK的页面必须先注入配置信息  配置信息需要后端返回</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 此处我是定义在vue原型中 这样方便以后的调用 通过 this.wxShare()调用</span></div><div class="line"><span class="keyword">const</span> imgUrl = <span class="string">'http://xxx.xxxx.xxxx'</span>; <span class="comment">// 测试地址</span></div><div class="line">Vue.prototype.wxShare = <span class="function"><span class="keyword">function</span> (<span class="params">title, desc, link</span>) </span>&#123;</div><div class="line">  <span class="keyword">const</span> url = <span class="built_in">document</span>.location.href;<span class="comment">// 当前url</span></div><div class="line">  http.get(getConfig(), &#123;<span class="comment">//请求配置</span></div><div class="line">    params: &#123;</div><div class="line">      <span class="attr">url</span>: url</div><div class="line">    &#125;</div><div class="line">  &#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;<span class="comment">// 获得签名配置</span></div><div class="line">    <span class="keyword">var</span> Data = res.data.data;</div><div class="line">    <span class="comment">// config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作</span></div><div class="line">    wx.config(&#123;</div><div class="line">      <span class="attr">debug</span>: <span class="literal">false</span>, <span class="comment">// 开启调试模式,开发时可以开启</span></div><div class="line">      appId: Data.appid,   <span class="comment">// 必填，公众号的唯一标识   由接口返回</span></div><div class="line">      timestamp: Data.timestamp, <span class="comment">// 必填，生成签名的时间戳 由接口返回</span></div><div class="line">      nonceStr: Data.nonceStr,    <span class="comment">// 必填，生成签名的随机串 由接口返回</span></div><div class="line">      signature: Data.signature,   <span class="comment">// 必填，签名 由接口返回</span></div><div class="line">      jsApiList: [<span class="string">'onMenuShareAppMessage'</span>, <span class="string">'onMenuShareTimeline'</span>] <span class="comment">// 此处填你所用到的方法</span></div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">wx.ready(<span class="function"><span class="params">()</span> =&gt;</span>&#123;</div><div class="line"><span class="comment">// ..... code</span></div><div class="line">&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+<li><h4 id="定义方法"><a href="#定义方法" class="headerlink" title="定义方法"></a>定义方法</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">Vue.prototype.wxShare = <span class="function"><span class="keyword">function</span> (<span class="params">title, desc, link</span>) </span>&#123;</div><div class="line">wx.config()</div><div class="line">wx.ready(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="comment">// 所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，</span></div><div class="line">    <span class="comment">// 则可以直接调用，不需要放在ready函数中。</span></div><div class="line">    wx.onMenuShareAppMessage(&#123; <span class="comment">// 分享给朋友</span></div><div class="line">      title: title,       <span class="comment">// 分享标题</span></div><div class="line">      desc: desc,   <span class="comment">// 分享描述</span></div><div class="line">      link: link,       <span class="comment">// 分享链接 默认以当前链接</span></div><div class="line">      imgUrl: imgUrl + <span class="string">'/static/images/share.png'</span>,<span class="comment">// 分享图标</span></div><div class="line">      <span class="comment">// 用户确认分享后执行的回调函数</span></div><div class="line">      success: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> params = <span class="keyword">new</span> URLSearchParams();</div><div class="line">        params.append(<span class="string">'token'</span>, <span class="built_in">window</span>.localStorage.getItem(<span class="string">'token'</span>));</div><div class="line">        params.append(<span class="string">'type'</span>, <span class="string">'share'</span>);</div><div class="line">        http.post(shareCallback(), params).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123; <span class="comment">// 请求后端分享成功之后获取一票的接口</span></div><div class="line">          <span class="keyword">if</span> (res.data.error == <span class="number">0</span>) &#123; <span class="comment">// 表示当天分享成功</span></div><div class="line">            store.commit(<span class="string">'shareChange'</span>, &#123;<span class="comment">// vuex弹出分享成功获取一票</span></div><div class="line">              isShare: <span class="literal">true</span></div><div class="line">            &#125;);</div><div class="line">          &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">          &#125;</div><div class="line">        &#125;)</div><div class="line">      &#125;,</div><div class="line">      <span class="comment">// 用户取消分享后执行的回调函数</span></div><div class="line">      cancel: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'分享到朋友取消'</span>);</div><div class="line">      &#125;</div><div class="line">    &#125;);</div><div class="line">    <span class="comment">//分享到朋友圈</span></div><div class="line">    wx.onMenuShareTimeline(&#123;&#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>然后在需要的钩子里面调用即可,以上的流程都可以在文档中查看</p>
+<ul>
+<li><h4 id="坑点"><a href="#坑点" class="headerlink" title="坑点"></a>坑点</h4><ul>
+<li><h5 id="在ios微信浏览器中-window-onload-reload-以及-window-location-go-0-无效"><a href="#在ios微信浏览器中-window-onload-reload-以及-window-location-go-0-无效" class="headerlink" title="在ios微信浏览器中 window.onload.reload() 以及  window.location.go(0) 无效"></a>在ios微信浏览器中 window.onload.reload() 以及  window.location.go(0) 无效</h5><p>我想实现登陆之后刷新页面, 结果在登陆之后 ios并不会刷新页面<br>解决办法： 最后使用 watch 解决</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">watch: &#123;</div><div class="line">  <span class="attr">login</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.login) &#123;</div><div class="line">      <span class="keyword">this</span>._getFansCard()</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><h4 id="ios上二次分享会出现签名错误-并且莫名被拼接上了一串标识-此问题只有在ios上有"><a href="#ios上二次分享会出现签名错误-并且莫名被拼接上了一串标识-此问题只有在ios上有" class="headerlink" title="ios上二次分享会出现签名错误, 并且莫名被拼接上了一串标识 此问题只有在ios上有"></a>ios上二次分享会出现签名错误, 并且莫名被拼接上了一串标识 此问题只有在ios上有</h4></li>
+</ul>
+</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/4378038-a9a93df0d7393185.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="微信截图_20170524110236.png"></p>
+<p>ios会在#号中间添加一串标识 如下<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">http://test.aaa.bbbb.com/?from=singlemessage&amp;isappinstalled=0#/details?id=2</div><div class="line">// 原本链接 http://test.aaa.bbbb.com/#/details?id=2</div></pre></td></tr></table></figure></p>
+<p>这个问题解决了两天,建议在一开始就开启debug模式,这样能及时知道问题所在<br>解决办法:<br>一开始以为是 ‘#’ 的问题 于是乎开启vue HTML5 History 模式  去除掉#  结果发现 在进入其他页面的时候 复制连接还是首页的链接 本质上还是没得到解决<br>后来发现本质上的错误是;当浏览者从分享窗口进入后，他从分享页按着正常路由跳转到其他页面，其他页面的逻辑中如果有需要获取当前页面url的需要，会发现这个url和正常路由跳转的不一样,导致签名不一致,所以获取不到正确的文案。<br>最后我是隔天再次测试就好了,最终我也不知道是到底如何解决的。。。。<br>一开始 有 #  然后开启 h5模式 最后又还原了 哈希模式  发现二次分享的问题解决了。。。。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;现在我的需求是在首页或者详情页点击分享 成功之后会请求后端接口 如果符合条件 则会得到一张&lt;/li&gt;
+&lt;li&gt;首先 肯定是先撸一波文档  &lt;a href=&quot;https://mp.weixin.qq.com/wiki&quot; target=&quot;_blank&quot; rel=&quot;e
+    
+    </summary>
+    
+      <category term="vue2" scheme="http://yucccc.com/categories/vue2/"/>
+    
+    
+      <category term="vue2" scheme="http://yucccc.com/tags/vue2/"/>
+    
+  </entry>
+  
+  <entry>
     <title>vue2动态给微信单页应用更改标题</title>
     <link href="http://yucccc.com/2017/04/30/vue2%E5%8A%A8%E6%80%81%E7%BB%99%E5%BE%AE%E4%BF%A1%E5%8D%95%E9%A1%B5%E5%BA%94%E7%94%A8%E6%9B%B4%E6%94%B9%E6%A0%87%E9%A2%98/"/>
     <id>http://yucccc.com/2017/04/30/vue2动态给微信单页应用更改标题/</id>
     <published>2017-04-30T07:40:28.000Z</published>
-    <updated>2017-04-30T08:15:39.000Z</updated>
+    <updated>2017-04-30T08:15:40.000Z</updated>
     
     <content type="html"><![CDATA[<p>现在公司项目的重构,用到的是vue2.0,做的是一个微信m站,但是由于是SPA单页应用,所以就没有所谓的页面 都是router的跳转<br>而网页的标题 随着路由的改变而改变 也就成了一个(伪)需求</p>
 <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>在iOS的微信中 一个SPA应用 想要改变微信顶部导航栏的标题 使用document.title = xxx来改变网页标题是无效的<br>原因大致就是因为在微信中webview只加载网页标题一次 动态改变是无效的 除非都以新页面打开</p>
@@ -60,7 +110,7 @@
     <link href="http://yucccc.com/2017/04/11/vue2%E7%BB%91%E5%AE%9A%E5%86%85%E8%81%94%E6%A0%B7%E5%BC%8Fbackground%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/"/>
     <id>http://yucccc.com/2017/04/11/vue2绑定内联样式background的一些坑/</id>
     <published>2017-04-11T12:28:45.000Z</published>
-    <updated>2017-04-11T12:29:47.000Z</updated>
+    <updated>2017-04-11T12:29:48.000Z</updated>
     
     <content type="html"><![CDATA[<p>此时我有一个需求，给一个盒子添加一个背景图片，这个背景图片是动态请求回来的，那么应该怎么做？看似简单，其实很考研对JavaScript基础的功底以及对vue生命周期的理解。<br>正常情况下的vue内联样式如下写法：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;div :style=<span class="string">"&#123; color: activeColor, fontSize: fontSize + 'px' &#125;"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line">data: &#123;</div><div class="line">  <span class="attr">activeColor</span>: <span class="string">'red'</span>,</div><div class="line">  <span class="attr">fontSize</span>: <span class="number">30</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -108,7 +158,7 @@
     <summary type="html">
     
       &lt;p&gt;因为最近要用 mongodb+node.js+vue2做一个小demo,所以第一步应该是先安装好mongodb,本以为是十分简单的安装,却踩了不少坑。&lt;/p&gt;
-&lt;h3 id=&quot;下载&quot;&gt;&lt;a href=&quot;#下载&quot; class=&quot;headerlink&quot; title=&quot;下载&quot;&gt;&lt;/a&gt;下载&lt;/h3&gt;&lt;p&gt;先到官网下载mongodb &lt;a href=&quot;https://www.mongodb.com/download-center?jmp=nav#community&quot;&gt;点击到官网&lt;/a&gt; 选择合适自己的版本,我用的是window 所以下的window版本,此时的mongodb版本为3.4&lt;br&gt;
+&lt;h3 id=&quot;下载&quot;&gt;&lt;a href=&quot;#下载&quot; class=&quot;headerlink&quot; title=&quot;下载&quot;&gt;&lt;/a&gt;下载&lt;/h3&gt;&lt;p&gt;先到官网下载mongodb &lt;a href=&quot;https://www.mongodb.com/download-center?jmp=nav#community&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;点击到官网&lt;/a&gt; 选择合适自己的版本,我用的是window 所以下的window版本,此时的mongodb版本为3.4&lt;br&gt;
     
     </summary>
     
@@ -124,7 +174,7 @@
     <link href="http://yucccc.com/2017/04/08/VueX%E5%9C%A8ie-safari%E6%B5%8F%E8%A7%88%E5%99%A8%E6%97%A0%E6%B3%95%E8%A7%A3%E6%9E%90%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"/>
     <id>http://yucccc.com/2017/04/08/VueX在ie-safari浏览器无法解析的解决方法/</id>
     <published>2017-04-08T11:27:19.000Z</published>
-    <updated>2017-04-08T11:31:01.000Z</updated>
+    <updated>2017-04-08T11:31:02.000Z</updated>
     
     <content type="html"><![CDATA[<p>今天在做一个vue2项目时,引入了vuex做一些状态管理，结果调试发现在ie11以下页面显示不出来，打开控制台发现出现如下错误：</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/4378038-dbbb398beeab58dc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ie不支持vuex.png"></p>
@@ -158,13 +208,13 @@
     <link href="http://yucccc.com/2017/04/06/Vue2%E4%B8%AD%E6%B3%A8%E5%86%8C%E5%9C%A8router-link%E4%B8%8A%E4%BA%8B%E4%BB%B6%E6%97%A0%E6%95%88%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"/>
     <id>http://yucccc.com/2017/04/06/Vue2中注册在router-link上事件无效解决方法/</id>
     <published>2017-04-06T12:16:42.000Z</published>
-    <updated>2017-04-06T12:41:59.000Z</updated>
+    <updated>2017-04-06T12:42:00.000Z</updated>
     
     <content type="html"><![CDATA[<p>今天用vue在做一个tab栏切换的时候，偶然发现我绑定在router-link上的click并不会触发，<br>后来测试发现，所有绑定在router-link中的事件都不会促发<br>此后查看了官方的文档，也并没有给出明确的说明：<br>代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;router-link @click=<span class="string">"change"</span>&gt;<span class="xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123;item.text&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;router-link @click=<span class="string">"change"</span>&gt;&lt;span&gt;&#123;&#123;item.text&#125;&#125;&lt;/span&gt;&lt;/router-link&gt;</div></pre></td></tr></table></figure>
 <p>此刻我发现，无论如何定义在methods 中的 change函数并不会触发，这是为什么呢？<br>在github查看了vue-router的代码后发现：<br><img src="http://onzmxf7ol.bkt.clouddn.com/20170406routetlink.jpg" alt="vue-router源码"></p>
 <h3 id="事件被阻止"><a href="#事件被阻止" class="headerlink" title="事件被阻止"></a>事件被阻止</h3><p>如果当前router-link的tag不是a的话（官方文档中说明：默认为a，可以通过tag改变渲染后的标签），那么就会往自己的子元素（组件）找，找到的第一个就会把一些属性及时间覆盖过去。<br>所以此时事件是被阻止了。个人看法：因为router-link的作用是单纯的路由跳转，如果不阻止事件的话，也许会有很多坑，所以作者干脆阻止了其他事件的触发</p>
-<h3 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;router-link  @click.native=<span class="string">"change"</span>&gt;<span class="xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123;item.text&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<h3 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;router-link  @click.native=<span class="string">"change"</span>&gt;&lt;span&gt;&#123;&#123;item.text&#125;&#125;&lt;/span&gt;&lt;/router-link&gt;</div></pre></td></tr></table></figure>
 <p>只需要在@click后面加上native就可以了</p>
 <h3 id="原生事件"><a href="#原生事件" class="headerlink" title="原生事件"></a>原生事件</h3><p>添加native事件修饰符之后变为原生事件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$element.addEventListener(click, callback);</div></pre></td></tr></table></figure></p>
 <p>此时a标签并不会阻止，至此便可以解决绑定在router-link身上的事件不会触发的问题。<br>其次，想要实现tab切换添加class可以在router中添加如下配置：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</div><div class="line">  <span class="attr">routes</span>: [],<span class="comment">// 路由跳转配置</span></div><div class="line">  linkActiveClass:<span class="string">'active'</span> <span class="comment">// 在路由中添加配置  active 为跳转到该路由时添加的激活类名</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
@@ -189,7 +239,7 @@
     <link href="http://yucccc.com/2017/04/04/vue2%E6%90%AD%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%B9%B6%E4%B8%94%E5%8F%AF%E4%BB%A5%E8%AF%B7%E6%B1%82%E6%9C%AC%E5%9C%B0%E6%95%B0%E6%8D%AE%E8%AE%BE%E7%BD%AE/"/>
     <id>http://yucccc.com/2017/04/04/vue2搭建开发环境并且可以请求本地数据设置/</id>
     <published>2017-04-04T01:58:34.000Z</published>
-    <updated>2017-04-08T11:34:25.000Z</updated>
+    <updated>2017-04-08T11:34:26.000Z</updated>
     
     <content type="html"><![CDATA[<p>  这一个问题困扰了我许久，怎么用vue搭建开发环境并且可以请求本地数据，因为webpack-dev-server在编译vue的时候会默认开启一个端口，本地的服务器肯定也会拥有一个端口，那么不同端口的请求又为跨域请求，此时又不能把端口改为相同，因为这样会造成端口冲突，当然不考虑跨域jsonp之类，虽然jsonp可以做，但是在开发中无疑增加了繁杂度，并且这样做的话上线又要改请求方式，十分麻烦，那么应该怎么做呢？<br>这时候就要用到webpack里面的开启代理的配置,即把请求的地址转发到指定的地址，并且允许跨域请求 如下：</p>
 <h2 id="开启webpack代理"><a href="#开启webpack代理" class="headerlink" title="开启webpack代理"></a>开启webpack代理</h2><p>此时找到config文件中的index.js,拉到底部找到<br>dev：{  里面是一些端口的配置} 在里面添加上如下配置<br> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"> dev: &#123;</div><div class="line">    <span class="attr">env</span>: <span class="built_in">require</span>(<span class="string">'./dev.env'</span>),</div><div class="line">    <span class="attr">port</span>: <span class="number">9999</span>,</div><div class="line">    <span class="attr">autoOpenBrowser</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">assetsSubDirectory</span>: <span class="string">'static'</span>,</div><div class="line">    <span class="attr">assetsPublicPath</span>: <span class="string">'/'</span>,</div><div class="line">    <span class="attr">proxyTable</span>: &#123;<span class="comment">// 这里用的是vue-cli脚手架,默认proxyTable:&#123;&#125; ,内容为空 只需要配置这个参数即可</span></div><div class="line">      <span class="string">'/webapi'</span>: &#123;<span class="comment">//代表你以什么为开始请求数据 表示以webapi开头的请求就开启代理</span></div><div class="line">        target: <span class="string">'http://im.ivymei.com'</span>, <span class="comment">//代表代理地址 即：如果 this.$http.get('/webapi').then() 此时会变成http://www.baidu.com/webapi</span></div><div class="line">        changeOrigin: <span class="literal">true</span>,<span class="comment">// 表示允许跨域   </span></div><div class="line">        pathRewrite: &#123;</div><div class="line">          <span class="string">'^/webapi'</span>: <span class="string">'/webapi'</span> <span class="comment">//可要可不要</span></div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">cssSourceMap</span>: <span class="literal">false</span>,</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -205,9 +255,9 @@
       <category term="webpack" scheme="http://yucccc.com/categories/webpack/"/>
     
     
-      <category term="webpack" scheme="http://yucccc.com/tags/webpack/"/>
-    
       <category term="vue2" scheme="http://yucccc.com/tags/vue2/"/>
+    
+      <category term="webpack" scheme="http://yucccc.com/tags/webpack/"/>
     
   </entry>
   
@@ -216,7 +266,7 @@
     <link href="http://yucccc.com/2016/06/10/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%EF%BC%88%E4%B8%89%EF%BC%89/"/>
     <id>http://yucccc.com/2016/06/10/移动端开发常见问题（三）/</id>
     <published>2016-06-10T06:45:37.000Z</published>
-    <updated>2017-04-23T14:11:49.000Z</updated>
+    <updated>2017-04-23T14:11:50.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="关闭iOS输入自动修正"><a href="#关闭iOS输入自动修正" class="headerlink" title="关闭iOS输入自动修正"></a>关闭iOS输入自动修正</h3><p>和英文输入默认自动首字母大写那样，IOS还做了一个功能，默认输入法会开启自动修正输入内容，这样的话，用户经常要操作两次。如果不希望开启此功能，我们可以通过input标签属性来关闭掉：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">autocorrect</span>=<span class="string">"off"</span> /&gt;</span></div></pre></td></tr></table></figure></p>
 <h3 id="禁止文本缩放"><a href="#禁止文本缩放" class="headerlink" title="禁止文本缩放"></a>禁止文本缩放</h3><p>当移动设备横竖屏切换时，文本的大小会重新计算，进行相应的缩放，当我们不需要这种情况时，可以选择禁止：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">html &#123;</div><div class="line">　　        -webkit-text-size-adjust: 100%;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -385,7 +435,7 @@
     <link href="http://yucccc.com/2016/06/06/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%EF%BC%88%E4%B8%80%EF%BC%89/"/>
     <id>http://yucccc.com/2016/06/06/移动端开发常见问题（一）/</id>
     <published>2016-06-06T12:36:12.000Z</published>
-    <updated>2017-04-23T14:18:50.661Z</updated>
+    <updated>2017-04-23T14:18:52.000Z</updated>
     
     <content type="html"><![CDATA[<p>Meta相关</p>
 <h3 id="添加到主屏后的标题（IOS）"><a href="#添加到主屏后的标题（IOS）" class="headerlink" title="添加到主屏后的标题（IOS）"></a>添加到主屏后的标题（IOS）</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"apple-mobile-web-app-title"</span> <span class="attr">content</span>=<span class="string">"标题"</span>&gt;</span></div></pre></td></tr></table></figure>
@@ -446,7 +496,7 @@
     <link href="http://yucccc.com/2016/04/22/javascript%E5%B8%B8%E8%A7%81%E7%9A%84%E8%A1%A8%E5%8D%95%E8%BE%93%E5%85%A5%E9%99%90%E5%88%B6%E6%96%B9%E6%B3%95%E4%BB%A3%E7%A0%81/"/>
     <id>http://yucccc.com/2016/04/22/javascript常见的表单输入限制方法代码/</id>
     <published>2016-04-22T04:36:07.000Z</published>
-    <updated>2017-04-20T14:45:47.000Z</updated>
+    <updated>2017-04-20T14:45:48.000Z</updated>
     
     <content type="html"><![CDATA[<p>近期公司在做一个后台管理系统,各种要限制输入,网上资料虽有，但是比较散乱，个人收集一些常用的表单限制代码</p>
 <p>1.文本框只能输入数字代码(小数点也不能输入)<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">onkeyup</span>=<span class="string">"this.value=this.value.replace(/\D/g,'')"</span> <span class="attr">onafterpaste</span>=<span class="string">"this.value=this.value.replace(/\D/g,'')"</span>&gt;</span></div></pre></td></tr></table></figure></p>
@@ -478,7 +528,7 @@
     <link href="http://yucccc.com/2016/04/10/%E9%99%90%E5%88%B6H5inputtype-date%E6%97%A5%E6%9C%9F%E6%8E%A7%E4%BB%B6%E6%89%80%E9%80%89%E6%97%A5%E6%9C%9F%E4%B8%8D%E8%83%BD%E6%99%9A%E4%BA%8E%E5%BD%93%E5%89%8D%E6%97%A5%E6%9C%9F/"/>
     <id>http://yucccc.com/2016/04/10/限制H5inputtype-date日期控件所选日期不能晚于当前日期/</id>
     <published>2016-04-10T14:07:11.000Z</published>
-    <updated>2017-04-20T14:25:29.022Z</updated>
+    <updated>2017-04-20T14:25:30.000Z</updated>
     
     <content type="html"><![CDATA[<p>道理其实很简单 只需要限制 max = ‘当前日期即可’</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"date"</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">value</span>=<span class="string">""</span> <span class="attr">max</span>=<span class="string">"当前日期"</span> <span class="attr">class</span>=<span class="string">'limit-max-date'</span>&gt;</span></div></pre></td></tr></table></figure>
@@ -506,7 +556,7 @@
     <link href="http://yucccc.com/2016/03/20/JavaScript%E5%AE%9E%E7%8E%B0jQuery%E4%B8%AD%E7%9A%84type%E6%A3%80%E6%B5%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"/>
     <id>http://yucccc.com/2016/03/20/JavaScript实现jQuery中的type检测数据类型/</id>
     <published>2016-03-20T14:30:10.000Z</published>
-    <updated>2017-04-13T14:35:55.000Z</updated>
+    <updated>2017-04-13T14:35:56.000Z</updated>
     
     <content type="html"><![CDATA[<p>众所周知，JavaScript中的typeof虽然可以检测数据类型，但是在检测数据类型的时候,返回的数据类型不一定准确:比如 null 也会返回null ，返回的数据类型只有下面几种，远远不能准确的判断属于何种数据类型。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="string">"undefined"</span> ——如果这个值未定义；</div><div class="line"><span class="string">"boolean"</span> ——如果这个值是布尔值；</div><div class="line"><span class="string">"string"</span> ——如果这个值是字符串；</div><div class="line"> <span class="string">"number"</span> ——如果这个值是数值；</div><div class="line"><span class="string">"object"</span> ——如果这个值是对象或 <span class="literal">null</span> ；</div><div class="line"><span class="string">"function"</span> ——如果这个值是函数。</div></pre></td></tr></table></figure></p>
 <p>在网上也看了一些所谓的全面的检测方法，也没有很好的实现封装。无聊之余看了下jQuery的type实现方法，现在我用JavaScript实现一下。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//定义一个对象保存所有的数据类型</span></div><div class="line">    <span class="keyword">var</span> class2type = &#123;&#125;;</div><div class="line">    <span class="keyword">var</span> dataType = <span class="string">"Boolean Number String Function Array Date RegExp Object Error Symbol"</span>.split(<span class="string">" "</span>);</div><div class="line">    <span class="comment">//把所有的数据类型遍历进class2type里面 jQuery中用的是自己封装的each  forEach() 是es5新增的方法</span></div><div class="line">    dataType.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">name, i</span>) </span>&#123;</div><div class="line">        class2type[<span class="string">"[object "</span> + name + <span class="string">"]"</span>] = name.toLowerCase();</div><div class="line">    &#125;)</div><div class="line"></div><div class="line">    <span class="keyword">var</span> type = <span class="function"><span class="keyword">function</span> (<span class="params">obj</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (obj == <span class="literal">null</span>) &#123; <span class="comment">// 当等于undefined 或者 null 直接返回 </span></div><div class="line">            <span class="keyword">return</span> obj + <span class="string">""</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> <span class="keyword">typeof</span> obj === <span class="string">"object"</span> || <span class="keyword">typeof</span> obj === <span class="string">"function"</span> ?</div><div class="line">            class2type[toString.call(obj)] || <span class="string">"object"</span> :</div><div class="line">            <span class="keyword">typeof</span> obj;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
@@ -531,7 +581,7 @@
     <link href="http://yucccc.com/2016/03/18/%E8%AF%BB%E9%AB%98%E7%A8%8B%E6%9C%89%E6%84%9F%E4%B9%8BJavaScript%E4%BB%A3%E7%A0%81%E5%8F%AF%E7%BB%B4%E6%8A%A4%E6%80%A7/"/>
     <id>http://yucccc.com/2016/03/18/读高程有感之JavaScript代码可维护性/</id>
     <published>2016-03-18T07:35:28.000Z</published>
-    <updated>2017-04-10T14:22:47.000Z</updated>
+    <updated>2017-04-10T14:22:48.000Z</updated>
     
     <content type="html"><![CDATA[<p>近期一直在研读高级程序设计一书，其中第二十四章《最佳实践》中提到代码的可维护性，其中本人深有感触。</p>
 <h2 id="可维护性"><a href="#可维护性" class="headerlink" title="可维护性"></a>可维护性</h2><p>在从事IT编程工作一段时间后发现，每进一家新公司，都要花大量的时间去研读别人的代码，其余剩下的大量时间都是维护别人的代码，由于编程人员水平的参差不齐，所有经常在看上一个同事代码的时候也很难抑制内心的冲动，这写的什么鬼，一句注释没有，重复的代码这么多也不封装，所以编写可维护性的代码尤为重要，并且我觉得一个程序员一开始就应该先养成良好的代码习惯，做到像写诗一样写代码，从而能力才能更进一步，在我认为，代码风格都不好，其他一切都是空谈。</p>
