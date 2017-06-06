@@ -291,6 +291,184 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yucccc.com/2017/06/06/vue2监听微信返回按钮仿微信切换动画/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="宇cccc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="宇cccc">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/06/vue2监听微信返回按钮仿微信切换动画/" itemprop="url">
+                  vue2监听微信返回按钮仿微信切换动画
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-06T21:09:49+08:00">
+                2017-06-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue2/" itemprop="url" rel="index">
+                    <span itemprop="name">vue2</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/06/vue2监听微信返回按钮仿微信切换动画/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/06/06/vue2监听微信返回按钮仿微信切换动画/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+
+            
+
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>效果如下<br><img src="http://upload-images.jianshu.io/upload_images/4378038-661a910ced34d96c.gif?imageMogr2/auto-orient/strip" alt="GIF.gif"><br>点击了浏览器默认返回按钮执行后退动画 其他执行前进动画<br>大致思路如下:<br>在vue中实现动画其实是很简单的,但是由于网上查找不到相关的浏览器默认返回按钮或者微信的返回按钮事件，所有只能是一个伪的监测返回事件<br>代码如下：</p>
+<ul>
+<li><p>首先是先定义css动画  感谢vux的源码 我是一顿复制粘贴<br>app.vue 文件</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.vux-pop-out-enter</span> &#123;</div><div class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(-100%, 0, 0);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.vux-pop-out-leave-active</span> &#123;</div><div class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(100%, 0, 0);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.vux-pop-in-enter</span> &#123;</div><div class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(100%, 0, 0);</div><div class="line">  <span class="attribute">-webkit-transform</span>: <span class="built_in">translate3d</span>(100%, 0, 0);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.vux-pop-in-leave-active</span> &#123;</div><div class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(-100%, 0, 0);</div><div class="line">  <span class="attribute">-webkit-transform</span>: <span class="built_in">translate3d</span>(-100%, 0, 0);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>定义动画执行组件   此处的name应该是动态改变的<br>app.vue 文件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">transition</span> <span class="attr">:name</span>=<span class="string">"'vux-pop-'+ animate"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">router-view</span> <span class="attr">class</span>=<span class="string">"router-view"</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">transition</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>定义name的值  那么此时我们需要用到vuex  如果你用其他也可以 个人习惯用vuex<br>main.js 文件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;&#125;);<span class="comment">//也许这里你已经有其他vuex模块</span></div><div class="line">store.registerModule(<span class="string">'vux'</span>, &#123; <span class="comment">// 名字自己定义</span></div><div class="line">  state: &#123;</div><div class="line">    <span class="attr">animate</span>: <span class="string">'in'</span>,      <span class="comment">// 动画状态  默认是进入</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">mutations</span>: &#123;   <span class="comment">// 提交状态</span></div><div class="line">    animateChange(state, payload)&#123;</div><div class="line">      state.animate = payload.animate</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>重点来了 改变animate的状态  我们需要监测路由的状态<br>main.js 文件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> routerArr = [];<span class="comment">//  创建一个存储路由数组</span></div><div class="line">router.beforeEach(<span class="function"><span class="keyword">function</span> (<span class="params">to, from, next</span>) </span>&#123;</div><div class="line">  routerArr.push(to.path);<span class="comment">//每次push路由</span></div><div class="line">  <span class="keyword">if</span> (routerArr[routerArr.length - <span class="number">3</span>] === to.path) &#123;<span class="comment">// 当如果要去的路径等于数组的倒数第二个路由 那么就是点        击了后退</span></div><div class="line">    store.commit(<span class="string">'animateChange'</span>, &#123;</div><div class="line">      <span class="attr">animate</span>: <span class="string">'out'</span> <span class="comment">// 变成后退动画</span></div><div class="line">    &#125;);</div><div class="line">    routerArr.splice(routerArr.length - <span class="number">2</span>, <span class="number">2</span>) <span class="comment">// 必须删除数组的倒数两位字符串</span></div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    store.commit(<span class="string">'animateChange'</span>, &#123;</div><div class="line">      <span class="attr">animate</span>: <span class="string">'in'</span> <span class="comment">// 变成前进动画</span></div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这么做的话就可以实现切换的效果了  但是存在刷新数组被情况的情况 改成存在sessionStorage 里面就可以</p>
+<ul>
+<li>最后拿到 animate 状态<br>app.vue 文件<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;mapState&#125; <span class="keyword">from</span> <span class="string">'vuex'</span></div><div class="line">  computed: &#123;</div><div class="line">    ...mapState(&#123;</div><div class="line">      <span class="attr">animate</span>: <span class="function"><span class="params">state</span> =&gt;</span> state.vux.animate <span class="comment">// 拿到状态</span></div><div class="line">    &#125;)</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>也许有更好的解决办法 目前只能这么实现了<br>项目地址  <a href="https://github.com/yucccc/vue-vote" target="_blank" rel="external">https://github.com/yucccc/vue-vote</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yucccc.com/2017/06/06/vue2实现微信分享坑点/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1896,201 +2074,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yucccc.com/2016/06/06/移动端开发常见问题（一）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="宇cccc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="宇cccc">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/06/移动端开发常见问题（一）/" itemprop="url">
-                  移动端开发常见问题（一）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-06T20:36:12+08:00">
-                2016-06-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/移动开发/" itemprop="url" rel="index">
-                    <span itemprop="name">移动开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/06/06/移动端开发常见问题（一）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/06/06/移动端开发常见问题（一）/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-
-            
-
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Meta相关</p>
-<h3 id="添加到主屏后的标题（IOS）"><a href="#添加到主屏后的标题（IOS）" class="headerlink" title="添加到主屏后的标题（IOS）"></a>添加到主屏后的标题（IOS）</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"apple-mobile-web-app-title"</span> <span class="attr">content</span>=<span class="string">"标题"</span>&gt;</span></div></pre></td></tr></table></figure>
-<h3 id="启用-WebApp-全屏模式（IOS）"><a href="#启用-WebApp-全屏模式（IOS）" class="headerlink" title="启用 WebApp 全屏模式（IOS）"></a>启用 WebApp 全屏模式（IOS）</h3><p>当网站添加到主屏幕后再点击进行启动时，可隐藏地址栏（从浏览器跳转或输入链接进入并没有此效果）<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"apple-mobile-web-app-capable"</span> <span class="attr">content</span>=<span class="string">"yes"</span> /&gt;</span> </div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"apple-touch-fullscreen"</span> <span class="attr">content</span>=<span class="string">"yes"</span> /&gt;</span></div></pre></td></tr></table></figure></p>
-<h3 id="百度禁止转码"><a href="#百度禁止转码" class="headerlink" title="百度禁止转码"></a>百度禁止转码</h3><p>通过百度手机打开网页时，百度可能会对你的网页进行转码，往你页面贴上它的广告，非常之恶心。不过我们可以通过这个meta标签来禁止它：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Cache-Control"</span> <span class="attr">content</span>=<span class="string">"no-siteapp"</span> /&gt;</span></div></pre></td></tr></table></figure></p>
-<h3 id="设置状态栏的背景颜色（IOS）"><a href="#设置状态栏的背景颜色（IOS）" class="headerlink" title="设置状态栏的背景颜色（IOS）"></a>设置状态栏的背景颜色（IOS）</h3><p>设置状态栏的背景颜色，只有在”apple-mobile-web-app-capable” content=”yes”时生效<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"apple-mobile-web-app-status-bar-style"</span> <span class="attr">content</span>=<span class="string">"black-translucent"</span> /&gt;</span></div></pre></td></tr></table></figure></p>
-<blockquote>
-<p>content 参数：</p>
-<ul>
-<li>default ：状态栏背景是白色。</li>
-<li>black ：状态栏背景是黑色。</li>
-<li>black-translucent ：状态栏背景是半透明。 如果设置为 default 或 black ,网页内容从状态栏底部开始。<br>如果设置为 black-translucent ,网页内容充满整个屏幕，顶部会被状态栏遮挡。</li>
-</ul>
-</blockquote>
-<h3 id="移动端手机号码识别（IOS）"><a href="#移动端手机号码识别（IOS）" class="headerlink" title="移动端手机号码识别（IOS）"></a>移动端手机号码识别（IOS）</h3><p>在 iOS Safari （其他浏览器和Android均不会）上会对那些看起来像是电话号码的数字处理为电话链接，比如：</p>
-<blockquote>
-<ul>
-<li>7位数字，形如：1234567</li>
-<li>带括号及加号的数字，形如：(+86)123456789</li>
-<li>双连接线的数字，形如：00-00-00111</li>
-<li>11位数字，形如：13800138000</li>
-</ul>
-</blockquote>
-<p>可能还有其他类型的数字也会被识别。我们可以通过如下的meta来关闭电话号码的自动识别：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">关闭电话号码自动识别</div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"format-detection"</span> <span class="attr">content</span>=<span class="string">"telephone=no"</span> /&gt;</span></div><div class="line">开启电话功能</div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"tel:123456"</span>&gt;</span>123456<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">开启短信功能：</div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"sms:123456"</span>&gt;</span>123456<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<h3 id="移动端邮箱识别（Android）"><a href="#移动端邮箱识别（Android）" class="headerlink" title="移动端邮箱识别（Android）"></a>移动端邮箱识别（Android）</h3><p>与电话号码的识别一样，在安卓上会对符合邮箱格式的字符串进行识别，我们可以通过如下的meta来关闭邮箱的自动识别：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">关闭邮箱的自动识别</div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"email=no"</span> <span class="attr">name</span>=<span class="string">"format-detection"</span> /&gt;</span> </div><div class="line">开启长按邮箱地址弹出邮件发送的功能：</div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">mailto:dooyoe</span>@<span class="attr">gmail.com</span>"&gt;</span>dooyoe@gmail.com<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<h3 id="添加智能-App-广告条-Smart-App-Banner（IOS-6-Safari）"><a href="#添加智能-App-广告条-Smart-App-Banner（IOS-6-Safari）" class="headerlink" title="添加智能 App 广告条 Smart App Banner（IOS 6+ Safari）"></a>添加智能 App 广告条 Smart App Banner（IOS 6+ Safari）</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"apple-itunes-app"</span> <span class="attr">content</span>=<span class="string">"app-id=myAppStoreID, affiliate-data=myAffiliateData, app-argument=myURL"</span>&gt;</span></div></pre></td></tr></table></figure>
-<h4 id="IOS-Web-app启动动画"><a href="#IOS-Web-app启动动画" class="headerlink" title="IOS Web app启动动画"></a>IOS Web app启动动画</h4><p>由于iPad 的启动画面是不包括状态栏区域的。所以启动图片需要减去状态栏区域所对应的方向上的20px大小，相应地在retina设备上要减去40px的大小。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"apple-touch-startup-image-320x460.png"</span> <span class="attr">media</span>=<span class="string">"(device-width: 320px)"</span> <span class="attr">rel</span>=<span class="string">"apple-touch-startup-image"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"apple-touch-startup-image-640x960.png"</span> <span class="attr">media</span>=<span class="string">"(device-width: 320px) and (-webkit-device-pixel-ratio: 2)"</span> <span class="attr">rel</span>=<span class="string">"apple-touch-startup-image"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"apple-touch-startup-image-768x1004.png"</span> <span class="attr">media</span>=<span class="string">"(device-width: 768px) and (orientation: portrait)"</span> <span class="attr">rel</span>=<span class="string">"apple-touch-startup-image"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"apple-touch-startup-image-748x1024.png"</span> <span class="attr">media</span>=<span class="string">"(device-width: 768px) and (orientation: landscape)"</span> <span class="attr">rel</span>=<span class="string">"apple-touch-startup-image"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"apple-touch-startup-image-1536x2008.png"</span> <span class="attr">media</span>=<span class="string">"(device-width: 1536px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)"</span> <span class="attr">rel</span>=<span class="string">"apple-touch-startup-image"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"apple-touch-startup-image-2048x1496.png"</span> <span class="attr">media</span>=<span class="string">"(device-width: 1536px)  and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)"</span> <span class="attr">rel</span>=<span class="string">"apple-touch-startup-image"</span>&gt;</span></div><div class="line">（landscape：横屏 | portrait：竖屏）</div></pre></td></tr></table></figure></p>
-<h4 id="添加到主屏后的APP图标"><a href="#添加到主屏后的APP图标" class="headerlink" title="添加到主屏后的APP图标"></a>添加到主屏后的APP图标</h4><p>指定web app添加到主屏后的图标路径，有两种略微不同的方式：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 设计原图 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"short_cut_114x114.png"</span> <span class="attr">rel</span>=<span class="string">"apple-touch-icon-precomposed"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 添加高光效果 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"short_cut_114x114.png"</span> <span class="attr">rel</span>=<span class="string">"apple-touch-icon"</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<ul>
-<li>apple-touch-icon：在IOS6及以下的版本会自动为图标添加一层高光效果（IOS7开始已使用扁平化的设计风格）</li>
-<li>apple-touch-icon-precomposed：使用“设计原图图标”</li>
-</ul>
-<blockquote>
-<ul>
-<li>图标尺寸：<br>可通过指定size属性来为不同的设备提供不同的图标（但通常来说，我们只需提供一个114 x 114 pixels大小的图标即可 ）</li>
-<li>官方说明如下：<br>Create different sizes of your app icon for different devices. If you’re creating a universal app, you need to supply app<br>icons in all four sizes.<br>For iPhone and iPod touch both of these sizes are required:<br>57 x 57 pixels<br>114 x 114 pixels (high resolution)<br>For iPad, both of these sizes are required:<br>72 x 72 pixels<br>144 x 144 (high resolution)</li>
-</ul>
-</blockquote>
-<h3 id="优先使用最新版本-IE-和-Chrome"><a href="#优先使用最新版本-IE-和-Chrome" class="headerlink" title="优先使用最新版本 IE 和 Chrome"></a>优先使用最新版本 IE 和 Chrome</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"IE=edge,chrome=1"</span> /&gt;</span></div></pre></td></tr></table></figure>
-<h3 id="viewport模板"><a href="#viewport模板" class="headerlink" title="viewport模板"></a>viewport模板</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"</span> <span class="attr">name</span>=<span class="string">"viewport"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"yes"</span> <span class="attr">name</span>=<span class="string">"apple-mobile-web-app-capable"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"black"</span> <span class="attr">name</span>=<span class="string">"apple-mobile-web-app-status-bar-style"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"telephone=no"</span> <span class="attr">name</span>=<span class="string">"format-detection"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"email=no"</span> <span class="attr">name</span>=<span class="string">"format-detection"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>标题<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"index.css"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">这里开始内容</div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2140,7 +2123,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
