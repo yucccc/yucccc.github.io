@@ -291,7 +291,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yucccc.com/2017/06/06/vue2监听微信返回按钮仿微信切换动画/">
+    <link itemprop="mainEntityOfPage" href="http://yucccc.com/2017/06/08/常用javascript小技巧/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="宇cccc">
@@ -313,8 +313,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/06/06/vue2监听微信返回按钮仿微信切换动画/" itemprop="url">
-                  vue2监听微信返回按钮仿微信切换动画
+                <a class="post-title-link" href="/2017/06/08/常用javascript小技巧/" itemprop="url">
+                  常用javascript小技巧
                 </a>
               
             
@@ -330,8 +330,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-06T21:09:49+08:00">
-                2017-06-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-08T23:15:37+08:00">
+                2017-06-08
               </time>
             
 
@@ -353,8 +353,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue2/" itemprop="url" rel="index">
-                    <span itemprop="name">vue2</span>
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
                   </a>
                 </span>
 
@@ -371,9 +371,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/06/06/vue2监听微信返回按钮仿微信切换动画/#comments" itemprop="discussionUrl">
+                <a href="/2017/06/08/常用javascript小技巧/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/06/06/vue2监听微信返回按钮仿微信切换动画/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/06/08/常用javascript小技巧/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -405,27 +405,37 @@
       
         
           
-            <p>效果如下<br><img src="http://upload-images.jianshu.io/upload_images/4378038-661a910ced34d96c.gif?imageMogr2/auto-orient/strip" alt="GIF.gif"><br>点击了浏览器默认返回按钮执行后退动画 其他执行前进动画 这里录制的时候没录制到鼠标轨迹<br>大致思路如下:<br>在vue中实现动画其实是很简单的,但是由于网上查找不到相关的浏览器默认返回按钮或者微信的返回按钮事件，所有只能是一个伪的监测返回事件<br>代码如下：</p>
+            <p>善于利用JS中的小技巧，不仅可以使代码更加简洁，而且逼格更高。</p>
+<h3 id="1-使用-模拟Boolean-函数"><a href="#1-使用-模拟Boolean-函数" class="headerlink" title="1.使用!!模拟Boolean()函数"></a>1.使用!!模拟Boolean()函数</h3><p>原理：逻辑非操作一个数据对象时，会先将数据对象转换为布尔值，然后取反，两个!!重复取反，就实现了转换为布尔值的效果。</p>
+<h3 id="2-使用一元加-模拟Number-函数"><a href="#2-使用一元加-模拟Number-函数" class="headerlink" title="2. 使用一元加(+)模拟Number()函数"></a>2. 使用一元加(+)模拟Number()函数</h3><p>原理：对非数值类型的数据使用一元加(+)，会起到与Number()函数相同的效果。</p>
 <ul>
-<li><p>首先是先定义css动画  感谢vux的源码 我是一顿复制粘贴<br>app.vue 文件</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.vux-pop-out-enter</span> &#123;</div><div class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(-100%, 0, 0);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.vux-pop-out-leave-active</span> &#123;</div><div class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(100%, 0, 0);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.vux-pop-in-enter</span> &#123;</div><div class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(100%, 0, 0);</div><div class="line">  <span class="attribute">-webkit-transform</span>: <span class="built_in">translate3d</span>(100%, 0, 0);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.vux-pop-in-leave-active</span> &#123;</div><div class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(-100%, 0, 0);</div><div class="line">  <span class="attribute">-webkit-transform</span>: <span class="built_in">translate3d</span>(-100%, 0, 0);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>定义动画执行组件   此处的name应该是动态改变的<br>app.vue 文件</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">transition</span> <span class="attr">:name</span>=<span class="string">"'vux-pop-'+ animate"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">router-view</span> <span class="attr">class</span>=<span class="string">"router-view"</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">transition</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>定义name的值  那么此时我们需要用到vuex  如果你用其他也可以 个人习惯用vuex<br>main.js 文件</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;&#125;);<span class="comment">//也许这里你已经有其他vuex模块</span></div><div class="line">store.registerModule(<span class="string">'vux'</span>, &#123; <span class="comment">// 名字自己定义</span></div><div class="line">  state: &#123;</div><div class="line">    <span class="attr">animate</span>: <span class="string">'in'</span>,      <span class="comment">// 动画状态  默认是进入</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">mutations</span>: &#123;   <span class="comment">// 提交状态</span></div><div class="line">    animateChange(state, payload)&#123;</div><div class="line">      state.animate = payload.animate</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-</li>
-<li><p>重点来了 改变animate的状态  我们需要监测路由的状态<br>main.js 文件</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> routerArr = [];<span class="comment">//  创建一个存储路由数组</span></div><div class="line">router.beforeEach(<span class="function"><span class="keyword">function</span> (<span class="params">to, from, next</span>) </span>&#123;</div><div class="line">  routerArr.push(to.path);<span class="comment">//每次push路由</span></div><div class="line">  <span class="keyword">if</span> (routerArr[routerArr.length - <span class="number">3</span>] === to.path) &#123;<span class="comment">// 当如果要去的路径等于数组的倒数第二个路由 那么就是点        击了后退</span></div><div class="line">    store.commit(<span class="string">'animateChange'</span>, &#123;</div><div class="line">      <span class="attr">animate</span>: <span class="string">'out'</span> <span class="comment">// 变成后退动画</span></div><div class="line">    &#125;);</div><div class="line">    routerArr.splice(routerArr.length - <span class="number">2</span>, <span class="number">2</span>) <span class="comment">// 必须删除数组的倒数两位字符串</span></div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    store.commit(<span class="string">'animateChange'</span>, &#123;</div><div class="line">      <span class="attr">animate</span>: <span class="string">'in'</span> <span class="comment">// 变成前进动画</span></div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
+<li>null转换为0</li>
+<li>undefined转换为NaN</li>
+<li>false转换为0，true转换为1</li>
+<li>对于字符串：<ul>
+<li>空字串转换为0</li>
+<li>含有数字或者浮点数或者十六进制格式的数据(11, 0.3, 0xfe等)，转换为相应的数值</li>
+<li>含有其他格式字符，无法转换为数值的字符串，转换为NaN</li>
 </ul>
-<p>这么做的话就可以实现切换的效果了  但是存在刷新数组被情况的情况 改成存在sessionStorage 里面就可以</p>
+</li>
+<li>对于对象，先调用valueOf()方法，在转换，若结果为NaN，那么再调用toString()方法，之后再转换</li>
+</ul>
+<h4 id="3-使用逻辑与-amp-amp-进行短路操作"><a href="#3-使用逻辑与-amp-amp-进行短路操作" class="headerlink" title="3.使用逻辑与(&amp;&amp;)进行短路操作"></a>3.使用逻辑与(&amp;&amp;)进行短路操作</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(connected)&#123;</div><div class="line">    login();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上代码可以简写为:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">connected &amp;&amp; login();</div></pre></td></tr></table></figure></p>
+<p>也可用这种方法来检查对象中是否拥有某个属性<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">user &amp;&amp; user.name</div></pre></td></tr></table></figure></p>
+<p>原理：逻辑与(&amp;&amp;)会首先对第一个操作数进行求值，只有求值结果为true时才会对第二个操作数求值。connected &amp;&amp; login()中，若判断connected不为true,则不再进行下一步操作。<br>所谓的短路操作即第一个操作数可以决定结果，则不再对第二个操作数进行求值。</p>
+<h4 id="4-使用逻辑或-设置默认值"><a href="#4-使用逻辑或-设置默认值" class="headerlink" title="4. 使用逻辑或(||)设置默认值"></a>4. 使用逻辑或(||)设置默认值</h4><p>逻辑或(||)也属于短路操作，即当第一个操作数可以决定结果时，不再对第二个操作数进行求值。利用这个特点，我们可以给赋值语句设置默认值。只有当第一个操作数为null或者undefined时，才会把第二个操作数赋值给目标。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">User</span>(<span class="params">name, age</span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.name = name || <span class="string">"Liming"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>上述代码中，如果函数中没有传入name参数，name的值为undefined，那么就会给this.name赋值为”Liming”。<br>ES6中可以为函数设置默认值，所以这种方法可能要成为过去式，但是其他地方还是很有用的。<br>ES6 写法 简洁了许多<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> User = <span class="function">(<span class="params">name=<span class="string">"Liming"</span>, age</span>) =&gt;</span> &#123; &#125;</div></pre></td></tr></table></figure></p>
+<h4 id="5-获取数组最后n个元素"><a href="#5-获取数组最后n个元素" class="headerlink" title="5. 获取数组最后n个元素"></a>5. 获取数组最后n个元素</h4><p>可以使用以下代码获取数组中最后n个元素<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>];</div><div class="line"><span class="built_in">console</span>.log(array.slice(<span class="number">-1</span>));  <span class="comment">//[6]</span></div><div class="line"><span class="built_in">console</span>.log(array.slice(<span class="number">-2</span>));  <span class="comment">//[5, 6]</span></div></pre></td></tr></table></figure></p>
+<p>原理:Array.prototype.slice(begin,end)可以用来裁剪数组，第二个参数的默认值是数组的长度值。若值传入一个参数，则会返回从指定索引开始到数组结尾的所有值。<br>而slice()方法还可以接收负值，当传入负值时，会自动加上数组的长度值使其转换为正值，于是便得到了最后的n个值。</p>
+<h4 id="6-合并大数组"><a href="#6-合并大数组" class="headerlink" title="6. 合并大数组"></a>6. 合并大数组</h4><p>常用的合并数组的方式是使用Array.concat()函数。该函数会创建一个新数组，将两个数组连接起来存储到新数组中，这会大量消耗内存。可以使用Array.push.apply(arr1, arr2)，它不会创建新数组，而是将第二个数组合并到第一个数组中，以减少内存的消耗。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>];</div><div class="line"><span class="keyword">var</span> b = [<span class="number">3</span>,<span class="number">4</span>];</div><div class="line"><span class="built_in">console</span>.log(a.push.apply(a, b));      <span class="comment">// [1,2,3,4]</span></div><div class="line"><span class="comment">//或者</span></div><div class="line"><span class="built_in">Array</span>.prototype.push.apply(a, b);      <span class="comment">// a变成了[1,2,3,4]</span></div><div class="line"><span class="built_in">console</span>.log(a); <span class="comment">//[1,2,3,4]</span></div></pre></td></tr></table></figure></p>
+<p>原理: Array.push()是在数组的末尾增加元素，但是如果使用a.push(b)会把整个数组b当作一个元素添加到数组a中。<br>而apply()方法，则允许将某个方法的参数以数组的形式传入，所以起到了将数组b中的元素追加到数组a中的效果。</p>
+<h4 id="7-NodeList转换为数组"><a href="#7-NodeList转换为数组" class="headerlink" title="7. NodeList转换为数组"></a>7. NodeList转换为数组</h4><p>使用document.querySelectorAll(‘div’)返回的是NodeList对象，虽然它很像数组，但是并不能使用诸如sort()，filter()等方法。你可以将其转换为真正的数组。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> eles = <span class="built_in">document</span>.querySelectorAll(<span class="string">'p'</span>);  <span class="comment">//NodeList</span></div><div class="line"><span class="keyword">var</span> arrayElements = [].slice.call(eles);       <span class="comment">//转化为数组</span></div><div class="line"><span class="comment">// 或者</span></div><div class="line"><span class="keyword">var</span> arrayElements = <span class="built_in">Array</span>.prototype.slice.call(eles);</div><div class="line"><span class="comment">// 或者</span></div><div class="line"><span class="keyword">var</span> arrayElements = <span class="built_in">Array</span>.from(eles);</div></pre></td></tr></table></figure></p>
+<p>原理:</p>
 <ul>
-<li>最后拿到 animate 状态<br>app.vue 文件<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;mapState&#125; <span class="keyword">from</span> <span class="string">'vuex'</span></div><div class="line">  computed: &#123;</div><div class="line">    ...mapState(&#123;</div><div class="line">      <span class="attr">animate</span>: <span class="function"><span class="params">state</span> =&gt;</span> state.vux.animate <span class="comment">// 拿到状态</span></div><div class="line">    &#125;)</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-</li>
+<li>[].slice.call(eles):<br>首先创建了一个空数组[]，然后调用他的slice()方法，但是在slice()方法的执行中，把this对象指向了eles,所以会对eles进行裁减，由于对slice()方法没有传入参数，所以相当于slice(0,eles.length),会按照元长度返回一个数组。</li>
+<li>Array.prototype.slice.call(eles): 原理与上面相似，只不过这次没有创建空数组，而是直接使用了原型中的方法</li>
 </ul>
-<p>也许有更好的解决办法 目前只能这么实现了</p>
 
           
         
@@ -609,6 +619,184 @@
 <p><img src="http://upload-images.jianshu.io/upload_images/4378038-a9a93df0d7393185.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="微信截图_20170524110236.png"></p>
 <p>ios会在#号中间添加一串标识 如下<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">http://test.aaa.bbbb.com/?from=singlemessage&amp;isappinstalled=0#/details?id=2</div><div class="line">// 原本链接 http://test.aaa.bbbb.com/#/details?id=2</div></pre></td></tr></table></figure></p>
 <p>这个问题解决了两天,建议在一开始就开启debug模式,这样能及时知道问题所在<br>解决办法:<br>一开始以为是 ‘#’ 的问题 于是乎开启vue HTML5 History 模式  去除掉#  结果发现 在进入其他页面的时候 复制连接还是首页的链接 本质上还是没得到解决<br>后来发现本质上的错误是;当浏览者从分享窗口进入后，他从分享页按着正常路由跳转到其他页面，其他页面的逻辑中如果有需要获取当前页面url的需要，会发现这个url和正常路由跳转的不一样,导致签名不一致,所以获取不到正确的文案。<br>最后我是隔天再次测试就好了,最终我也不知道是到底如何解决的。。。。<br>一开始 有 #  然后开启 h5模式 最后又还原了 哈希模式  发现二次分享的问题解决了。。。。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yucccc.com/2017/06/06/vue2监听微信返回按钮仿微信切换动画/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="宇cccc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="宇cccc">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/06/vue2监听微信返回按钮仿微信切换动画/" itemprop="url">
+                  vue2监听微信返回按钮仿微信切换动画
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-06T21:09:49+08:00">
+                2017-06-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue2/" itemprop="url" rel="index">
+                    <span itemprop="name">vue2</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/06/vue2监听微信返回按钮仿微信切换动画/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/06/06/vue2监听微信返回按钮仿微信切换动画/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+
+            
+
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>效果如下<br><img src="http://upload-images.jianshu.io/upload_images/4378038-661a910ced34d96c.gif?imageMogr2/auto-orient/strip" alt="GIF.gif"><br>点击了浏览器默认返回按钮执行后退动画 其他执行前进动画 这里录制的时候没录制到鼠标轨迹<br>大致思路如下:<br>在vue中实现动画其实是很简单的,但是由于网上查找不到相关的浏览器默认返回按钮或者微信的返回按钮事件，所有只能是一个伪的监测返回事件<br>代码如下：</p>
+<ul>
+<li><p>首先是先定义css动画  感谢vux的源码 我是一顿复制粘贴<br>app.vue 文件</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.vux-pop-out-enter</span> &#123;</div><div class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(-100%, 0, 0);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.vux-pop-out-leave-active</span> &#123;</div><div class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(100%, 0, 0);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.vux-pop-in-enter</span> &#123;</div><div class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(100%, 0, 0);</div><div class="line">  <span class="attribute">-webkit-transform</span>: <span class="built_in">translate3d</span>(100%, 0, 0);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.vux-pop-in-leave-active</span> &#123;</div><div class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(-100%, 0, 0);</div><div class="line">  <span class="attribute">-webkit-transform</span>: <span class="built_in">translate3d</span>(-100%, 0, 0);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>定义动画执行组件   此处的name应该是动态改变的<br>app.vue 文件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">transition</span> <span class="attr">:name</span>=<span class="string">"'vux-pop-'+ animate"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">router-view</span> <span class="attr">class</span>=<span class="string">"router-view"</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">transition</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>定义name的值  那么此时我们需要用到vuex  如果你用其他也可以 个人习惯用vuex<br>main.js 文件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;&#125;);<span class="comment">//也许这里你已经有其他vuex模块</span></div><div class="line">store.registerModule(<span class="string">'vux'</span>, &#123; <span class="comment">// 名字自己定义</span></div><div class="line">  state: &#123;</div><div class="line">    <span class="attr">animate</span>: <span class="string">'in'</span>,      <span class="comment">// 动画状态  默认是进入</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">mutations</span>: &#123;   <span class="comment">// 提交状态</span></div><div class="line">    animateChange(state, payload)&#123;</div><div class="line">      state.animate = payload.animate</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>重点来了 改变animate的状态  我们需要监测路由的状态<br>main.js 文件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> routerArr = [];<span class="comment">//  创建一个存储路由数组</span></div><div class="line">router.beforeEach(<span class="function"><span class="keyword">function</span> (<span class="params">to, from, next</span>) </span>&#123;</div><div class="line">  routerArr.push(to.path);<span class="comment">//每次push路由</span></div><div class="line">  <span class="keyword">if</span> (routerArr[routerArr.length - <span class="number">3</span>] === to.path) &#123;<span class="comment">// 当如果要去的路径等于数组的倒数第二个路由 那么就是点        击了后退</span></div><div class="line">    store.commit(<span class="string">'animateChange'</span>, &#123;</div><div class="line">      <span class="attr">animate</span>: <span class="string">'out'</span> <span class="comment">// 变成后退动画</span></div><div class="line">    &#125;);</div><div class="line">    routerArr.splice(routerArr.length - <span class="number">2</span>, <span class="number">2</span>) <span class="comment">// 必须删除数组的倒数两位字符串</span></div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    store.commit(<span class="string">'animateChange'</span>, &#123;</div><div class="line">      <span class="attr">animate</span>: <span class="string">'in'</span> <span class="comment">// 变成前进动画</span></div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这么做的话就可以实现切换的效果了  但是存在刷新数组被情况的情况 改成存在sessionStorage 里面就可以</p>
+<ul>
+<li>最后拿到 animate 状态<br>app.vue 文件<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;mapState&#125; <span class="keyword">from</span> <span class="string">'vuex'</span></div><div class="line">  computed: &#123;</div><div class="line">    ...mapState(&#123;</div><div class="line">      <span class="attr">animate</span>: <span class="function"><span class="params">state</span> =&gt;</span> state.vux.animate <span class="comment">// 拿到状态</span></div><div class="line">    &#125;)</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>也许有更好的解决办法 目前只能这么实现了</p>
 
           
         
@@ -1852,228 +2040,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yucccc.com/2016/06/08/移动端开发常见问题（二）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="宇cccc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="宇cccc">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/08/移动端开发常见问题（二）/" itemprop="url">
-                  移动端开发常见问题（二）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-08T15:50:39+08:00">
-                2016-06-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/移动开发/" itemprop="url" rel="index">
-                    <span itemprop="name">移动开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/06/08/移动端开发常见问题（二）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/06/08/移动端开发常见问题（二）/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-
-            
-
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="移动端如何定义字体font-family"><a href="#移动端如何定义字体font-family" class="headerlink" title="移动端如何定义字体font-family"></a>移动端如何定义字体font-family</h3><p>三大手机系统的字体：</p>
-<blockquote>
-<p>iOS 系统</p>
-<ul>
-<li>默认中文字体是Heiti SC</li>
-<li>默认英文字体是Helvetica</li>
-<li>默认数字字体是HelveticaNeue</li>
-<li>无微软雅黑字体</li>
-</ul>
-<hr>
-<p>Android 系统</p>
-<ul>
-<li>默认中文字体是Droidsansfallback</li>
-<li>默认英文和数字字体是Droid Sans</li>
-<li>无微软雅黑字体</li>
-</ul>
-<hr>
-<p>Winphone 系统</p>
-<ul>
-<li>默认中文字体是Dengxian(方正等线体)</li>
-<li>默认英文和数字字体是Segoe</li>
-<li>无微软雅黑字体</li>
-</ul>
-<hr>
-<p>各个手机系统有自己的默认字体，且都不支持微软雅黑，如无特殊需求，手机端无需定义中文字体，使用系统默认英文字体和数字字体可使用 Helvetica ，三种系统都支持。<br>移动端定义字体的代码<br><code>body{font-family:Helvetica;}</code></p>
-</blockquote>
-<h3 id="移动端字体单位font-size选择px还是rem"><a href="#移动端字体单位font-size选择px还是rem" class="headerlink" title="移动端字体单位font-size选择px还是rem"></a>移动端字体单位font-size选择px还是rem</h3><ul>
-<li>对于只需要适配手机设备，使用px即可</li>
-<li>对于需要适配各种移动设备，使用rem，例如只需要适配iPhone和iPad等分辨率差别比较挺大的设备<br>rem配置参考：<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--这个网上有许多 根据自己的需求来 --&gt;</span></div><div class="line">html &#123;font-size:10px&#125;</div><div class="line">@media screen and (min-width:480px) and (max-width:639px) &#123;</div><div class="line">    html &#123;</div><div class="line">        font-size: 15px</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">@media screen and (min-width:640px) and (max-width:719px) &#123;</div><div class="line">    html &#123;</div><div class="line">        font-size: 20px</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">@media screen and (min-width:720px) and (max-width:749px) &#123;</div><div class="line">    html &#123;</div><div class="line">        font-size: 22.5px</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">@media screen and (min-width:750px) and (max-width:799px) &#123;</div><div class="line">    html &#123;</div><div class="line">        font-size: 23.5px</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">@media screen and (min-width:800px) and (max-width:959px) &#123;</div><div class="line">    html &#123;</div><div class="line">        font-size: 25px</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">@media screen and (min-width:960px) and (max-width:1079px) &#123;</div><div class="line">    html &#123;</div><div class="line">        font-size: 30px</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">@media screen and (min-width:1080px) &#123;</div><div class="line">    html &#123;</div><div class="line">        font-size: 32px</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="移动端touch事件-区分webkit-和-winphone"><a href="#移动端touch事件-区分webkit-和-winphone" class="headerlink" title="移动端touch事件(区分webkit 和 winphone)"></a>移动端touch事件(区分webkit 和 winphone)</h3><p>当用户手指放在移动设备在屏幕上滑动会触发的touch事件</p>
-<h4 id="以下支持webkit"><a href="#以下支持webkit" class="headerlink" title="以下支持webkit"></a>以下支持webkit</h4><ul>
-<li>touchstart——当手指触碰屏幕时候发生。不管当前有多少只手指</li>
-<li>touchmove——当手指在屏幕上滑动时连续触发。通常我们再滑屏页面，会调用event的preventDefault()可以阻止默认情况的发生：阻止页面滚动</li>
-<li>touchend——当手指离开屏幕时触发</li>
-<li>touchcancel——系统停止跟踪触摸时候会触发。例如在触摸过程中突然页面alert()一个提示框，此时会触发该事件，这个事件比较少用</li>
-</ul>
-<hr>
-<h4 id="以下支持winphone-8"><a href="#以下支持winphone-8" class="headerlink" title="以下支持winphone 8"></a>以下支持winphone 8</h4><ul>
-<li>MSPointerDown——当手指触碰屏幕时候发生。不管当前有多少只手指</li>
-<li>MSPointerMove——当手指在屏幕上滑动时连续触发。通常我们再滑屏页面，会调用css的html{-ms-touch-action:<br>none;}可以阻止默认情况的发生：阻止页面滚动</li>
-<li>MSPointerUp——当手指离开屏幕时触发</li>
-</ul>
-<h3 id="移动端click屏幕产生200-300-ms的延迟响应"><a href="#移动端click屏幕产生200-300-ms的延迟响应" class="headerlink" title="移动端click屏幕产生200-300 ms的延迟响应"></a>移动端click屏幕产生200-300 ms的延迟响应</h3><p>移动设备上的web网页是有300ms延迟的，往往会造成按钮点击延迟甚至是点击失效。<br>以下是历史原因：</p>
-<blockquote>
-<p>2007年苹果发布首款iphone上IOS系统搭载的safari为了将适用于PC端上大屏幕的网页能比较好的展示在手机端上，使用了双击缩放 (double tap to zoom)的方案，比如你在手机上用浏览器打开一个PC上的网页，你可能在看到页面内容虽然可以撑满整个屏幕，但是字体、图片都很小看不清，此时可以快速 双击屏幕上的某一部分，你就能看清该部分放大后的内容，再次双击后能回到原始状态。<br>双击缩放是指用手指在屏幕上快速点击两次，iOS 自带的 Safari 浏览器会将网页缩放至原始比例。<br>原因就出在浏览器需要如何判断快速点击上，当用户在屏幕上单击某一个元素时候，例如跳转链接，此处浏览器会先捕获该次单击，但浏览器不能决定用户是 单纯要点击链接还是要双击该部分区域进行缩放操作，所以，捕获第一次单击后，浏览器会先Hold一段时间t，如果在t时间区间里用户未进行下一次点击，则 浏览器会做单击跳转链接的处理，如果t时间里用户进行了第二次单击操作，则浏览器会禁止跳转，转而进行对该部分区域页面的缩放操作。那么这个时间区间t有 多少呢？在IOS safari下，大概为300毫秒。这就是延迟的由来。造成的后果用户纯粹单击页面，页面需要过一段时间才响应，给用户慢体验感觉，对于web开发者来说 是，页面js捕获click事件的回调函数处理，需要300ms后才生效，也就间接导致影响其他业务逻辑的处理。<br>解决方案：</p>
-<ul>
-<li>fastclick可以解决在手机上点击事件的300ms延迟</li>
-<li>zepto的touch模块，tap事件也是为了解决在click的延迟问题<br>触摸事件的响应顺序<br>1、ontouchstart<br>2、ontouchmove<br>3、ontouchend<br>4、onclick<br>解决300ms延迟的问题，也可以通过绑定ontouchstart事件，加快对事件的响应。</li>
-</ul>
-</blockquote>
-<h3 id="什么是Retina-显示屏，带来了什么问题"><a href="#什么是Retina-显示屏，带来了什么问题" class="headerlink" title="什么是Retina 显示屏，带来了什么问题"></a>什么是Retina 显示屏，带来了什么问题</h3><p><em>retina</em><br>retina：一种具备超高像素密度的液晶屏，同样大小的屏幕上显示的像素点由1个变为多个，如在同样带下的屏幕上，苹果设备的retina显示屏中，像素点1个变为4个<br>在高清显示屏中的位图被放大，图片会变得模糊，因此移动端的视觉稿通常会设计为传统PC的2倍。<br>那么，前端的应对方案是：<br>设计稿切出来的图片长宽保证为偶数，并使用backgroud-size把图片缩小为原来的1/2</p>
-<p>//例如图片宽高为：200px*200px，那么写法如下<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.css</span>&#123;<span class="attribute">width</span>:<span class="number">100px</span>;<span class="attribute">height</span>:<span class="number">100px</span>;<span class="attribute">background-size</span>:<span class="number">100px</span> <span class="number">100px</span>;&#125;</div></pre></td></tr></table></figure></p>
-<p>//其它元素的取值为原来的1/2，例如视觉稿40px的字体，使用样式的写法为20px<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.css</span>&#123;<span class="attribute">font-size</span>:<span class="number">20px</span>&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="ios系统中元素被触摸时产生的半透明灰色遮罩怎么去掉"><a href="#ios系统中元素被触摸时产生的半透明灰色遮罩怎么去掉" class="headerlink" title="ios系统中元素被触摸时产生的半透明灰色遮罩怎么去掉"></a>ios系统中元素被触摸时产生的半透明灰色遮罩怎么去掉</h3><p>ios用户点击一个链接，会出现一个半透明灰色遮罩, 如果想要禁用，可设置-webkit-tap-highlight-color的alpha值为0，也就是属性值的最后一位设置为0就可以去除半透明灰色遮罩。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">a</span>,<span class="selector-tag">button</span>,<span class="selector-tag">input</span>,<span class="selector-tag">textarea</span>&#123;<span class="attribute">-webkit-tap-highlight-color</span>: <span class="built_in">rgba</span>(0,0,0,0;)&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="部分android系统中元素被点击时产生的边框怎么去掉"><a href="#部分android系统中元素被点击时产生的边框怎么去掉" class="headerlink" title="部分android系统中元素被点击时产生的边框怎么去掉"></a>部分android系统中元素被点击时产生的边框怎么去掉</h3><p>android用户点击一个链接，会出现一个边框或者半透明灰色遮罩, 不同生产商定义出来额效果不一样，可设置-webkit-tap-highlight-color的alpha值为0去除部分机器自带的效果。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">a</span>,<span class="selector-tag">button</span>,<span class="selector-tag">input</span>,<span class="selector-tag">textarea</span>&#123;</div><div class="line">    <span class="attribute">-webkit-tap-highlight-color</span>: <span class="built_in">rgba</span>(0,0,0,0;)</div><div class="line">    -webkit-user-modify:read-write-plaintext-only; </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>-webkit-user-modify有个副作用，就是输入法不再能够输入多个字符。<br>另外，有些机型去除不了，如小米2<br>对于按钮类还有个办法，不使用a或者input标签，直接用div标签</p>
-<h3 id="winphone系统a、input标签被点击时产生的半透明灰色背景怎么去掉"><a href="#winphone系统a、input标签被点击时产生的半透明灰色背景怎么去掉" class="headerlink" title="winphone系统a、input标签被点击时产生的半透明灰色背景怎么去掉"></a>winphone系统a、input标签被点击时产生的半透明灰色背景怎么去掉</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"msapplication-tap-highlight"</span> <span class="attr">content</span>=<span class="string">"no"</span>&gt;</span></div></pre></td></tr></table></figure>
-<h3 id="webkit表单元素的默认外观怎么重置"><a href="#webkit表单元素的默认外观怎么重置" class="headerlink" title="webkit表单元素的默认外观怎么重置"></a>webkit表单元素的默认外观怎么重置</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.css</span>&#123;<span class="attribute">-webkit-appearance</span>:none;&#125;</div></pre></td></tr></table></figure>
-<h3 id="webkit表单输入框placeholder的颜色值能改变么"><a href="#webkit表单输入框placeholder的颜色值能改变么" class="headerlink" title="webkit表单输入框placeholder的颜色值能改变么"></a>webkit表单输入框placeholder的颜色值能改变么</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">input</span><span class="selector-pseudo">::-webkit-input-placeholder</span>&#123;<span class="attribute">color</span>:<span class="number">#AAAAAA</span>;&#125;</div><div class="line"><span class="selector-tag">input</span><span class="selector-pseudo">:focus</span><span class="selector-pseudo">::-webkit-input-placeholder</span>&#123;<span class="attribute">color</span>:red&#125;</div></pre></td></tr></table></figure>
-<h3 id="webkit表单输入框placeholder的文字能换行么"><a href="#webkit表单输入框placeholder的文字能换行么" class="headerlink" title="webkit表单输入框placeholder的文字能换行么"></a>webkit表单输入框placeholder的文字能换行么</h3><blockquote>
-<p>iOS可以，Android不行</p>
-<h3 id="关闭iOS键盘首字母自动大写"><a href="#关闭iOS键盘首字母自动大写" class="headerlink" title="关闭iOS键盘首字母自动大写"></a>关闭iOS键盘首字母自动大写</h3><p>在iOS中，默认情况下键盘是开启首字母大写的功能的，如果启用这个功能，可以这样：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">autocapitalize</span>=<span class="string">"off"</span> /&gt;</span></div></pre></td></tr></table></figure></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2123,7 +2089,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
