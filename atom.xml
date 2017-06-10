@@ -359,6 +359,30 @@
   </entry>
   
   <entry>
+    <title>记录一些开发中常用css3属性</title>
+    <link href="http://yucccc.com/2016/09/23/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%BA%9B%E5%BC%80%E5%8F%91%E4%B8%AD%E5%B8%B8%E7%94%A8css3%E5%B1%9E%E6%80%A7/"/>
+    <id>http://yucccc.com/2016/09/23/记录一些开发中常用css3属性/</id>
+    <published>2016-09-23T06:45:37.000Z</published>
+    <updated>2017-06-10T14:49:48.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="1-超出变成省略号"><a href="#1-超出变成省略号" class="headerlink" title="1.超出变成省略号"></a>1.超出变成省略号</h4><p>text-overflow用来设置是否使用一个省略标记（…）标示对象内文本的溢出。<br>text-overflow只是用来说明文字溢出时用什么方式显示，要实现溢出时产生省略号的效果，必须配合强制文本在一行内显示（white-space:nowrap）及溢出内容为隐藏（overflow:hidden），并且需要给出只宽度(width),只有这样才能实现溢出文本显示省略号的效果，代码如下<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.test_demo</span>&#123;</div><div class="line">    <span class="attribute">text-overflow</span>:ellipsis;</div><div class="line">    <span class="attribute">overflow</span>:hidden;</div><div class="line">    <span class="attribute">white-space</span>:nowrap;</div><div class="line">    <span class="attribute">width</span>:<span class="number">200px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="2-移动端惯性回弹效果"><a href="#2-移动端惯性回弹效果" class="headerlink" title="2.移动端惯性回弹效果"></a>2.移动端惯性回弹效果</h4><p>很多时候,在做一些导航需要栏可以左右拉动的时候，我们会选择一些滚动的插件或者直接overflow:scroll 引入插件固然能解决问题，但是我们有时候仅仅需要使用一次,未免过于浪费,overflow固然可以解决问题，但是用户体验极差，拉动效果生硬，如何增加一个弹簧的效果，其实只需要加一个属性<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-webkit-overflow-scrolling:touch;  // 允许独立的滚动区域和触摸回弹</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;1-超出变成省略号&quot;&gt;&lt;a href=&quot;#1-超出变成省略号&quot; class=&quot;headerlink&quot; title=&quot;1.超出变成省略号&quot;&gt;&lt;/a&gt;1.超出变成省略号&lt;/h4&gt;&lt;p&gt;text-overflow用来设置是否使用一个省略标记（…）标示对象内文本的溢出。&lt;
+    
+    </summary>
+    
+      <category term="移动开发" scheme="http://yucccc.com/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="移动开发" scheme="http://yucccc.com/tags/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/"/>
+    
+  </entry>
+  
+  <entry>
     <title>移动端开发常见问题（三）</title>
     <link href="http://yucccc.com/2016/06/10/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%EF%BC%88%E4%B8%89%EF%BC%89/"/>
     <id>http://yucccc.com/2016/06/10/移动端开发常见问题（三）/</id>
