@@ -291,6 +291,207 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yucccc.com/2017/07/18/前端回流与重排/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="宇cccc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="宇cccc">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/07/18/前端回流与重排/" itemprop="url">
+                  前端回流与重排
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-18T23:19:50+08:00">
+                2017-07-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/18/前端回流与重排/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/07/18/前端回流与重排/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+
+            
+
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>近日有一朋友去面试,遇到如下一道题目,要给一个dom元素循环添加一组dom元素,要放在循环内还是循环外,代码如下:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> div = <span class="built_in">document</span>.getElementById(<span class="string">'div'</span>)</div><div class="line">div.forEach(<span class="function"><span class="params">item</span>=&gt;</span>&#123;</div><div class="line">     <span class="comment">// 循环给div 不断的append添加dom或者其他</span></div><div class="line">&#125;)</div><div class="line"><span class="comment">// 一次append</span></div></pre></td></tr></table></figure></p>
+<p>相信绝多数fe都知道要放在循环外</p>
+<blockquote>
+<p>问 :  为什么？<br>答：因为放在循环内会循坏的频繁的去操作dom<br>问：频繁的操作dom有什么问题？<br>答：因为每次都会去页面找这个dom,损耗性能<br>问：dom 有唯一的id标识 所以并不存在这个问题？还有其他什么原因吗？<br>答 :  ….  </p>
+</blockquote>
+<p>很多人都仅仅知道不能频繁的操作dom，却不知道为什么频繁的去操作dom不好,另外有些人会以为因为每次都去查找dom，影响性能,其实重点不在这里，面试官主要的是考察你是否知道什么是重绘与回流</p>
+<p>在讨论页面重绘、回流之前。需要对页面的呈现流程有些了解，页面是怎么把html结合css等显示到浏览器上的，可能不同的浏览器略微会有些不同。但基本上都是类似的。</p>
+<h3 id="页面如何把html结合css等显示到浏览器上"><a href="#页面如何把html结合css等显示到浏览器上" class="headerlink" title="页面如何把html结合css等显示到浏览器上"></a>页面如何把html结合css等显示到浏览器上</h3><ol>
+<li><p>浏览器把获取到的HTML代码解析成1个DOM树，HTML中的每个tag都是DOM树中的1个节点，根节点就是我们常用的document对象。DOM树里包含了所有HTML标签，包括display:none隐藏，还有用JS动态添加的元素等。</p>
+</li>
+<li><p>浏览器把所有样式(用户定义的CSS和用户代理)解析成样式结构体，在解析的过程中会去掉浏览器不能识别的样式，比如IE会去掉-moz开头的样式，而FF会去掉_开头的样式。</p>
+</li>
+<li><p>DOM Tree(树) 和样式结构体组合后构建render tree, render tree类似于DOM tree，但区别很大，render tree能识别样式，render tree中每个node都有自己的style，而且 render tree不包含隐藏的节点 (比如display:none的节点，还有head节点)，因为这些节点不会用于呈现，而且不会影响呈现的，所以就不会包含到 render tree中。注意 visibility:hidden隐藏的元素还是会包含到 render tree中的，因为visibility:hidden 会影响布局(layout)，会占有空间。根据CSS2的标准，render tree中的每个节点都称为Box (Box dimensions)，理解页面元素为一个具有填充、边距、边框和位置的盒子。</p>
+</li>
+<li><p>一旦render tree构建完毕后，浏览器就可以根据render tree来绘制页面了。  </p>
+</li>
+</ol>
+<h3 id="回流与重绘"><a href="#回流与重绘" class="headerlink" title="回流与重绘"></a>回流与重绘</h3><ol>
+<li><p>当render tree中的一部分(或全部)因为元素的规模尺寸，布局，隐藏等改变而需要重新构建。这就称为回流(reflow)。每个页面至少需要一次回流，就是在页面第一次加载的时候。在回流的时候，浏览器会使渲染树中受到影响的部分失效，并重新构造这部分渲染树，完成回流后，浏览器会重新绘制受影响的部分到屏幕中，该过程成为重绘。</p>
+</li>
+<li><p>当render tree中的一些元素需要更新属性，而这些属性<strong>只是影响元素的外观，风格，而不会影响布局的</strong>，比如background-color。则就叫称为重绘。</p>
+</li>
+</ol>
+<p>注意：回流必将引起重绘，而重绘不一定会引起回流。</p>
+<h3 id="回流何时发生："><a href="#回流何时发生：" class="headerlink" title="回流何时发生："></a>回流何时发生：</h3><p><strong>当页面布局和几何属性改变时就需要回流</strong>。下述情况会发生浏览器回流：</p>
+<p>1、添加或者删除可见的DOM元素；</p>
+<p>2、元素位置改变；</p>
+<p>3、元素尺寸改变——边距、填充、边框、宽度和高度</p>
+<p>4、内容改变——比如文本改变或者图片大小改变而引起的计算值宽度和高度改变；</p>
+<p>5、页面渲染初始化；</p>
+<p>6、浏览器窗口尺寸改变——resize事件发生时；</p>
+<p>让我们看看下面的代码是如何影响回流和重绘的:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> s = <span class="built_in">document</span>.body.style;</div><div class="line">s.padding = <span class="string">"2px"</span>; <span class="comment">// 回流+重绘</span></div><div class="line">s.border = <span class="string">"1px solid red"</span>; <span class="comment">// 再一次 回流+重绘</span></div><div class="line">s.color = <span class="string">"blue"</span>; <span class="comment">// 重绘</span></div><div class="line">s.backgroundColor = <span class="string">"#ccc"</span>; <span class="comment">// 重绘</span></div><div class="line">s.fontSize = <span class="string">"14px"</span>; <span class="comment">// 再一次 回流+重绘</span></div><div class="line"><span class="built_in">document</span>.body.appendChild(<span class="built_in">document</span>.createTextNode(<span class="string">'abc!'</span>));<span class="comment">// 添加node，再一次 回流+重绘</span></div></pre></td></tr></table></figure></p>
+<p>说到这里大家都知道回流比重绘的代价要更高，回流的花销跟render tree有多少节点需要重新构建有关系，假设你直接操作body，比如在body最前面插入1个元素，会导致整个render tree回流，这样代价当然会比较高，但如果是指body后面插入1个元素，则不会影响前面元素的回流。</p>
+<h3 id="聪明的浏览器"><a href="#聪明的浏览器" class="headerlink" title="聪明的浏览器"></a>聪明的浏览器</h3><p>从上个实例代码中可以看到几行简单的JS代码就引起了6次左右的回流、重绘。而且我们也知道回流的花销也不小，如果每句JS操作都去回流重绘的话，浏览器可能就会受不了。所以很多浏览器都会优化这些操作，浏览器会维护1个队列，把所有会引起回流、重绘的操作放入这个队列，等队列中的操作到了一定的数量或者到了一定的时间间隔，浏览器就会flush队列，进行一个批处理。这样就会让多次的回流、重绘变成一次回流重绘。</p>
+<p>虽然有了浏览器的优化，但有时候我们写的一些代码可能会强制浏览器提前flush队列，这样浏览器的优化可能就起不到作用了。当你请求向浏览器请求一些 style信息的时候，就会让浏览器flush队列，比如：</p>
+<ol>
+<li><p>offsetTop, offsetLeft, offsetWidth, offsetHeight</p>
+</li>
+<li><p>scrollTop/Left/Width/Height</p>
+</li>
+<li><p>clientTop/Left/Width/Height</p>
+</li>
+<li><p>width,height</p>
+</li>
+<li><p>请求了getComputedStyle(), 或者 IE的 currentStyle</p>
+</li>
+</ol>
+<p>当你请求上面的一些属性的时候，浏览器为了给你最精确的值，需要flush队列，因为队列中可能会有影响到这些值的操作。即使你获取元素的布局和样式信息跟最近发生或改变的布局信息无关，浏览器都会强行刷新渲染队列。</p>
+<p>如何减少回流、重绘</p>
+<p>减少回流、重绘其实就是需要减少对render tree的操作（合并多次多DOM和样式的修改），并减少对一些style信息的请求，尽量利用好浏览器的优化策略。具体方法有：</p>
+<ol>
+<li><p>直接改变className</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 不好的写法</span></div><div class="line"><span class="keyword">var</span> left = <span class="number">1</span>;</div><div class="line"><span class="keyword">var</span> top = <span class="number">1</span>;</div><div class="line">el.style.left = left + <span class="string">"px"</span>;</div><div class="line">el.style.top = top + <span class="string">"px"</span>;</div><div class="line"><span class="comment">// 比较好的写法</span></div><div class="line">el.className += <span class="string">" className"</span>;</div></pre></td></tr></table></figure>
+</li>
+<li><p>让要操作的元素进行”离线处理”，处理完后一起更新</p>
+</li>
+</ol>
+<ul>
+<li>使用DocumentFragment进行缓存操作,引发一次回流和重绘；<br>可以参考这篇文章 <a href="http://www.cnblogs.com/blueSkys/p/3685740.html" target="_blank" rel="external">了解DocumentFragment 给我们带来的性能优化</a></li>
+<li>使用display:none技术，只引发两次回流和重绘；<br>前面也提到,如果影响到页面布局就会导致回流 那么先把元素设置为 display:none 最后再 display:block 即可</li>
+<li>使用cloneNode(true or false) 和 replaceChild 技术，引发一次回流和重绘；</li>
+</ul>
+<ol>
+<li>不要经常访问会引起浏览器flush队列的属性，如果你确实要访问，利用缓存</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 别这样写</span></div><div class="line"><span class="keyword">for</span>(循环) &#123;</div><div class="line">el.style.left = el.offsetLeft + <span class="number">5</span> + <span class="string">"px"</span>;</div><div class="line">el.style.top = el.offsetTop + <span class="number">5</span> + <span class="string">"px"</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 这样写好点</span></div><div class="line"><span class="keyword">var</span> left = el.offsetLeft,</div><div class="line">top = el.offsetTop,</div><div class="line">s = el.style; </div><div class="line"><span class="keyword">for</span> (循环) &#123; </div><div class="line">left += <span class="number">10</span>; </div><div class="line">top += <span class="number">10</span>; </div><div class="line">s.left = left + <span class="string">"px"</span>; </div><div class="line">s.top = top + <span class="string">"px"</span>; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yucccc.com/2017/06/08/常用javascript小技巧/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1823,165 +2024,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yucccc.com/2016/09/23/记录一些开发中常用css3属性/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="宇cccc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="宇cccc">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/23/记录一些开发中常用css3属性/" itemprop="url">
-                  记录一些开发中常用css3属性
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-23T14:45:37+08:00">
-                2016-09-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/移动开发/" itemprop="url" rel="index">
-                    <span itemprop="name">移动开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/09/23/记录一些开发中常用css3属性/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/09/23/记录一些开发中常用css3属性/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-
-            
-
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="1-超出变成省略号"><a href="#1-超出变成省略号" class="headerlink" title="1.超出变成省略号"></a>1.超出变成省略号</h4><p>text-overflow用来设置是否使用一个省略标记（…）标示对象内文本的溢出。<br>text-overflow只是用来说明文字溢出时用什么方式显示，要实现溢出时产生省略号的效果，必须配合强制文本在一行内显示（white-space:nowrap）及溢出内容为隐藏（overflow:hidden），并且需要给出只宽度(width),只有这样才能实现溢出文本显示省略号的效果，代码如下<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.test_demo</span>&#123;</div><div class="line">    <span class="attribute">text-overflow</span>:ellipsis;</div><div class="line">    <span class="attribute">overflow</span>:hidden;</div><div class="line">    <span class="attribute">white-space</span>:nowrap;</div><div class="line">    <span class="attribute">width</span>:<span class="number">200px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h4 id="2-移动端惯性回弹效果"><a href="#2-移动端惯性回弹效果" class="headerlink" title="2.移动端惯性回弹效果"></a>2.移动端惯性回弹效果</h4><p>很多时候,在做一些导航需要栏可以左右拉动的时候，我们会选择一些滚动的插件或者直接overflow:scroll 引入插件固然能解决问题，但是我们有时候仅仅需要使用一次,未免过于浪费,overflow固然可以解决问题，但是用户体验极差，拉动效果生硬，如何增加一个弹簧的效果，其实只需要加一个属性<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-webkit-overflow-scrolling:touch;  // 允许独立的滚动区域和触摸回弹</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2031,7 +2073,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2053,7 +2095,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
