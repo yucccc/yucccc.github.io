@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="vue2," />
+  <meta name="keywords" content="JavaScript," />
 
 
 
@@ -87,19 +87,22 @@
 
 
 
-<meta name="description" content="现在我的需求是在首页或者详情页点击分享 成功之后会请求后端接口 如果符合条件 则会得到一张 首先 肯定是先撸一波文档  微信api接口文档微信分享其实很简单 步骤如下 绑定域名先登录微信公众平台进入“公众号设置”的“功能设置”里填写“JS接口安全域名”。这个不多说，见文档，只有绑定了才能进行下一步的动作 引入js文件此处我用的是vux内置的插件 其他方式正常引入script即可 123impor">
-<meta name="keywords" content="vue2">
+<meta name="description" content="图文并茂的帮助你更好的理解JavaScript原型.熟记并理解以下规则,保你深入理解对象原型,保你面试无忧. 1 .  任何对象都拥有__proto__(隐式原型) 属性, 一般指向他们的构造函数的原型 (prototype). 1234var a = new Array ()// a 是一个数组对象 默认拥有__proto__ 属性console.log(a.__proto__ === Arra">
+<meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vue2微信分享坑点">
-<meta property="og:url" content="http://yucccc.com/2017/06/06/vue2实现微信分享坑点/index.html">
+<meta property="og:title" content="深入浅出JavaScript原型">
+<meta property="og:url" content="http://yucccc.com/2017/07/28/深入浅出JavaScript原型/index.html">
 <meta property="og:site_name" content="宇cccc">
-<meta property="og:description" content="现在我的需求是在首页或者详情页点击分享 成功之后会请求后端接口 如果符合条件 则会得到一张 首先 肯定是先撸一波文档  微信api接口文档微信分享其实很简单 步骤如下 绑定域名先登录微信公众平台进入“公众号设置”的“功能设置”里填写“JS接口安全域名”。这个不多说，见文档，只有绑定了才能进行下一步的动作 引入js文件此处我用的是vux内置的插件 其他方式正常引入script即可 123impor">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4378038-a9a93df0d7393185.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-06-06T13:16:38.000Z">
+<meta property="og:description" content="图文并茂的帮助你更好的理解JavaScript原型.熟记并理解以下规则,保你深入理解对象原型,保你面试无忧. 1 .  任何对象都拥有__proto__(隐式原型) 属性, 一般指向他们的构造函数的原型 (prototype). 1234var a = new Array ()// a 是一个数组对象 默认拥有__proto__ 属性console.log(a.__proto__ === Arra">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4378038-077a9a81ea222b65.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4378038-8bfd75dda2081d0d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4378038-3c0b4542ba930092.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4378038-b7f95c4744cacfb2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-07-28T12:27:01.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="vue2微信分享坑点">
-<meta name="twitter:description" content="现在我的需求是在首页或者详情页点击分享 成功之后会请求后端接口 如果符合条件 则会得到一张 首先 肯定是先撸一波文档  微信api接口文档微信分享其实很简单 步骤如下 绑定域名先登录微信公众平台进入“公众号设置”的“功能设置”里填写“JS接口安全域名”。这个不多说，见文档，只有绑定了才能进行下一步的动作 引入js文件此处我用的是vux内置的插件 其他方式正常引入script即可 123impor">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/4378038-a9a93df0d7393185.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="深入浅出JavaScript原型">
+<meta name="twitter:description" content="图文并茂的帮助你更好的理解JavaScript原型.熟记并理解以下规则,保你深入理解对象原型,保你面试无忧. 1 .  任何对象都拥有__proto__(隐式原型) 属性, 一般指向他们的构造函数的原型 (prototype). 1234var a = new Array ()// a 是一个数组对象 默认拥有__proto__ 属性console.log(a.__proto__ === Arra">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/4378038-077a9a81ea222b65.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -127,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://yucccc.com/2017/06/06/vue2实现微信分享坑点/"/>
+  <link rel="canonical" href="http://yucccc.com/2017/07/28/深入浅出JavaScript原型/"/>
 
 
 
 
 
-  <title> vue2微信分享坑点 | 宇cccc </title>
+  <title> 深入浅出JavaScript原型 | 宇cccc </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -296,7 +299,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yucccc.com/2017/06/06/vue2实现微信分享坑点/">
+    <link itemprop="mainEntityOfPage" href="http://yucccc.com/2017/07/28/深入浅出JavaScript原型/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="宇cccc">
@@ -317,7 +320,7 @@
             
             
               
-                vue2微信分享坑点
+                深入浅出JavaScript原型
               
             
           </h1>
@@ -332,8 +335,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-06T21:09:49+08:00">
-                2017-06-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-28T20:21:14+08:00">
+                2017-07-28
               </time>
             
 
@@ -343,28 +346,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue2/" itemprop="url" rel="index">
-                    <span itemprop="name">vue2</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -373,9 +354,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/06/06/vue2实现微信分享坑点/#comments" itemprop="discussionUrl">
+                <a href="/2017/07/28/深入浅出JavaScript原型/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/06/06/vue2实现微信分享坑点/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/07/28/深入浅出JavaScript原型/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -405,32 +386,37 @@
       
 
       
-        <ul>
-<li>现在我的需求是在首页或者详情页点击分享 成功之后会请求后端接口 如果符合条件 则会得到一张</li>
-<li>首先 肯定是先撸一波文档  <a href="https://mp.weixin.qq.com/wiki" target="_blank" rel="external">微信api接口文档</a><br>微信分享其实很简单 步骤如下</li>
-<li><h4 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h4>先登录微信公众平台进入“公众号设置”的“功能设置”里填写“JS接口安全域名”。这个不多说，见文档，只有绑定了才能进行下一步的动作</li>
-<li><h4 id="引入js文件"><a href="#引入js文件" class="headerlink" title="引入js文件"></a>引入js文件</h4><p>此处我用的是vux内置的插件 其他方式正常引入script即可</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; WechatPlugin&#125; <span class="keyword">from</span> <span class="string">'vux'</span></div><div class="line">Vue.use(WechatPlugin); <span class="comment">//  微信</span></div><div class="line"><span class="keyword">const</span> wx = Vue.wechat;</div></pre></td></tr></table></figure>
-</li>
-<li><h4 id="通过config接口注入权限验证配置"><a href="#通过config接口注入权限验证配置" class="headerlink" title="通过config接口注入权限验证配置"></a>通过config接口注入权限验证配置</h4><p>所有需要使用JS-SDK的页面必须先注入配置信息  配置信息需要后端返回</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 此处我是定义在vue原型中 这样方便以后的调用 通过 this.wxShare()调用</span></div><div class="line"><span class="keyword">const</span> imgUrl = <span class="string">'http://xxx.xxxx.xxxx'</span>; <span class="comment">// 测试地址</span></div><div class="line">Vue.prototype.wxShare = <span class="function"><span class="keyword">function</span> (<span class="params">title, desc, link</span>) </span>&#123;</div><div class="line">  <span class="keyword">const</span> url = <span class="built_in">document</span>.location.href;<span class="comment">// 当前url</span></div><div class="line">  http.get(getConfig(), &#123;<span class="comment">//请求配置</span></div><div class="line">    params: &#123;</div><div class="line">      <span class="attr">url</span>: url</div><div class="line">    &#125;</div><div class="line">  &#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;<span class="comment">// 获得签名配置</span></div><div class="line">    <span class="keyword">var</span> Data = res.data.data;</div><div class="line">    <span class="comment">// config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作</span></div><div class="line">    wx.config(&#123;</div><div class="line">      <span class="attr">debug</span>: <span class="literal">false</span>, <span class="comment">// 开启调试模式,开发时可以开启</span></div><div class="line">      appId: Data.appid,   <span class="comment">// 必填，公众号的唯一标识   由接口返回</span></div><div class="line">      timestamp: Data.timestamp, <span class="comment">// 必填，生成签名的时间戳 由接口返回</span></div><div class="line">      nonceStr: Data.nonceStr,    <span class="comment">// 必填，生成签名的随机串 由接口返回</span></div><div class="line">      signature: Data.signature,   <span class="comment">// 必填，签名 由接口返回</span></div><div class="line">      jsApiList: [<span class="string">'onMenuShareAppMessage'</span>, <span class="string">'onMenuShareTimeline'</span>] <span class="comment">// 此处填你所用到的方法</span></div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">wx.ready(<span class="function"><span class="params">()</span> =&gt;</span>&#123;</div><div class="line"><span class="comment">// ..... code</span></div><div class="line">&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-</li>
-<li><h4 id="定义方法"><a href="#定义方法" class="headerlink" title="定义方法"></a>定义方法</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">Vue.prototype.wxShare = <span class="function"><span class="keyword">function</span> (<span class="params">title, desc, link</span>) </span>&#123;</div><div class="line">wx.config()</div><div class="line">wx.ready(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="comment">// 所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，</span></div><div class="line">    <span class="comment">// 则可以直接调用，不需要放在ready函数中。</span></div><div class="line">    wx.onMenuShareAppMessage(&#123; <span class="comment">// 分享给朋友</span></div><div class="line">      title: title,       <span class="comment">// 分享标题</span></div><div class="line">      desc: desc,   <span class="comment">// 分享描述</span></div><div class="line">      link: link,       <span class="comment">// 分享链接 默认以当前链接</span></div><div class="line">      imgUrl: imgUrl + <span class="string">'/static/images/share.png'</span>,<span class="comment">// 分享图标</span></div><div class="line">      <span class="comment">// 用户确认分享后执行的回调函数</span></div><div class="line">      success: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> params = <span class="keyword">new</span> URLSearchParams();</div><div class="line">        params.append(<span class="string">'token'</span>, <span class="built_in">window</span>.localStorage.getItem(<span class="string">'token'</span>));</div><div class="line">        params.append(<span class="string">'type'</span>, <span class="string">'share'</span>);</div><div class="line">        http.post(shareCallback(), params).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123; <span class="comment">// 请求后端分享成功之后获取一票的接口</span></div><div class="line">          <span class="keyword">if</span> (res.data.error == <span class="number">0</span>) &#123; <span class="comment">// 表示当天分享成功</span></div><div class="line">            store.commit(<span class="string">'shareChange'</span>, &#123;<span class="comment">// vuex弹出分享成功获取一票</span></div><div class="line">              isShare: <span class="literal">true</span></div><div class="line">            &#125;);</div><div class="line">          &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">          &#125;</div><div class="line">        &#125;)</div><div class="line">      &#125;,</div><div class="line">      <span class="comment">// 用户取消分享后执行的回调函数</span></div><div class="line">      cancel: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'分享到朋友取消'</span>);</div><div class="line">      &#125;</div><div class="line">    &#125;);</div><div class="line">    <span class="comment">//分享到朋友圈</span></div><div class="line">    wx.onMenuShareTimeline(&#123;&#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>然后在需要的钩子里面调用即可,以上的流程都可以在文档中查看</p>
-<ul>
-<li><h4 id="坑点"><a href="#坑点" class="headerlink" title="坑点"></a>坑点</h4><ul>
-<li><h5 id="在ios微信浏览器中-window-onload-reload-以及-window-location-go-0-无效"><a href="#在ios微信浏览器中-window-onload-reload-以及-window-location-go-0-无效" class="headerlink" title="在ios微信浏览器中 window.onload.reload() 以及  window.location.go(0) 无效"></a>在ios微信浏览器中 window.onload.reload() 以及  window.location.go(0) 无效</h5><p>我想实现登陆之后刷新页面, 结果在登陆之后 ios并不会刷新页面<br>解决办法： 最后使用 watch 解决</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">watch: &#123;</div><div class="line">  <span class="attr">login</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.login) &#123;</div><div class="line">      <span class="keyword">this</span>._getFansCard()</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><h4 id="ios上二次分享会出现签名错误-并且莫名被拼接上了一串标识-此问题只有在ios上有"><a href="#ios上二次分享会出现签名错误-并且莫名被拼接上了一串标识-此问题只有在ios上有" class="headerlink" title="ios上二次分享会出现签名错误, 并且莫名被拼接上了一串标识 此问题只有在ios上有"></a>ios上二次分享会出现签名错误, 并且莫名被拼接上了一串标识 此问题只有在ios上有</h4></li>
-</ul>
-</li>
-</ul>
-<p><img src="http://upload-images.jianshu.io/upload_images/4378038-a9a93df0d7393185.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="微信截图_20170524110236.png"></p>
-<p>ios会在#号中间添加一串标识 如下<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">http://test.aaa.bbbb.com/?from=singlemessage&amp;isappinstalled=0#/details?id=2</div><div class="line">// 原本链接 http://test.aaa.bbbb.com/#/details?id=2</div></pre></td></tr></table></figure></p>
-<p>这个问题解决了两天,建议在一开始就开启debug模式,这样能及时知道问题所在<br>解决办法:<br>一开始以为是 ‘#’ 的问题 于是乎开启vue HTML5 History 模式  去除掉#  结果发现 在进入其他页面的时候 复制连接还是首页的链接 本质上还是没得到解决<br>后来发现本质上的错误是;当浏览者从分享窗口进入后，他从分享页按着正常路由跳转到其他页面，其他页面的逻辑中如果有需要获取当前页面url的需要，会发现这个url和正常路由跳转的不一样,导致签名不一致,所以获取不到正确的文案。<br>最后我是隔天再次测试就好了,最终我也不知道是到底如何解决的。。。。<br>一开始 有 #  然后开启 h5模式 最后又还原了 哈希模式  发现二次分享的问题解决了。。。。</p>
+        <p>图文并茂的帮助你更好的理解JavaScript原型.<br>熟记并理解以下规则,保你深入理解对象原型,保你面试无忧.</p>
+<p>1 .  任何对象都拥有<code>__proto__</code>(隐式原型) 属性, 一般指向他们的构造函数的原型 (prototype).</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Array</span> ()</div><div class="line"><span class="comment">// a 是一个数组对象 默认拥有__proto__ 属性</span></div><div class="line"><span class="built_in">console</span>.log(a.__proto__ === <span class="built_in">Array</span>.prototype);  <span class="comment">// true</span></div><div class="line">白话就是 由谁创建 其__proto__ 就指向谁的 prototype</div></pre></td></tr></table></figure>
+<p>2 .  原型链的顶端是Object.prototype，其 <code>__proto__</code>为 null</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.__proto__ === <span class="literal">null</span>); <span class="comment">// true</span></div><div class="line"><span class="comment">// 这是一个特例,为了避免JavaScript死循环.</span></div></pre></td></tr></table></figure>
+<p>3 . 所有函数都拥有prototype （显式原型）属性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">任何函数的 prototype.__proto__ 都指向 <span class="built_in">Object</span>.prototype 特例见第 <span class="number">2</span></div></pre></td></tr></table></figure>
+<p>4 . 所有函数都是Function 的 实例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">// some code</span></div><div class="line">&#125;</div><div class="line"><span class="comment">// fn 是 Function 构造函数创建出来的</span></div><div class="line"><span class="comment">// 因此 fn 的 __proto__ 属性指向 Function 的 原型对象</span></div><div class="line"><span class="built_in">console</span>.log(fn.__proto__ === <span class="built_in">Function</span>.prototype);  <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<p>类似的 十分容易就能理解</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = &#123;&#125;  <span class="comment">// 可以看做是 var obj = new Object ()</span></div><div class="line"><span class="keyword">var</span> arr = []   <span class="comment">//  var obj = new Array ()</span></div><div class="line"><span class="comment">// 因此他们的构造函数分别是 Object 和 Array</span></div><div class="line"><span class="built_in">console</span>.log(obj.__proto__ === <span class="built_in">Object</span>.prototype); <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log(arr.__proto__ === <span class="built_in">Array</span>.prototype);    <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<p>5 . 更奇葩的来了，Object Function Array 本身也都是一个函数，由于是最常用的，所以JavaScript帮我们实现了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 当我们通过构造函数的方式来创建一个对象 ，其本质也是new一个普通的函数</span></div><div class="line"><span class="comment">// 因此可以得出</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Function</span>.__proto__ === <span class="built_in">Function</span>.prototype); <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.__proto__ === <span class="built_in">Function</span>.prototype );  <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Array</span>.__proto__ === <span class="built_in">Function</span>.prototype);    <span class="comment">// true</span></div><div class="line"><span class="comment">// 可印证 第4点</span></div></pre></td></tr></table></figure>
+<p>6 . 原型对象中又拥有constructor属性,该属性指向函数本身,这个好理解</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Function</span>.prototype.constructor === <span class="built_in">Function</span>); <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.constructor === <span class="built_in">Object</span>);     <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Array</span>.prototype.constructor === <span class="built_in">Array</span>);       <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<p>7 . 先普及一波 <strong>原型链</strong> 概念</p>
+<p>如果想要找到一个对象的属性,首先会先在自身查找,如果没有,就会通过<code>__proto__</code>属性一层层的向上查找,直到原型链的顶端 Object.prototype(<code>__proto__: null</code>）见第2<br>这种通过某种纽带(<code>__proto__</code>)将对象之间形成一种继承关系 这种关系呈现出一种链条的形状 将这种链条称之为原型链</p>
+<p>8 . 根据第 6 条可以推论得:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(fn.constructor===<span class="built_in">Function</span>); <span class="comment">// true</span></div><div class="line"><span class="comment">// 解析:</span></div><div class="line"><span class="comment">// fn自身并没有constructor属性,所以他会顺着原型链向上找</span></div><div class="line"><span class="comment">// fn.__proto__ 指向的是 Function.prototype 见第4</span></div><div class="line"><span class="comment">// Function.prototype.constructor  === Function</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Function</span>.constructor === <span class="built_in">Function</span>); <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.constructor === <span class="built_in">Function</span>);   <span class="comment">//true</span></div></pre></td></tr></table></figure>
+<p>9 . <code>Function.prototype.__proto__ === Object.prototype</code></p>
+<p>Function是一个特殊的例子 他创造了所有的函数,但他自身就是也是一个函数  总不能自己创造自己吧 所以他的上级是 Object.prototype</p>
+<p>下面配合几张原型图,帮助大家更好的理解.</p>
+<h4 id="构造函数创建对象字面量原型图"><a href="#构造函数创建对象字面量原型图" class="headerlink" title="构造函数创建对象字面量原型图"></a>构造函数创建对象字面量原型图</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">Animal</span> (<span class="params">color</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.color = color</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> dog =  <span class="keyword">new</span> Animal (<span class="string">'黑色'</span>)</div></pre></td></tr></table></figure>
+<p>当我们创建一个函数时原型如下:<br><img src="http://upload-images.jianshu.io/upload_images/4378038-077a9a81ea222b65.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="构造函数创建对象字面量原型图"></p>
+<h4 id="完整对象字面量原型图"><a href="#完整对象字面量原型图" class="headerlink" title="完整对象字面量原型图"></a>完整对象字面量原型图</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = &#123; <span class="attr">name</span>: <span class="string">'陈二狗'</span> &#125;;</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/4378038-8bfd75dda2081d0d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="完整对象字面量原型图"></p>
+<h4 id="数组原型链"><a href="#数组原型链" class="headerlink" title="数组原型链"></a>数组原型链</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="string">'第一个数'</span>,<span class="string">'第二个数'</span>,<span class="string">'第三个数'</span>]</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/4378038-3c0b4542ba930092.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="数组原型链"></p>
+<h4 id="基本包装类型原型链"><a href="#基本包装类型原型链" class="headerlink" title="基本包装类型原型链"></a>基本包装类型原型链</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str  = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">'str'</span>)  <span class="comment">// var str = 'str'</span></div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/4378038-b7f95c4744cacfb2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="基本包装类型"><br>其实所有的原型链规则都是根据上面的规则来的,只要能记住并理解,那么你也就理解原型了</p>
+<p>如果有纰漏 忘指出,如果有转载,麻烦注明作者yucccc.</p>
 
       
     </div>
@@ -460,7 +446,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/vue2/" rel="tag"># vue2</a>
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
           
         </div>
       
@@ -473,8 +459,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/06/vue2监听微信返回按钮仿微信切换动画/" rel="next" title="vue2监听微信返回按钮仿微信切换动画">
-                <i class="fa fa-chevron-left"></i> vue2监听微信返回按钮仿微信切换动画
+              <a href="/2017/07/18/前端回流与重排/" rel="next" title="前端回流与重排">
+                <i class="fa fa-chevron-left"></i> 前端回流与重排
               </a>
             
           </div>
@@ -482,10 +468,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/06/08/常用javascript小技巧/" rel="prev" title="常用javascript小技巧">
-                常用javascript小技巧 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -655,7 +637,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#绑定域名"><span class="nav-number">1.</span> <span class="nav-text">绑定域名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#引入js文件"><span class="nav-number">2.</span> <span class="nav-text">引入js文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通过config接口注入权限验证配置"><span class="nav-number">3.</span> <span class="nav-text">通过config接口注入权限验证配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定义方法"><span class="nav-number">4.</span> <span class="nav-text">定义方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#坑点"><span class="nav-number">5.</span> <span class="nav-text">坑点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#在ios微信浏览器中-window-onload-reload-以及-window-location-go-0-无效"><span class="nav-number">5.1.</span> <span class="nav-text">在ios微信浏览器中 window.onload.reload() 以及  window.location.go(0) 无效</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ios上二次分享会出现签名错误-并且莫名被拼接上了一串标识-此问题只有在ios上有"><span class="nav-number">6.</span> <span class="nav-text">ios上二次分享会出现签名错误, 并且莫名被拼接上了一串标识 此问题只有在ios上有</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#构造函数创建对象字面量原型图"><span class="nav-number">1.</span> <span class="nav-text">构造函数创建对象字面量原型图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#完整对象字面量原型图"><span class="nav-number">2.</span> <span class="nav-text">完整对象字面量原型图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数组原型链"><span class="nav-number">3.</span> <span class="nav-text">数组原型链</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基本包装类型原型链"><span class="nav-number">4.</span> <span class="nav-text">基本包装类型原型链</span></a></li></ol></div>
             
 
           </div>
@@ -804,9 +786,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yucccc.com/2017/06/06/vue2实现微信分享坑点/';
-          this.page.identifier = '2017/06/06/vue2实现微信分享坑点/';
-          this.page.title = 'vue2微信分享坑点';
+          this.page.url = 'http://yucccc.com/2017/07/28/深入浅出JavaScript原型/';
+          this.page.identifier = '2017/07/28/深入浅出JavaScript原型/';
+          this.page.title = '深入浅出JavaScript原型';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://yucccc.disqus.com/embed.js';

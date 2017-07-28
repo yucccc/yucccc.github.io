@@ -291,6 +291,172 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yucccc.com/2017/07/28/深入浅出JavaScript原型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="宇cccc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="宇cccc">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/07/28/深入浅出JavaScript原型/" itemprop="url">
+                  深入浅出JavaScript原型
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-28T20:21:14+08:00">
+                2017-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/28/深入浅出JavaScript原型/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/07/28/深入浅出JavaScript原型/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+
+            
+
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>图文并茂的帮助你更好的理解JavaScript原型.<br>熟记并理解以下规则,保你深入理解对象原型,保你面试无忧.</p>
+<p>1 .  任何对象都拥有<code>__proto__</code>(隐式原型) 属性, 一般指向他们的构造函数的原型 (prototype).</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Array</span> ()</div><div class="line"><span class="comment">// a 是一个数组对象 默认拥有__proto__ 属性</span></div><div class="line"><span class="built_in">console</span>.log(a.__proto__ === <span class="built_in">Array</span>.prototype);  <span class="comment">// true</span></div><div class="line">白话就是 由谁创建 其__proto__ 就指向谁的 prototype</div></pre></td></tr></table></figure>
+<p>2 .  原型链的顶端是Object.prototype，其 <code>__proto__</code>为 null</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.__proto__ === <span class="literal">null</span>); <span class="comment">// true</span></div><div class="line"><span class="comment">// 这是一个特例,为了避免JavaScript死循环.</span></div></pre></td></tr></table></figure>
+<p>3 . 所有函数都拥有prototype （显式原型）属性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">任何函数的 prototype.__proto__ 都指向 <span class="built_in">Object</span>.prototype 特例见第 <span class="number">2</span></div></pre></td></tr></table></figure>
+<p>4 . 所有函数都是Function 的 实例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">// some code</span></div><div class="line">&#125;</div><div class="line"><span class="comment">// fn 是 Function 构造函数创建出来的</span></div><div class="line"><span class="comment">// 因此 fn 的 __proto__ 属性指向 Function 的 原型对象</span></div><div class="line"><span class="built_in">console</span>.log(fn.__proto__ === <span class="built_in">Function</span>.prototype);  <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<p>类似的 十分容易就能理解</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = &#123;&#125;  <span class="comment">// 可以看做是 var obj = new Object ()</span></div><div class="line"><span class="keyword">var</span> arr = []   <span class="comment">//  var obj = new Array ()</span></div><div class="line"><span class="comment">// 因此他们的构造函数分别是 Object 和 Array</span></div><div class="line"><span class="built_in">console</span>.log(obj.__proto__ === <span class="built_in">Object</span>.prototype); <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log(arr.__proto__ === <span class="built_in">Array</span>.prototype);    <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<p>5 . 更奇葩的来了，Object Function Array 本身也都是一个函数，由于是最常用的，所以JavaScript帮我们实现了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 当我们通过构造函数的方式来创建一个对象 ，其本质也是new一个普通的函数</span></div><div class="line"><span class="comment">// 因此可以得出</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Function</span>.__proto__ === <span class="built_in">Function</span>.prototype); <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.__proto__ === <span class="built_in">Function</span>.prototype );  <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Array</span>.__proto__ === <span class="built_in">Function</span>.prototype);    <span class="comment">// true</span></div><div class="line"><span class="comment">// 可印证 第4点</span></div></pre></td></tr></table></figure>
+<p>6 . 原型对象中又拥有constructor属性,该属性指向函数本身,这个好理解</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Function</span>.prototype.constructor === <span class="built_in">Function</span>); <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.constructor === <span class="built_in">Object</span>);     <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Array</span>.prototype.constructor === <span class="built_in">Array</span>);       <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<p>7 . 先普及一波 <strong>原型链</strong> 概念</p>
+<p>如果想要找到一个对象的属性,首先会先在自身查找,如果没有,就会通过<code>__proto__</code>属性一层层的向上查找,直到原型链的顶端 Object.prototype(<code>__proto__: null</code>）见第2<br>这种通过某种纽带(<code>__proto__</code>)将对象之间形成一种继承关系 这种关系呈现出一种链条的形状 将这种链条称之为原型链</p>
+<p>8 . 根据第 6 条可以推论得:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(fn.constructor===<span class="built_in">Function</span>); <span class="comment">// true</span></div><div class="line"><span class="comment">// 解析:</span></div><div class="line"><span class="comment">// fn自身并没有constructor属性,所以他会顺着原型链向上找</span></div><div class="line"><span class="comment">// fn.__proto__ 指向的是 Function.prototype 见第4</span></div><div class="line"><span class="comment">// Function.prototype.constructor  === Function</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Function</span>.constructor === <span class="built_in">Function</span>); <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.constructor === <span class="built_in">Function</span>);   <span class="comment">//true</span></div></pre></td></tr></table></figure>
+<p>9 . <code>Function.prototype.__proto__ === Object.prototype</code></p>
+<p>Function是一个特殊的例子 他创造了所有的函数,但他自身就是也是一个函数  总不能自己创造自己吧 所以他的上级是 Object.prototype</p>
+<p>下面配合几张原型图,帮助大家更好的理解.</p>
+<h4 id="构造函数创建对象字面量原型图"><a href="#构造函数创建对象字面量原型图" class="headerlink" title="构造函数创建对象字面量原型图"></a>构造函数创建对象字面量原型图</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">Animal</span> (<span class="params">color</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.color = color</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> dog =  <span class="keyword">new</span> Animal (<span class="string">'黑色'</span>)</div></pre></td></tr></table></figure>
+<p>当我们创建一个函数时原型如下:<br><img src="http://upload-images.jianshu.io/upload_images/4378038-077a9a81ea222b65.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="构造函数创建对象字面量原型图"></p>
+<h4 id="完整对象字面量原型图"><a href="#完整对象字面量原型图" class="headerlink" title="完整对象字面量原型图"></a>完整对象字面量原型图</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = &#123; <span class="attr">name</span>: <span class="string">'陈二狗'</span> &#125;;</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/4378038-8bfd75dda2081d0d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="完整对象字面量原型图"></p>
+<h4 id="数组原型链"><a href="#数组原型链" class="headerlink" title="数组原型链"></a>数组原型链</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="string">'第一个数'</span>,<span class="string">'第二个数'</span>,<span class="string">'第三个数'</span>]</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/4378038-3c0b4542ba930092.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="数组原型链"></p>
+<h4 id="基本包装类型原型链"><a href="#基本包装类型原型链" class="headerlink" title="基本包装类型原型链"></a>基本包装类型原型链</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str  = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">'str'</span>)  <span class="comment">// var str = 'str'</span></div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/4378038-b7f95c4744cacfb2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="基本包装类型"><br>其实所有的原型链规则都是根据上面的规则来的,只要能记住并理解,那么你也就理解原型了</p>
+<p>如果有纰漏 忘指出,如果有转载,麻烦注明作者yucccc.</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yucccc.com/2017/07/18/前端回流与重排/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1864,166 +2030,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yucccc.com/2017/04/04/vue2搭建开发环境并且可以请求本地数据设置/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="宇cccc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="宇cccc">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/04/vue2搭建开发环境并且可以请求本地数据设置/" itemprop="url">
-                  vue2搭建开发环境并且可以请求本地数据设置
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-04T09:58:34+08:00">
-                2017-04-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/webpack/" itemprop="url" rel="index">
-                    <span itemprop="name">webpack</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/04/04/vue2搭建开发环境并且可以请求本地数据设置/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/04/04/vue2搭建开发环境并且可以请求本地数据设置/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-
-            
-
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>  这一个问题困扰了我许久，怎么用vue搭建开发环境并且可以请求本地数据，因为webpack-dev-server在编译vue的时候会默认开启一个端口，本地的服务器肯定也会拥有一个端口，那么不同端口的请求又为跨域请求，此时又不能把端口改为相同，因为这样会造成端口冲突，当然不考虑跨域jsonp之类，虽然jsonp可以做，但是在开发中无疑增加了繁杂度，并且这样做的话上线又要改请求方式，十分麻烦，那么应该怎么做呢？<br>这时候就要用到webpack里面的开启代理的配置,即把请求的地址转发到指定的地址，并且允许跨域请求 如下：</p>
-<h2 id="开启webpack代理"><a href="#开启webpack代理" class="headerlink" title="开启webpack代理"></a>开启webpack代理</h2><p>此时找到config文件中的index.js,拉到底部找到<br>dev：{  里面是一些端口的配置} 在里面添加上如下配置<br> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"> dev: &#123;</div><div class="line">    <span class="attr">env</span>: <span class="built_in">require</span>(<span class="string">'./dev.env'</span>),</div><div class="line">    <span class="attr">port</span>: <span class="number">9999</span>,</div><div class="line">    <span class="attr">autoOpenBrowser</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">assetsSubDirectory</span>: <span class="string">'static'</span>,</div><div class="line">    <span class="attr">assetsPublicPath</span>: <span class="string">'/'</span>,</div><div class="line">    <span class="attr">proxyTable</span>: &#123;<span class="comment">// 这里用的是vue-cli脚手架,默认proxyTable:&#123;&#125; ,内容为空 只需要配置这个参数即可</span></div><div class="line">      <span class="string">'/webapi'</span>: &#123;<span class="comment">//代表你以什么为开始请求数据 表示以webapi开头的请求就开启代理</span></div><div class="line">        target: <span class="string">'http://im.ivymei.com'</span>, <span class="comment">//代表代理地址 即：如果 this.$http.get('/webapi').then() 此时会变成http://www.baidu.com/webapi</span></div><div class="line">        changeOrigin: <span class="literal">true</span>,<span class="comment">// 表示允许跨域   </span></div><div class="line">        pathRewrite: &#123;</div><div class="line">          <span class="string">'^/webapi'</span>: <span class="string">'/webapi'</span> <span class="comment">//可要可不要</span></div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">cssSourceMap</span>: <span class="literal">false</span>,</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>至此就可以愉快的请求本地数据了  8080端口也能请求80端口的数据了 最终打包上线也不需要改任何代码,更多的webpack代理设置请查阅webpack官方文档</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2073,7 +2079,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2095,7 +2101,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
