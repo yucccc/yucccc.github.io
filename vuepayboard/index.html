@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>vue-pay-keyboard</title>
+  <script src="./vue.min.js"></script>
+  <script src="./vue-pay-keyboard.js"></script>
   <style>
     button {
       border: 1px solid #ccc;
@@ -17,11 +19,10 @@
 
 <body>
   <div id="app">
-     <button @click="payShow()">点击支付</button>
-    <vue-pay-keyboard :is-pay='isPay' @pas-end='pasEnd' @close='isPay=false'></vue-pay-keyboard> 
+    <button @click="payShow()">点击支付</button>
+    <vue-pay-keyboard :is-pay='isPay' @pas-end='pasEnd' @close='isPay=false'></vue-pay-keyboard>
   </div>
-   <script src="./vue.js"></script> 
-   <script src="./vue-pay-keyboard.js"></script>   
+
 </body>
 <script>
   new Vue({
