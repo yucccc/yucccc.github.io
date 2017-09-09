@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yucccc.com/"/>
-  <updated>2017-08-25T13:07:17.000Z</updated>
+  <updated>2017-09-09T02:34:42.000Z</updated>
   <id>http://yucccc.com/</id>
   
   <author>
@@ -14,6 +14,48 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>记一次uc面试</title>
+    <link href="http://yucccc.com/2017/09/07/%E8%AE%B0%E4%B8%80%E6%AC%A1uc%E9%9D%A2%E8%AF%95/"/>
+    <id>http://yucccc.com/2017/09/07/记一次uc面试/</id>
+    <published>2017-09-07T08:29:59.000Z</published>
+    <updated>2017-09-09T02:34:42.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>很有幸的去uc面试，面试过程问的顺序是从笔试到你简历上写的技术，最后到之前待过的公司，下面记录一下遇到的问题<br><a id="more"></a></p>
+<h2 id="笔试"><a href="#笔试" class="headerlink" title="笔试"></a>笔试</h2><p>1.写一个中间自适应，左右固定100px的三栏布局，这个问题基本都没问题，网上也很多答案。</p>
+<blockquote>
+<p>参考 <a href="http://www.jianshu.com/p/32058713fa9a" target="_blank" rel="external">CSS三栏布局5种解决方案</a></p>
+</blockquote>
+<p>问: 网格布局有什么问题，有没在实际中应用，flex有哪些兼容性问题，兼容性写法有哪些</p>
+<p>2.根据下面布局填写所缺的css样式</p>
+<p>3.请阅读以下代码，并把运行结果写到下方注释中<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">    <span class="keyword">const</span> foo = <span class="function">(<span class="params">(x, f = (y = x</span>) =&gt;</span> x + y) =&gt; &#123;</div><div class="line">      <span class="keyword">let</span> y = f();</div><div class="line">      x = y++;</div><div class="line">      <span class="keyword">return</span> [x, y, f(y)]</div><div class="line">    &#125;)(<span class="number">2</span>)</div><div class="line"><span class="comment">// foo =</span></div></pre></td></tr></table></figure></p>
+<p>4.如何不使用loop循环，创建一个长度为100的数组，并且每个元素的值等于它的下标？</p>
+<p>5.根据上面生成的数组，乱序排列</p>
+<p>6.不使用loop，根据乱序排序后生成的数组，将前十个数相加.</p>
+<p>7.如果前端代码部署，主页面放在自己服务器，静态资源部署到cdn 应该怎么部署，怎么保证同步</p>
+<blockquote>
+<p>参考: <a href="https://www.zhihu.com/question/20790576" target="_blank" rel="external">大公司里怎样开发和部署前端代码？</a></p>
+</blockquote>
+<h2 id="技能"><a href="#技能" class="headerlink" title="技能"></a>技能</h2><p>1.你用过nodejs的那些模块，当项目部署时你如何保证node热更新</p>
+<p>2.怎么知道那个dom发生了变化，如何对比，有没可能存在跨节点对比，diff如何解决这个问题</p>
+<p>3.webpack如何构建多页面，多页面命名有什么规范</p>
+<p>4.有没读过jQuery与zepto的源码，两者有什么区别，和vue又有什么区别</p>
+<p>5.Mv*思想，如何实现一个mvvm框架</p>
+<h2 id="公司"><a href="#公司" class="headerlink" title="公司"></a>公司</h2><p>1.之前公司多少人，多人如何协作</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>1.你平时如何提升自己，如何快速成长（他说他两年达到了p6p7的级别，我当时仰慕的啊~~~）</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;很有幸的去uc面试，面试过程问的顺序是从笔试到你简历上写的技术，最后到之前待过的公司，下面记录一下遇到的问题&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="面试" scheme="http://yucccc.com/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
   
   <entry>
     <title>深入浅出JavaScript原型</title>
@@ -438,10 +480,10 @@
     <updated>2017-08-25T13:11:51.000Z</updated>
     
     <content type="html"><![CDATA[<p>今天用vue在做一个tab栏切换的时候，偶然发现我绑定在router-link上的click并不会触发，<br>后来测试发现，所有绑定在router-link中的事件都不会促发<br><a id="more"></a><br>此后查看了官方的文档，也并没有给出明确的说明：<br>代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;router-link @click=<span class="string">"change"</span>&gt;<span class="xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123;item.text&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;router-link @click=<span class="string">"change"</span>&gt;&lt;span&gt;&#123;&#123;item.text&#125;&#125;&lt;/span&gt;&lt;/router-link&gt;</div></pre></td></tr></table></figure>
 <p>此刻我发现，无论如何定义在methods 中的 change函数并不会触发，这是为什么呢？<br>在github查看了vue-router的代码后发现：<br><img src="http://onzmxf7ol.bkt.clouddn.com/20170406routetlink.jpg" alt="vue-router源码"></p>
 <h3 id="事件被阻止"><a href="#事件被阻止" class="headerlink" title="事件被阻止"></a>事件被阻止</h3><p>如果当前router-link的tag不是a的话（官方文档中说明：默认为a，可以通过tag改变渲染后的标签），那么就会往自己的子元素（组件）找，找到的第一个就会把一些属性及时间覆盖过去。<br>所以此时事件是被阻止了。个人看法：因为router-link的作用是单纯的路由跳转，如果不阻止事件的话，也许会有很多坑，所以作者干脆阻止了其他事件的触发</p>
-<h3 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;router-link  @click.native=<span class="string">"change"</span>&gt;<span class="xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123;item.text&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<h3 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;router-link  @click.native=<span class="string">"change"</span>&gt;&lt;span&gt;&#123;&#123;item.text&#125;&#125;&lt;/span&gt;&lt;/router-link&gt;</div></pre></td></tr></table></figure>
 <p>只需要在@click后面加上native就可以了</p>
 <h3 id="原生事件"><a href="#原生事件" class="headerlink" title="原生事件"></a>原生事件</h3><p>添加native事件修饰符之后变为原生事件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$element.addEventListener(click, callback);</div></pre></td></tr></table></figure></p>
 <p>此时a标签并不会阻止，至此便可以解决绑定在router-link身上的事件不会触发的问题。<br>其次，想要实现tab切换添加class可以在router中添加如下配置：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</div><div class="line">  <span class="attr">routes</span>: [],<span class="comment">// 路由跳转配置</span></div><div class="line">  linkActiveClass:<span class="string">'active'</span> <span class="comment">// 在路由中添加配置  active 为跳转到该路由时添加的激活类名</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
@@ -481,9 +523,9 @@
       <category term="webpack" scheme="http://yucccc.com/categories/webpack/"/>
     
     
-      <category term="vue2" scheme="http://yucccc.com/tags/vue2/"/>
-    
       <category term="webpack" scheme="http://yucccc.com/tags/webpack/"/>
+    
+      <category term="vue2" scheme="http://yucccc.com/tags/vue2/"/>
     
   </entry>
   

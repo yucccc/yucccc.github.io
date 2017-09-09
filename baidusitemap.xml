@@ -4,6 +4,23 @@
 
     
   <url>
+    <loc>http://yucccc.com/2017/09/07/%E8%AE%B0%E4%B8%80%E6%AC%A1uc%E9%9D%A2%E8%AF%95/</loc>
+    <lastmod>2017-09-09T02:34:42.000Z</lastmod>
+    <data>
+        <display>
+        <title>记一次uc面试</title>
+        <pubTime>2017-09-07T08:29:59.000Z</pubTime>
+        
+        <tag>面试</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yucccc.com/2016/06/10/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%EF%BC%88%E4%B8%89%EF%BC%89/</loc>
     <lastmod>2017-08-25T13:16:58.000Z</lastmod>
     <data>
@@ -173,9 +190,9 @@
         <title>vue2搭建开发环境并且可以请求本地数据设置</title>
         <pubTime>2017-04-04T01:58:34.000Z</pubTime>
         
-        <tag>vue2</tag>
-         
         <tag>webpack</tag>
+         
+        <tag>vue2</tag>
          
          
            

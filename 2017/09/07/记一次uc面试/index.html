@@ -15,17 +15,17 @@
 
 
 
-<meta name="description" content="此时我有一个需求，给一个盒子添加一个背景图片，这个背景图片是动态请求回来的，那么应该怎么做？看似简单，其实很考研对JavaScript基础的功底以及对vue生命周期的理解。">
-<meta name="keywords" content="vue2">
+<meta name="description" content="很有幸的去uc面试，面试过程问的顺序是从笔试到你简历上写的技术，最后到之前待过的公司，下面记录一下遇到的问题">
+<meta name="keywords" content="面试">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vue2绑定内联样式background的一些坑">
-<meta property="og:url" content="http://yucccc.com/2017/04/11/vue2绑定内联样式background的一些坑/index.html">
+<meta property="og:title" content="记一次uc面试">
+<meta property="og:url" content="http://yucccc.com/2017/09/07/记一次uc面试/index.html">
 <meta property="og:site_name" content="宇cccc">
-<meta property="og:description" content="此时我有一个需求，给一个盒子添加一个背景图片，这个背景图片是动态请求回来的，那么应该怎么做？看似简单，其实很考研对JavaScript基础的功底以及对vue生命周期的理解。">
-<meta property="og:updated_time" content="2017-08-25T13:11:09.000Z">
+<meta property="og:description" content="很有幸的去uc面试，面试过程问的顺序是从笔试到你简历上写的技术，最后到之前待过的公司，下面记录一下遇到的问题">
+<meta property="og:updated_time" content="2017-09-09T02:34:42.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="vue2绑定内联样式background的一些坑">
-<meta name="twitter:description" content="此时我有一个需求，给一个盒子添加一个背景图片，这个背景图片是动态请求回来的，那么应该怎么做？看似简单，其实很考研对JavaScript基础的功底以及对vue生命周期的理解。">
+<meta name="twitter:title" content="记一次uc面试">
+<meta name="twitter:description" content="很有幸的去uc面试，面试过程问的顺序是从笔试到你简历上写的技术，最后到之前待过的公司，下面记录一下遇到的问题">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -57,7 +57,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>vue2绑定内联样式background的一些坑 | 宇cccc</title>
+<title>记一次uc面试 | 宇cccc</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -255,11 +255,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-vue2绑定内联样式background的一些坑" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-记一次uc面试" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/04/11/vue2绑定内联样式background的一些坑/" class="article-date">
-      <time datetime="2017-04-11T12:28:45.000Z" itemprop="datePublished">2017-04-11</time>
+      <a href="/2017/09/07/记一次uc面试/" class="article-date">
+      <time datetime="2017-09-07T08:29:59.000Z" itemprop="datePublished">2017-09-07</time>
 </a>
 
 
@@ -274,7 +274,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      vue2绑定内联样式background的一些坑
+      记一次uc面试
     </h1>
   
 
@@ -282,14 +282,10 @@
       
       <div class="article-info article-info-post">
         
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/vue2/">vue2</a>
-    </div>
-
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue2/">vue2</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试/">面试</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -299,13 +295,28 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>此时我有一个需求，给一个盒子添加一个背景图片，这个背景图片是动态请求回来的，那么应该怎么做？看似简单，其实很考研对JavaScript基础的功底以及对vue生命周期的理解。<br><a id="more"></a><br>正常情况下的vue内联样式如下写法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;div :style=<span class="string">"&#123; color: activeColor, fontSize: fontSize + 'px' &#125;"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line">data: &#123;</div><div class="line">  <span class="attr">activeColor</span>: <span class="string">'red'</span>,</div><div class="line">  <span class="attr">fontSize</span>: <span class="number">30</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>此时的style绑定的是一个JavaScript对象，在JavaScript中不允许出现 “-“ ，那么绑定一个背景图片应该这么写：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;div :style=<span class="string">"&#123;background: 'url('+ img +')'，backgroundSize:cover &#125;"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line">data:&#123;</div><div class="line">  <span class="attr">img</span>:<span class="string">'xxx.png'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>好了背景图片已经成功通过字符串拼接的方式加上了，我们改为动态请求回来的。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;div :style=<span class="string">"&#123;background: 'url('+ img +')'，backgroundSize:cover &#125;"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line">data:&#123;</div><div class="line">    <span class="attr">img</span>:<span class="string">'xxx.png'</span></div><div class="line">&#125;,</div><div class="line"><span class="attr">methods</span>:&#123;</div><div class="line"><span class="comment">// 伪代码 请求数据</span></div><div class="line">      getImg()&#123;</div><div class="line">        <span class="keyword">this</span>.$http.get().then(<span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">          <span class="keyword">this</span>.img = e.data <span class="comment">//将数据赋值给img</span></div><div class="line">        &#125;.bind(<span class="keyword">this</span>))</div><div class="line">      &#125;</div><div class="line">&#125;，</div><div class="line">created()&#123;</div><div class="line"><span class="comment">// 调用函数</span></div><div class="line">    <span class="keyword">this</span>.getImg()</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>created vue2生命周期钩子函数<br>在实例创建之后同步调用。此时实例已经结束解析选项，这意味着已建立：数据绑定data，计算属性computed，方法methods，watcher/事件回调。<br>此时你会发现虽然渲染了出来，但是报错了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Error in render function</div><div class="line">Cannot read property &apos;img&apos; of undefined</div></pre></td></tr></table></figure></p>
-<p>因为在生命周期 mounted 之前都是虚拟dom 也就是说 当页面已经渲染完，但是vue还没执行，所有数据丢失，此时我们加上<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div v-<span class="keyword">if</span>=<span class="string">'img '</span> :style=<span class="string">"&#123;background: 'url('+ img +')'，backgroundSize:cover &#125;"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div></pre></td></tr></table></figure></p>
-<p>表示有img属性的时候我们选择这个元素,至此就成功绑定背景图片了。</p>
+        <p>很有幸的去uc面试，面试过程问的顺序是从笔试到你简历上写的技术，最后到之前待过的公司，下面记录一下遇到的问题<br><a id="more"></a></p>
+<h2 id="笔试"><a href="#笔试" class="headerlink" title="笔试"></a>笔试</h2><p>1.写一个中间自适应，左右固定100px的三栏布局，这个问题基本都没问题，网上也很多答案。</p>
+<blockquote>
+<p>参考 <a href="http://www.jianshu.com/p/32058713fa9a" target="_blank" rel="external">CSS三栏布局5种解决方案</a></p>
+</blockquote>
+<p>问: 网格布局有什么问题，有没在实际中应用，flex有哪些兼容性问题，兼容性写法有哪些</p>
+<p>2.根据下面布局填写所缺的css样式</p>
+<p>3.请阅读以下代码，并把运行结果写到下方注释中<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">    <span class="keyword">const</span> foo = <span class="function">(<span class="params">(x, f = (y = x</span>) =&gt;</span> x + y) =&gt; &#123;</div><div class="line">      <span class="keyword">let</span> y = f();</div><div class="line">      x = y++;</div><div class="line">      <span class="keyword">return</span> [x, y, f(y)]</div><div class="line">    &#125;)(<span class="number">2</span>)</div><div class="line"><span class="comment">// foo =</span></div></pre></td></tr></table></figure></p>
+<p>4.如何不使用loop循环，创建一个长度为100的数组，并且每个元素的值等于它的下标？</p>
+<p>5.根据上面生成的数组，乱序排列</p>
+<p>6.不使用loop，根据乱序排序后生成的数组，将前十个数相加.</p>
+<p>7.如果前端代码部署，主页面放在自己服务器，静态资源部署到cdn 应该怎么部署，怎么保证同步</p>
+<blockquote>
+<p>参考: <a href="https://www.zhihu.com/question/20790576" target="_blank" rel="external">大公司里怎样开发和部署前端代码？</a></p>
+</blockquote>
+<h2 id="技能"><a href="#技能" class="headerlink" title="技能"></a>技能</h2><p>1.你用过nodejs的那些模块，当项目部署时你如何保证node热更新</p>
+<p>2.怎么知道那个dom发生了变化，如何对比，有没可能存在跨节点对比，diff如何解决这个问题</p>
+<p>3.webpack如何构建多页面，多页面命名有什么规范</p>
+<p>4.有没读过jQuery与zepto的源码，两者有什么区别，和vue又有什么区别</p>
+<p>5.Mv*思想，如何实现一个mvvm框架</p>
+<h2 id="公司"><a href="#公司" class="headerlink" title="公司"></a>公司</h2><p>1.之前公司多少人，多人如何协作</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>1.你平时如何提升自己，如何快速成长（他说他两年达到了p6p7的级别，我当时仰慕的啊~~~）</p>
 
       
     </div>
@@ -314,13 +325,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/04/11/vue2绑定内联样式background的一些坑/">vue2绑定内联样式background的一些坑</a></p>
+        <p><span>本文标题:</span><a href="/2017/09/07/记一次uc面试/">记一次uc面试</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">宇cccc</a></p>
-        <p><span>发布时间:</span>2017-04-11, 20:28:45</p>
-        <p><span>最后更新:</span>2017-08-25, 21:11:09</p>
+        <p><span>发布时间:</span>2017-09-07, 16:29:59</p>
+        <p><span>最后更新:</span>2017-09-09, 10:34:42</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/04/11/vue2绑定内联样式background的一些坑/" title="vue2绑定内联样式background的一些坑">http://yucccc.com/2017/04/11/vue2绑定内联样式background的一些坑/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yucccc.com/2017/04/11/vue2绑定内联样式background的一些坑/　　作者: 宇cccc" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/09/07/记一次uc面试/" title="记一次uc面试">http://yucccc.com/2017/09/07/记一次uc面试/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yucccc.com/2017/09/07/记一次uc面试/　　作者: 宇cccc" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -332,16 +343,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2017/04/30/vue2动态给微信单页应用更改标题/">
-                    vue2动态给微信单页应用更改标题
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2017/04/10/mongodb Windows环境安装及配置/">
-                    mongodb Windows环境安装及配置
+                <a href="/2017/07/28/深入浅出JavaScript原型/">
+                    深入浅出JavaScript原型
                 </a>
             </div>
         
@@ -353,7 +358,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#笔试"><span class="toc-number">1.</span> <span class="toc-text">笔试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#技能"><span class="toc-number">2.</span> <span class="toc-text">技能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#公司"><span class="toc-number">3.</span> <span class="toc-text">公司</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-number">4.</span> <span class="toc-text">最后</span></a></li></ol>
         
     </div>
     <style>
@@ -389,7 +394,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"vue2绑定内联样式background的一些坑　| 宇cccc　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"记一次uc面试　| 宇cccc　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -409,15 +414,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/04/30/vue2动态给微信单页应用更改标题/" title="上一篇: vue2动态给微信单页应用更改标题">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2017/04/10/mongodb Windows环境安装及配置/" title="下一篇: mongodb Windows环境安装及配置">
+            <a href="/2017/07/28/深入浅出JavaScript原型/" title="下一篇: 深入浅出JavaScript原型">
                 <i class="fa fa-angle-right"></i>
             </a>
         
