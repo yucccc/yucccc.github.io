@@ -1,18 +1,19 @@
-- 宇cccc个人博客: http://yucccc.com
+# 博客基于hexo
 
-- 前端面试资料: [戳我](https://github.com/yucccc/yucccc.github.io/issues/1)
+宇cccc个人博客: [http://yucccc.com](http://yucccc.com)
 
-
-博客基于hexo
-
-### 启动
+## 启动
 
 ```hexo server```
 
-### 发布
+## 发布
 
 ``hexo d -g``
 
-### 新建文章
+## 新建文章
 
 ```hexo new 'xx'```
+
+## 资料
+
+- 前端面试资料: [戳我](https://github.com/yucccc/yucccc.github.io/issues/1)
