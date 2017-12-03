@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yucccc.com/"/>
-  <updated>2017-09-09T02:34:42.000Z</updated>
+  <updated>2017-12-03T13:46:34.000Z</updated>
   <id>http://yucccc.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yucccc.com/2017/09/07/%E8%AE%B0%E4%B8%80%E6%AC%A1uc%E9%9D%A2%E8%AF%95/"/>
     <id>http://yucccc.com/2017/09/07/记一次uc面试/</id>
     <published>2017-09-07T08:29:59.000Z</published>
-    <updated>2017-09-09T02:34:42.000Z</updated>
+    <updated>2017-12-03T13:46:34.000Z</updated>
     
     <content type="html"><![CDATA[<p>很有幸的去uc面试，面试过程问的顺序是从笔试到你简历上写的技术，最后到之前待过的公司，下面记录一下遇到的问题<br><a id="more"></a></p>
 <h2 id="笔试"><a href="#笔试" class="headerlink" title="笔试"></a>笔试</h2><p>1.写一个中间自适应，左右固定100px的三栏布局，这个问题基本都没问题，网上也很多答案。</p>
@@ -28,12 +28,11 @@
 <p>参考 <a href="http://www.jianshu.com/p/32058713fa9a" target="_blank" rel="external">CSS三栏布局5种解决方案</a></p>
 </blockquote>
 <p>问: 网格布局有什么问题，有没在实际中应用，flex有哪些兼容性问题，兼容性写法有哪些</p>
-<p>2.根据下面布局填写所缺的css样式</p>
-<p>3.请阅读以下代码，并把运行结果写到下方注释中<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">    <span class="keyword">const</span> foo = <span class="function">(<span class="params">(x, f = (y = x</span>) =&gt;</span> x + y) =&gt; &#123;</div><div class="line">      <span class="keyword">let</span> y = f();</div><div class="line">      x = y++;</div><div class="line">      <span class="keyword">return</span> [x, y, f(y)]</div><div class="line">    &#125;)(<span class="number">2</span>)</div><div class="line"><span class="comment">// foo =</span></div></pre></td></tr></table></figure></p>
-<p>4.如何不使用loop循环，创建一个长度为100的数组，并且每个元素的值等于它的下标？</p>
-<p>5.根据上面生成的数组，乱序排列</p>
-<p>6.不使用loop，根据乱序排序后生成的数组，将前十个数相加.</p>
-<p>7.如果前端代码部署，主页面放在自己服务器，静态资源部署到cdn 应该怎么部署，怎么保证同步</p>
+<p>2.请阅读以下代码，并把运行结果写到下方注释中<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">    <span class="keyword">const</span> foo = <span class="function">(<span class="params">(x, f = (y = x</span>) =&gt;</span> x + y) =&gt; &#123;</div><div class="line">      <span class="keyword">let</span> y = f();</div><div class="line">      x = y++;</div><div class="line">      <span class="keyword">return</span> [x, y, f(y)]</div><div class="line">    &#125;)(<span class="number">2</span>)</div><div class="line"><span class="comment">// foo =</span></div></pre></td></tr></table></figure></p>
+<p>3.如何不使用loop循环，创建一个长度为100的数组，并且每个元素的值等于它的下标？</p>
+<p>4.根据上面生成的数组，乱序排列(同样不使用loop)</p>
+<p>5.不使用loop，根据上面乱序排序后生成的数组，将前十个数相加.</p>
+<p>6.如果前端代码部署，主页面放在自己服务器，静态资源部署到cdn 应该怎么部署，怎么保证同步</p>
 <blockquote>
 <p>参考: <a href="https://www.zhihu.com/question/20790576" target="_blank" rel="external">大公司里怎样开发和部署前端代码？</a></p>
 </blockquote>
@@ -248,49 +247,6 @@
   </entry>
   
   <entry>
-    <title>vue2监听微信返回按钮仿微信切换动画</title>
-    <link href="http://yucccc.com/2017/06/06/vue2%E7%9B%91%E5%90%AC%E5%BE%AE%E4%BF%A1%E8%BF%94%E5%9B%9E%E6%8C%89%E9%92%AE%E4%BB%BF%E5%BE%AE%E4%BF%A1%E5%88%87%E6%8D%A2%E5%8A%A8%E7%94%BB/"/>
-    <id>http://yucccc.com/2017/06/06/vue2监听微信返回按钮仿微信切换动画/</id>
-    <published>2017-06-06T13:09:49.000Z</published>
-    <updated>2017-08-25T13:11:36.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>效果如下<br><a id="more"></a><br><img src="http://upload-images.jianshu.io/upload_images/4378038-661a910ced34d96c.gif?imageMogr2/auto-orient/strip" alt="GIF.gif"><br>点击了浏览器默认返回按钮执行后退动画 其他执行前进动画 这里录制的时候没录制到鼠标轨迹<br>大致思路如下:<br>在vue中实现动画其实是很简单的,但是由于网上查找不到相关的浏览器默认返回按钮或者微信的返回按钮事件，所有只能是一个伪的监测返回事件<br>代码如下：</p>
-<ul>
-<li><p>首先是先定义css动画  感谢vux的源码 我是一顿复制粘贴<br>app.vue 文件</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.vux-pop-out-enter</span> &#123;</div><div class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(-100%, 0, 0);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.vux-pop-out-leave-active</span> &#123;</div><div class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(100%, 0, 0);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.vux-pop-in-enter</span> &#123;</div><div class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(100%, 0, 0);</div><div class="line">  <span class="attribute">-webkit-transform</span>: <span class="built_in">translate3d</span>(100%, 0, 0);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.vux-pop-in-leave-active</span> &#123;</div><div class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(-100%, 0, 0);</div><div class="line">  <span class="attribute">-webkit-transform</span>: <span class="built_in">translate3d</span>(-100%, 0, 0);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>定义动画执行组件   此处的name应该是动态改变的<br>app.vue 文件</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">transition</span> <span class="attr">:name</span>=<span class="string">"'vux-pop-'+ animate"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">router-view</span> <span class="attr">class</span>=<span class="string">"router-view"</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">transition</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>定义name的值  那么此时我们需要用到vuex  如果你用其他也可以 个人习惯用vuex<br>main.js 文件</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;&#125;);<span class="comment">//也许这里你已经有其他vuex模块</span></div><div class="line">store.registerModule(<span class="string">'vux'</span>, &#123; <span class="comment">// 名字自己定义</span></div><div class="line">  state: &#123;</div><div class="line">    <span class="attr">animate</span>: <span class="string">'in'</span>,      <span class="comment">// 动画状态  默认是进入</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">mutations</span>: &#123;   <span class="comment">// 提交状态</span></div><div class="line">    animateChange(state, payload)&#123;</div><div class="line">      state.animate = payload.animate</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-</li>
-<li><p>重点来了 改变animate的状态  我们需要监测路由的状态<br>main.js 文件</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> routerArr = [];<span class="comment">//  创建一个存储路由数组</span></div><div class="line">router.beforeEach(<span class="function"><span class="keyword">function</span> (<span class="params">to, from, next</span>) </span>&#123;</div><div class="line">  routerArr.push(to.path);<span class="comment">//每次push路由</span></div><div class="line">  <span class="keyword">if</span> (routerArr[routerArr.length - <span class="number">3</span>] === to.path) &#123;<span class="comment">// 当如果要去的路径等于数组的倒数第二个路由 那么就是点        击了后退</span></div><div class="line">    store.commit(<span class="string">'animateChange'</span>, &#123;</div><div class="line">      <span class="attr">animate</span>: <span class="string">'out'</span> <span class="comment">// 变成后退动画</span></div><div class="line">    &#125;);</div><div class="line">    routerArr.splice(routerArr.length - <span class="number">2</span>, <span class="number">2</span>) <span class="comment">// 必须删除数组的倒数两位字符串</span></div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    store.commit(<span class="string">'animateChange'</span>, &#123;</div><div class="line">      <span class="attr">animate</span>: <span class="string">'in'</span> <span class="comment">// 变成前进动画</span></div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>这么做的话就可以实现切换的效果了  但是存在刷新数组被情况的情况 改成存在sessionStorage 里面就可以</p>
-<ul>
-<li>最后拿到 animate 状态<br>app.vue 文件<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;mapState&#125; <span class="keyword">from</span> <span class="string">'vuex'</span></div><div class="line">  computed: &#123;</div><div class="line">    ...mapState(&#123;</div><div class="line">      <span class="attr">animate</span>: <span class="function"><span class="params">state</span> =&gt;</span> state.vux.animate <span class="comment">// 拿到状态</span></div><div class="line">    &#125;)</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>也许有更好的解决办法 目前只能这么实现了</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;效果如下&lt;br&gt;
-    
-    </summary>
-    
-      <category term="vue2" scheme="http://yucccc.com/categories/vue2/"/>
-    
-    
-      <category term="vue2" scheme="http://yucccc.com/tags/vue2/"/>
-    
-  </entry>
-  
-  <entry>
     <title>vue2微信分享坑点</title>
     <link href="http://yucccc.com/2017/06/06/vue2%E5%AE%9E%E7%8E%B0%E5%BE%AE%E4%BF%A1%E5%88%86%E4%BA%AB%E5%9D%91%E7%82%B9/"/>
     <id>http://yucccc.com/2017/06/06/vue2实现微信分享坑点/</id>
@@ -329,6 +285,49 @@
     
       &lt;ul&gt;
 &lt;li&gt;现在我的需求是在首页或者详情页点击分享 成功之后会请求后端接口 如果符合条件 则会得到一张
+    
+    </summary>
+    
+      <category term="vue2" scheme="http://yucccc.com/categories/vue2/"/>
+    
+    
+      <category term="vue2" scheme="http://yucccc.com/tags/vue2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vue2监听微信返回按钮仿微信切换动画</title>
+    <link href="http://yucccc.com/2017/06/06/vue2%E7%9B%91%E5%90%AC%E5%BE%AE%E4%BF%A1%E8%BF%94%E5%9B%9E%E6%8C%89%E9%92%AE%E4%BB%BF%E5%BE%AE%E4%BF%A1%E5%88%87%E6%8D%A2%E5%8A%A8%E7%94%BB/"/>
+    <id>http://yucccc.com/2017/06/06/vue2监听微信返回按钮仿微信切换动画/</id>
+    <published>2017-06-06T13:09:49.000Z</published>
+    <updated>2017-08-25T13:11:36.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>效果如下<br><a id="more"></a><br><img src="http://upload-images.jianshu.io/upload_images/4378038-661a910ced34d96c.gif?imageMogr2/auto-orient/strip" alt="GIF.gif"><br>点击了浏览器默认返回按钮执行后退动画 其他执行前进动画 这里录制的时候没录制到鼠标轨迹<br>大致思路如下:<br>在vue中实现动画其实是很简单的,但是由于网上查找不到相关的浏览器默认返回按钮或者微信的返回按钮事件，所有只能是一个伪的监测返回事件<br>代码如下：</p>
+<ul>
+<li><p>首先是先定义css动画  感谢vux的源码 我是一顿复制粘贴<br>app.vue 文件</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.vux-pop-out-enter</span> &#123;</div><div class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(-100%, 0, 0);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.vux-pop-out-leave-active</span> &#123;</div><div class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(100%, 0, 0);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.vux-pop-in-enter</span> &#123;</div><div class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(100%, 0, 0);</div><div class="line">  <span class="attribute">-webkit-transform</span>: <span class="built_in">translate3d</span>(100%, 0, 0);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.vux-pop-in-leave-active</span> &#123;</div><div class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(-100%, 0, 0);</div><div class="line">  <span class="attribute">-webkit-transform</span>: <span class="built_in">translate3d</span>(-100%, 0, 0);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>定义动画执行组件   此处的name应该是动态改变的<br>app.vue 文件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">transition</span> <span class="attr">:name</span>=<span class="string">"'vux-pop-'+ animate"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">router-view</span> <span class="attr">class</span>=<span class="string">"router-view"</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">transition</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>定义name的值  那么此时我们需要用到vuex  如果你用其他也可以 个人习惯用vuex<br>main.js 文件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;&#125;);<span class="comment">//也许这里你已经有其他vuex模块</span></div><div class="line">store.registerModule(<span class="string">'vux'</span>, &#123; <span class="comment">// 名字自己定义</span></div><div class="line">  state: &#123;</div><div class="line">    <span class="attr">animate</span>: <span class="string">'in'</span>,      <span class="comment">// 动画状态  默认是进入</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">mutations</span>: &#123;   <span class="comment">// 提交状态</span></div><div class="line">    animateChange(state, payload)&#123;</div><div class="line">      state.animate = payload.animate</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>重点来了 改变animate的状态  我们需要监测路由的状态<br>main.js 文件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> routerArr = [];<span class="comment">//  创建一个存储路由数组</span></div><div class="line">router.beforeEach(<span class="function"><span class="keyword">function</span> (<span class="params">to, from, next</span>) </span>&#123;</div><div class="line">  routerArr.push(to.path);<span class="comment">//每次push路由</span></div><div class="line">  <span class="keyword">if</span> (routerArr[routerArr.length - <span class="number">3</span>] === to.path) &#123;<span class="comment">// 当如果要去的路径等于数组的倒数第二个路由 那么就是点        击了后退</span></div><div class="line">    store.commit(<span class="string">'animateChange'</span>, &#123;</div><div class="line">      <span class="attr">animate</span>: <span class="string">'out'</span> <span class="comment">// 变成后退动画</span></div><div class="line">    &#125;);</div><div class="line">    routerArr.splice(routerArr.length - <span class="number">2</span>, <span class="number">2</span>) <span class="comment">// 必须删除数组的倒数两位字符串</span></div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    store.commit(<span class="string">'animateChange'</span>, &#123;</div><div class="line">      <span class="attr">animate</span>: <span class="string">'in'</span> <span class="comment">// 变成前进动画</span></div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这么做的话就可以实现切换的效果了  但是存在刷新数组被情况的情况 改成存在sessionStorage 里面就可以</p>
+<ul>
+<li>最后拿到 animate 状态<br>app.vue 文件<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;mapState&#125; <span class="keyword">from</span> <span class="string">'vuex'</span></div><div class="line">  computed: &#123;</div><div class="line">    ...mapState(&#123;</div><div class="line">      <span class="attr">animate</span>: <span class="function"><span class="params">state</span> =&gt;</span> state.vux.animate <span class="comment">// 拿到状态</span></div><div class="line">    &#125;)</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>也许有更好的解决办法 目前只能这么实现了</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;效果如下&lt;br&gt;
     
     </summary>
     
@@ -480,10 +479,10 @@
     <updated>2017-08-25T13:11:51.000Z</updated>
     
     <content type="html"><![CDATA[<p>今天用vue在做一个tab栏切换的时候，偶然发现我绑定在router-link上的click并不会触发，<br>后来测试发现，所有绑定在router-link中的事件都不会促发<br><a id="more"></a><br>此后查看了官方的文档，也并没有给出明确的说明：<br>代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;router-link @click=<span class="string">"change"</span>&gt;&lt;span&gt;&#123;&#123;item.text&#125;&#125;&lt;/span&gt;&lt;/router-link&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;router-link @click=<span class="string">"change"</span>&gt;<span class="xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123;item.text&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span></div></pre></td></tr></table></figure>
 <p>此刻我发现，无论如何定义在methods 中的 change函数并不会触发，这是为什么呢？<br>在github查看了vue-router的代码后发现：<br><img src="http://onzmxf7ol.bkt.clouddn.com/20170406routetlink.jpg" alt="vue-router源码"></p>
 <h3 id="事件被阻止"><a href="#事件被阻止" class="headerlink" title="事件被阻止"></a>事件被阻止</h3><p>如果当前router-link的tag不是a的话（官方文档中说明：默认为a，可以通过tag改变渲染后的标签），那么就会往自己的子元素（组件）找，找到的第一个就会把一些属性及时间覆盖过去。<br>所以此时事件是被阻止了。个人看法：因为router-link的作用是单纯的路由跳转，如果不阻止事件的话，也许会有很多坑，所以作者干脆阻止了其他事件的触发</p>
-<h3 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;router-link  @click.native=<span class="string">"change"</span>&gt;&lt;span&gt;&#123;&#123;item.text&#125;&#125;&lt;/span&gt;&lt;/router-link&gt;</div></pre></td></tr></table></figure>
+<h3 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;router-link  @click.native=<span class="string">"change"</span>&gt;<span class="xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123;item.text&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span></div></pre></td></tr></table></figure>
 <p>只需要在@click后面加上native就可以了</p>
 <h3 id="原生事件"><a href="#原生事件" class="headerlink" title="原生事件"></a>原生事件</h3><p>添加native事件修饰符之后变为原生事件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$element.addEventListener(click, callback);</div></pre></td></tr></table></figure></p>
 <p>此时a标签并不会阻止，至此便可以解决绑定在router-link身上的事件不会触发的问题。<br>其次，想要实现tab切换添加class可以在router中添加如下配置：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</div><div class="line">  <span class="attr">routes</span>: [],<span class="comment">// 路由跳转配置</span></div><div class="line">  linkActiveClass:<span class="string">'active'</span> <span class="comment">// 在路由中添加配置  active 为跳转到该路由时添加的激活类名</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
