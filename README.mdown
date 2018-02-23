@@ -1,18 +1,10 @@
 # 博客基于hexo
 
-宇cccc个人博客: [http://yucccc.com](http://yucccc.com)
+个人博客: [http://yucccc.com](http://yucccc.com)
 
-## 启动
+segmentfault: [segmentfault](https://segmentfault.com/u/yucccc)
 
-```hexo server```
-
-## 发布
-
-``hexo d -g``
-
-## 新建文章
-
-```hexo new 'xx'```
+简书: [简书](https://www.jianshu.com/u/a03c0c4f5c88)
 
 ## 资料
 
